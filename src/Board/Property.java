@@ -1,11 +1,12 @@
 package Board;
 
+import Players.Money;
 import Players.Player;
 
 /**
  * Created by marc on 20/11/2015.
  */
-public class Property extends Space {
+public abstract class Property extends Space {
 
     private int baseRent;
     private int cost;
@@ -51,4 +52,7 @@ public class Property extends Space {
     public void setOwner(Player owner) {
         this.owner = owner;
     }
+
+    protected abstract void calculateRent();
+
 }

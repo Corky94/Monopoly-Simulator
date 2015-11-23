@@ -1,9 +1,12 @@
 package Board;
 
+import Players.Money;
+import Players.Player;
+
 /**
  * Created by marc on 20/11/2015.
  */
-public class Space {
+public abstract class Space {
     private Group group;
     private int location;
 
@@ -19,4 +22,6 @@ public class Space {
     protected void setLocation(int loc){
         location=loc;
     }
+
+    public abstract Money costOfVisiting(Player player);
 }

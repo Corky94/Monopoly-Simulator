@@ -8,4 +8,5 @@ public class Player {
     private int currentLocation;
     private Money money;
     private Dice dice = new Dice();
+    private boolean inJail = false;
 }
