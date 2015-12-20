@@ -18,8 +18,10 @@ public class Tax extends Space {
         return fee;
     }
 
+
+
     @Override
-    public Money costOfVisiting(Player player) {
-        return null;
+    public void onVisit(Player player) {
+
     }
 }

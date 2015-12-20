@@ -9,8 +9,9 @@ import Players.Player;
 public class Jail extends Space {
     private boolean justVisiting = true;
 
+
     @Override
-    public Money costOfVisiting(Player player) {
-        return null;
+    public void onVisit(Player player) {
+
     }
 }

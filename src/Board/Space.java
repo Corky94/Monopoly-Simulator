@@ -23,5 +23,5 @@ public abstract class Space {
         location=loc;
     }
 
-    public abstract Money costOfVisiting(Player player);
+    public abstract void onVisit(Player player);
 }

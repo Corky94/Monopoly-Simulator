@@ -6,9 +6,10 @@ import Players.Player;
 /**
  * Created by marc on 20/11/2015.
  */
-public abstract class Property extends Space {
+public class Property extends Space {
 
     private int baseRent;
+    private int rent;
     private int cost;
     private int houses;
     private int hotels;
@@ -17,12 +18,8 @@ public abstract class Property extends Space {
     public Property(Group group, int location, int baseRent, int cost){
         super.setGroup(group);
         super.setLocation(location);
-        this.baseRent = baseRent;
+        this.baseRent = rent = baseRent ;
         this.cost = cost;
-    }
-
-    public int getBaseRent() {
-        return baseRent;
     }
 
     public int getCost() {
@@ -53,6 +50,16 @@ public abstract class Property extends Space {
         this.owner = owner;
     }
 
-    protected abstract void calculateRent();
 
+    @Override
+    public void onVisit(Player player) {
+        if(owner == player || owner == null){
+
+        }
+
+    }
+
+    private void calculateRent(){
+
+    }
 }
