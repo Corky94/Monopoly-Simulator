@@ -9,4 +9,10 @@ public class Player {
     private Money money;
     private Dice dice = new Dice();
     private boolean inJail = false;
+
+
+    public Money getMoney() {
+        return money;
+    }
+
 }

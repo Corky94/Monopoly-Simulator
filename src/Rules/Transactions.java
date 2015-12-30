@@ -1,11 +1,17 @@
 package Rules;
 
+import Board.Property;
 import Players.Money;
 
 /**
  * Created by marc on 23/11/2015.
+ *
+ * This will be the base class, which will allow for new rules regarding transactions will take place.
+ * Each class will that inherits will contain the basic convert to money method. But selling and purchasing may change
+ * depending on how I implement the rules.
+ *
  */
-public class Transactions {
+public  class Transactions {
 
     public Money convertToMoney(int amount){
         int fiveHundreds = amount/500;
@@ -24,4 +30,9 @@ public class Transactions {
         Money moneyToReturn = new Money(fiveHundreds,oneHundreds,fifties,twenties,tens,fives,ones);
         return  moneyToReturn;
     }
+
+   //For Current Testing purposes wont be an abstract class
+
+   // protected abstract Money calculateHousePrice(Property property);
+
 }

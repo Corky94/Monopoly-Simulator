@@ -1,7 +1,7 @@
 Location,Name,Group,Cost,Mortgage,House Cost,Base Rent,1 house rent,2 house rent,3 house rent, 4 house rent,hotel rent
 1,GO,GO,0,0,0,200,0,0,0,0,0
 2,Old Kent Road,Brown,60,30,50,2,10,30,90,160,250
-3,Community Chest,Community Chest,0,0,0,0,0,0,0,0,0
+3,Community Chest,CommunityChest,0,0,0,0,0,0,0,0,0
 4,Whitechapel Road,Brown,60,30,50,4,20,60,180,320,450
 5,Income Tax,Tax,100,0,0,0,0,0,0,0,0
 6,Kings Cross Station,Station,200,100,0,0,0,0,0,0,0
@@ -16,7 +16,7 @@ Location,Name,Group,Cost,Mortgage,House Cost,Base Rent,1 house rent,2 house rent
 15,Northumberland Avenue,Violet,160,80,100,12,60,180,500,700,900
 16,Marylebone Station,Station,200,100,0,0,0,0,0,0,0
 17,Bow Street,Orange,180,90,100,14,70,200,550,750,950
-18,Community Chest,Community Chest,0,0,0,0,0,0,0,0,0
+18,Community Chest,CommunityChest,0,0,0,0,0,0,0,0,0
 19,Marlborough Street,Orange,180,90,100,14,70,200,550,750,950
 20,Vine Street,Orange,200,100,100,16,80,220,600,800,1000
 21,Free Parking,FreeParking,0,0,0,0,0,0,0,0,0
@@ -32,7 +32,7 @@ Location,Name,Group,Cost,Mortgage,House Cost,Base Rent,1 house rent,2 house rent
 31,Go To Jail,GoToJail,0,0,0,0,0,0,0,0,0
 32,Regent Street,Green,300,150,200,26,130,390,900,1100,1275
 33,Oxford Street,Green,300,150,200,26,130,390,900,1100,1275
-34,Community Chest,Community Chest,0,0,0,0,0,0,0,0,0
+34,Community Chest,CommunityChest,0,0,0,0,0,0,0,0,0
 35,Bond Street,Green,320,160,200,28,150,450,1000,1200,1400
 36,Liverpool Street,Station,200,100,0,0,0,0,0,0,0
 37,Chance,Chance,0,0,0,0,0,0,0,0,0

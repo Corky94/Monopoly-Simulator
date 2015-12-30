@@ -9,6 +9,8 @@ import Players.Player;
 public abstract class Space {
     private Group group;
     private int location;
+    private String name;
+
 
     public Group getGroup(){
         return group;
@@ -24,4 +26,12 @@ public abstract class Space {
     }
 
     public abstract void onVisit(Player player);
+
+    public String getName() {
+        return name;
+    }
+
+    protected void setName(String name) {
+        this.name = name;
+    }
 }
