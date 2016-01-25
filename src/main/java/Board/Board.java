@@ -3,6 +3,8 @@ package Board;
 import java.io.*;
 
 /**
+ * Contains the layout of all the spaces within the board.
+ *
  * Created by marc on 27/12/2015.
  */
 public class Board {
@@ -32,31 +34,7 @@ public class Board {
 
                 String [] splittedstring = line.split(",");
                 int loc = Integer.parseInt(splittedstring[0]);
-                String name = splittedstring[1];
-                Group group = getGroup(splittedstring[2]);
-
-                int cost = Integer.parseInt(splittedstring[3]);
-                int mtg = Integer.parseInt(splittedstring[4]);
-                int houseCost = Integer.parseInt(splittedstring[5]);
-                int baseRent = Integer.parseInt(splittedstring[6]);
-                int oneHouse = Integer.parseInt(splittedstring[7]);
-                int twoHouse = Integer.parseInt(splittedstring[8]);
-                int threeHouse = Integer.parseInt(splittedstring[9]);
-                int fourHouse = Integer.parseInt(splittedstring[10]);
-                int hotelRent = Integer.parseInt(splittedstring[11]);
-
-                Space space = null;
-                switch(group) {
-
-                    case GO:
-                        space = new GO(name,loc,group);
-                        break;
-
-                    default:
-                        space = new Property(name,group,loc,baseRent,cost,houseCost,oneHouse,twoHouse,threeHouse,fourHouse,hotelRent);
-                        break;
-
-                }
+                Space space = generateSpace(splittedstring, loc);
 
                 spaces[loc-1]=space;
                 line = br.readLine();
@@ -66,6 +44,71 @@ public class Board {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Space generateSpace(String[] splittedstring, int loc) {
+        String name = splittedstring[1];
+        Group group = getGroup(splittedstring[2]);
+
+        int cost = Integer.parseInt(splittedstring[3]);
+        //Todo Need to ensure mortgage is incorporated
+        int mtg = Integer.parseInt(splittedstring[4]);
+        int houseCost = Integer.parseInt(splittedstring[5]);
+        int baseRent = Integer.parseInt(splittedstring[6]);
+        int oneHouse = Integer.parseInt(splittedstring[7]);
+        int twoHouse = Integer.parseInt(splittedstring[8]);
+        int threeHouse = Integer.parseInt(splittedstring[9]);
+        int fourHouse = Integer.parseInt(splittedstring[10]);
+        int hotelRent = Integer.parseInt(splittedstring[11]);
+
+        Space space = null;
+        switch(group) {
+
+            case GO:
+                space = new GO(name,loc,group);
+                break;
+
+            case Jail:
+                space = new Jail(name,loc,group);
+                break;
+
+            case Tax:
+                space = new Tax(name, loc,cost);
+                break;
+
+            case Chance:
+                //TODO Complete Chance Board space
+                break;
+
+
+            case CommunityChest:
+                //TODO Complete Community Chest Board space
+                break;
+
+
+            case Station:
+                //TODO Complete Station Board space
+                break;
+
+            case Utility:
+                //TODO Complete Utility Board space
+                break;
+
+            case GoToJail:
+                //TODO Complete Go to jail Board space
+                break;
+
+
+            case FreeParking:
+                //TODO Complete Free parking space
+                break;
+
+            default:
+                space = new Property(name,group,loc,baseRent,cost,houseCost,oneHouse,twoHouse,threeHouse,fourHouse,hotelRent);
+                break;
+
+        }
+        return space;
     }
 
     private Group getGroup(String anObject) {
