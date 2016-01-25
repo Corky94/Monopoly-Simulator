@@ -1,5 +1,4 @@
-package Board;
-
+import Board.Board;
 import junit.framework.TestCase;
 
 /**
