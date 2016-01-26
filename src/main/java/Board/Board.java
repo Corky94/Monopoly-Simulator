@@ -14,6 +14,7 @@ public class Board {
         populateBoard(fileName);
     }
 
+
     protected void populateBoard(String fileName) {
         File in = new File(fileName);
         try {
@@ -77,30 +78,30 @@ public class Board {
                 break;
 
             case Chance:
-                //TODO Complete Chance Board space
+               space = new Chance(name,loc,group);
                 break;
 
 
             case CommunityChest:
-                //TODO Complete Community Chest Board space
+               space = new CommunityChest(name,loc,group);
                 break;
 
 
             case Station:
-                //TODO Complete Station Board space
+                space = new Station(name,loc,group,cost);
                 break;
 
             case Utility:
-                //TODO Complete Utility Board space
+                space = new Utilities(name,loc,group,cost);
                 break;
 
             case GoToJail:
-                //TODO Complete Go to jail Board space
+                space = new GoToJail(name,loc,group);
                 break;
 
 
             case FreeParking:
-                //TODO Complete Free parking space
+                space = new FreeParking(name,loc,group);
                 break;
 
             default:
@@ -120,5 +121,8 @@ public class Board {
 
         }
         return group;
+    }
+    public Space[] getAllSpaces(){
+        return spaces;
     }
 }
