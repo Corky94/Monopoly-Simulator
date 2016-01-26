@@ -18,14 +18,16 @@ public class Property extends Space {
     private int houses;
     private int hotels;
     private int houseCost;
+    private int mortgagePrice;
     private Player owner;
 
-    public Property(String name, Group group, int location, int baseRent, int cost,int houseCost, int oneHouseRent, int twoHouseRent, int threeHouseRent, int fourHouseRent, int hotelRent){
+    public Property(String name, Group group, int location, int baseRent, int cost, int mortgagePrice,int houseCost, int oneHouseRent, int twoHouseRent, int threeHouseRent, int fourHouseRent, int hotelRent){
         super.setGroup(group);
         super.setName(name);
         super.setLocation(location);
         this.baseRent = baseRent ;
         this.cost = cost;
+        this.mortgagePrice = mortgagePrice;
         this.houseCost = houseCost;
         this.oneHouseRent = oneHouseRent;
         this.twoHouseRent = twoHouseRent;

@@ -3,7 +3,7 @@ package Board;
 import Players.Player;
 
 /**
- * Basis of the Chance space
+ * Basis of the ChanceCard space
  * Created by userhp on 26/01/2016.
  */
 public class Chance extends Space {

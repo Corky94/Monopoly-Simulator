@@ -88,11 +88,11 @@ public class Board {
 
 
             case Station:
-                space = new Station(name,loc,group,cost);
+                space = new Station(name,loc,group,cost,mtg);
                 break;
 
             case Utility:
-                space = new Utilities(name,loc,group,cost);
+                space = new Utilities(name,loc,group,cost,mtg);
                 break;
 
             case GoToJail:
@@ -105,7 +105,7 @@ public class Board {
                 break;
 
             default:
-                space = new Property(name,group,loc,baseRent,cost,houseCost,oneHouse,twoHouse,threeHouse,fourHouse,hotelRent);
+                space = new Property(name,group,loc,baseRent,cost,mtg,houseCost,oneHouse,twoHouse,threeHouse,fourHouse,hotelRent);
                 break;
 
         }
@@ -124,5 +124,8 @@ public class Board {
     }
     public Space[] getAllSpaces(){
         return spaces;
+    }
+    public Space getSpaceOnBoard(int loc){
+        return spaces[loc];
     }
 }

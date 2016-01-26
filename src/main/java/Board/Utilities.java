@@ -7,13 +7,14 @@ import Players.Player;
  */
 public class Utilities extends Space {
     private int cost;
+    private int mortgagePrice;
 
-
-    public Utilities(String name, int loc, Group group, int cost){
+    public Utilities(String name, int loc, Group group, int cost,int mtg){
         super.setGroup(group);
         super.setLocation(loc);
         super.setName(name);
         this.cost= cost;
+        this.mortgagePrice = mtg;
     }
 
     @Override

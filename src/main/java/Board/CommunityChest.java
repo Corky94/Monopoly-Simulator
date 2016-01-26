@@ -17,6 +17,6 @@ public class CommunityChest extends Space {
 
     @Override
     public void onVisit(Player player) {
-
+        //Draw Community Chest Card
     }
 }
