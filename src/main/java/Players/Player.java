@@ -1,6 +1,7 @@
 package Players;
 
 import Board.Space;
+import Cards.Card;
 import Dice.Dice;
 
 import java.util.Vector;
@@ -18,6 +19,7 @@ public class Player {
     private boolean inJail = false;
 
 
+
     public int getCurrentLocation() {
         return currentLocation;
     }
@@ -32,5 +34,35 @@ public class Player {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public void moveToLocation(Space location) {
+    }
+
+    public void receiveMoney(int feeToPlayer) {
+    }
+
+    public void keepCard(Card card) {
+    }
+
+    public void goToJail() {
+        
+    }
+
+    public void giveMoneyToBank(int feeToPlayer) {
+    }
+
+    public void receiveMoneyFromPlayers(int feeToPlayer) {
+    }
+
+    public int calculateHotelsOwned() {
+        return 0;
+    }
+
+    public int calculateHousesOwned() {
+        return 0;
+    }
+
+    public void payOtherPlayers(int feeToPlayer) {
     }
 }

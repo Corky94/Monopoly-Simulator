@@ -1,6 +1,7 @@
 package Board;
 
 import java.io.*;
+import java.util.Vector;
 
 /**
  * Contains the layout of all the spaces within the board.
@@ -9,7 +10,7 @@ import java.io.*;
  */
 public class Board {
 
-    private Space[] spaces;
+    private Vector<Space> spaces;
     public Board(String fileName){
         populateBoard(fileName);
     }
@@ -27,17 +28,17 @@ public class Board {
             while(!(br.readLine()== null))size++;
             fr = new FileReader(in);
             br = new BufferedReader(fr);
-            spaces = new Space[size-1];
+            spaces = new Vector<Space>(size-1);
 
             br.readLine();
             String line =br.readLine();
             while(!(line== null)){
 
                 String [] splittedstring = line.split(",");
-                int loc = Integer.parseInt(splittedstring[0]);
+                int loc = Integer.parseInt(splittedstring[0])-1;
                 Space space = generateSpace(splittedstring, loc);
 
-                spaces[loc-1]=space;
+                spaces.add(loc,space);
                 line = br.readLine();
             }
         } catch (FileNotFoundException e) {
@@ -52,7 +53,6 @@ public class Board {
         Group group = getGroup(splittedstring[2]);
 
         int cost = Integer.parseInt(splittedstring[3]);
-        //Todo Need to ensure mortgage is incorporated
         int mtg = Integer.parseInt(splittedstring[4]);
         int houseCost = Integer.parseInt(splittedstring[5]);
         int baseRent = Integer.parseInt(splittedstring[6]);
@@ -122,10 +122,23 @@ public class Board {
         }
         return group;
     }
-    public Space[] getAllSpaces(){
+    public Vector<Space> getAllSpaces(){
         return spaces;
     }
     public Space getSpaceOnBoard(int loc){
-        return spaces[loc];
+        return spaces.elementAt(loc-1);
+    }
+    public Space getSpaceOnBoard(String name){
+        for (Space s : spaces ) {
+            if (s.getName().equalsIgnoreCase(name)){
+                return s;
+            }
+        }
+        System.out.println("Space with that name not found");
+        return null;
+
+    }
+    public int getLocationOfSpace(Space space){
+        return spaces.indexOf(space);
     }
 }

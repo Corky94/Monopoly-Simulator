@@ -1,5 +1,6 @@
 package Cards.Deck;
 
+import Board.Chance;
 import Cards.Card;
 import Cards.ChanceCard;
 import Cards.CommunityChestCard;
@@ -9,29 +10,26 @@ import java.util.*;
 /**
  * Created by userhp on 26/01/2016.
  */
-public class Deck {
-    private LinkedList<CommunityChestCard> CommunityChestDeck;
-    private LinkedList<ChanceCard> ChanceDeck;
+public  class Deck {
+    private static LinkedList<CommunityChestCard> CommunityChestDeck;
+    private static LinkedList<ChanceCard> ChanceDeck;
 
 
-    public Deck(String csvFile){
-        initilaizeDeck(csvFile);
-        shuffleDecks();
-    }
-    public Deck(){
-        CommunityChestDeck = new LinkedList<CommunityChestCard>();
-        ChanceDeck = new LinkedList<ChanceCard>();
-    }
 
-    public void shuffleDecks() {
+
+    public static void shuffleDecks() {
         Collections.shuffle(CommunityChestDeck);
         Collections.shuffle(ChanceDeck);
     }
 
-    private void initilaizeDeck(String csvFile){
+    public static void initilaizeDeck(String csvFile){
 
     }
-    public ChanceCard drawChanceCard(){
+    public static void initilaizeBlankDeck(){
+        CommunityChestDeck = new LinkedList<CommunityChestCard>();
+        ChanceDeck = new LinkedList<ChanceCard>();
+    }
+    public static ChanceCard drawChanceCard(){
         ChanceCard card = null;
         try{
             card = ChanceDeck.pop();
@@ -41,10 +39,18 @@ public class Deck {
         }
         return card;
     }
-    public void addChanceCard(ChanceCard chanceCard){
+    public static void addCard(Card card){
+        if (card instanceof ChanceCard){
+            ChanceDeck.addLast((ChanceCard) card);
+        }
+        else{
+            CommunityChestDeck.addLast((CommunityChestCard) card);
+        }
+    }
+    public static void addChanceCard(ChanceCard chanceCard){
         ChanceDeck.addLast(chanceCard);
     }
-    public CommunityChestCard drawCommunityChestCard(){
+    public static CommunityChestCard drawCommunityChestCard(){
         CommunityChestCard card = null;
         try{
             card = CommunityChestDeck.pop();
@@ -54,7 +60,7 @@ public class Deck {
         }
         return card;
     }
-    public void addCommunityChestCard(CommunityChestCard communityChestCard){
+    public static void addCommunityChestCard(CommunityChestCard communityChestCard){
         CommunityChestDeck.addLast(communityChestCard);
     }
 

@@ -17,11 +17,17 @@ public class CommunityChestCard extends Card {
         super.setName(name);
         super.setFee(fee);
     }
-
     public CommunityChestCard(String name, CardAction action, Space location){
         super.setAction(action);
         super.setName(name);
         super.setLocation(location);
+
+    }
+    public CommunityChestCard(String name, CardAction action, int feePerHouse, int feePerHotel){
+            super.setAction(action);
+            super.setName(name);
+            super.setFeePerHouse(feePerHouse);
+            super.setFeePerHotel(feePerHotel);
 
     }
 }

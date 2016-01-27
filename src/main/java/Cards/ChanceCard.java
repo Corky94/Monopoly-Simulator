@@ -24,5 +24,13 @@ public class ChanceCard extends Card {
         super.setLocation(location);
 
     }
+    public ChanceCard(String name, CardAction action, int feePerHouse, int feePerHotel){
+        super.setAction(action);
+        super.setName(name);
+        super.setFeePerHouse(feePerHouse);
+        super.setFeePerHotel(feePerHotel);
+
+    }
+
 }
 
