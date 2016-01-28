@@ -101,7 +101,7 @@ public class Card {
                 deck.addCard(this);
                 break;
             case AdvanceToNearestStation:
-                newLocation = board.moveToNearestUtility(currentLocation);
+                newLocation = board.moveToNearestStation(currentLocation);
                 player.moveToLocation(newLocation);
                 //Todo Also add the rent rule.
                 deck.addCard(this);

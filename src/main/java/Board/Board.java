@@ -1,5 +1,7 @@
 package Board;
 
+import Players.Player;
+
 import java.io.*;
 import java.util.Vector;
 
@@ -186,5 +188,9 @@ public  class Board {
 
         }
         return null;
+    }
+
+    public void goToJail(Player player) {
+        player.setCurrentLocation(this.getSpaceOnBoard("Jail"));
     }
 }
