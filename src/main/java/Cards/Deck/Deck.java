@@ -25,7 +25,7 @@ public  class Deck {
     public static void initilaizeDeck(String csvFile){
 
     }
-    public static void initilaizeBlankDeck(){
+    public static void initializeBlankDeck(){
         CommunityChestDeck = new LinkedList<CommunityChestCard>();
         ChanceDeck = new LinkedList<ChanceCard>();
     }

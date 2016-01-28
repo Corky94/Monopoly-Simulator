@@ -8,15 +8,16 @@ import java.util.Vector;
  *
  * Created by marc on 27/12/2015.
  */
-public class Board {
+public  class Board {
 
     private Vector<Space> spaces;
-    public Board(String fileName){
-        populateBoard(fileName);
+    private static Board instance = new Board();
+    private Board(){
     }
-
-
-    protected void populateBoard(String fileName) {
+    public static Board getInstance(){
+        return instance;
+    }
+    public void populateBoard(String fileName) {
         File in = new File(fileName);
         try {
             FileReader fr;
@@ -126,7 +127,7 @@ public class Board {
         return spaces;
     }
     public Space getSpaceOnBoard(int loc){
-        return spaces.elementAt(loc-1);
+        return spaces.elementAt(loc);
     }
     public Space getSpaceOnBoard(String name){
         for (Space s : spaces ) {
@@ -140,5 +141,50 @@ public class Board {
     }
     public int getLocationOfSpace(Space space){
         return spaces.indexOf(space);
+    }
+    public Space moveToSpace(Space currentLocation,int spacesToMove){
+        int newLocation = this.getLocationOfSpace(currentLocation) + spacesToMove;
+        if(newLocation<0){
+            newLocation = spaces.size()+1+newLocation;
+        }
+        else if(newLocation>spaces.size()){
+            newLocation = newLocation%(spaces.size()-1);
+        }
+
+        return spaces.elementAt(newLocation);
+    }
+    public Space moveToNearestStation(Space currentLocation){
+        int locationInVector = this.getLocationOfSpace(currentLocation);
+        for (Space space : spaces.subList(locationInVector,spaces.size())) {
+            if(space.getGroup() == Group.Station){
+                return space;
+            }
+
+        }
+        //In case the nearest station is past go.
+        for (Space space : spaces.subList(0,locationInVector)) {
+            if(space.getGroup() == Group.Station){
+                return space;
+            }
+
+        }
+        return null;
+    }
+    public Space moveToNearestUtility(Space currentLocation){
+        int locationInVector = this.getLocationOfSpace(currentLocation);
+        for (Space space : spaces.subList(locationInVector,spaces.size())) {
+            if(space.getGroup() == Group.Utility){
+                return space;
+            }
+
+        }
+        //In case the nearest station is past go.
+        for (Space space : spaces.subList(0,locationInVector)) {
+            if(space.getGroup() == Group.Utility){
+                return space;
+            }
+
+        }
+        return null;
     }
 }

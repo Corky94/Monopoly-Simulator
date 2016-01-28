@@ -12,10 +12,15 @@ public class CommunityChestCard extends Card {
         super.setName(name);
     }
 
-    public CommunityChestCard(String name, CardAction action, int fee) {
+    public CommunityChestCard(String name, CardAction action, int feeOrSpaces) {
         super.setAction(action);
         super.setName(name);
-        super.setFee(fee);
+        if(action.equals(CardAction.GoBackSpaces)) {
+            super.setSpacesToMove(feeOrSpaces);
+        }
+        else{
+            super.setFee(feeOrSpaces);
+        }
     }
     public CommunityChestCard(String name, CardAction action, Space location){
         super.setAction(action);

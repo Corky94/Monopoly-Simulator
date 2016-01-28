@@ -1,5 +1,6 @@
 package Cards;
 
+import Board.Board;
 import Board.Space;
 import Cards.Deck.Deck;
 import Players.Player;
@@ -12,6 +13,7 @@ public class Card {
     private String name;
     private CardAction action;
     private int feeToPlayer;
+    private int spacesToMove;
     private int feePerHouse;
     private int feePerHotel;
     private Space location;
@@ -35,9 +37,6 @@ public class Card {
         this.name = name;
     }
 
-    protected Space getLocation() {
-        return location;
-    }
 
     protected void setLocation(Space location) {
         this.location = location;
@@ -50,7 +49,13 @@ public class Card {
     protected void setFeePerHotel(int feePerHotel) {
         this.feePerHotel = feePerHotel;
     }
+    protected void setSpacesToMove(int spacesToMove) {
+        this.spacesToMove = spacesToMove;
+    }
     public void onDraw(Player player){
+        Board board = Board.getInstance();
+        Space currentLocation = player.getCurrentLocation();
+        Space newLocation = null;
         switch (action){
 
             case AdvanceToLocation:
@@ -84,17 +89,20 @@ public class Card {
                 Deck.addCard(this);
                 break;
             case GoBackSpaces:
-                int currentLocation = player.getCurrentLocation();
-                //Todo develop logic of the board more
-                //Space spaceToMoveTo =
+                newLocation = board.moveToSpace(currentLocation,-spacesToMove);
+                player.moveToLocation(newLocation);
                 Deck.addCard(this);
                 break;
             case AdvanceToNearestUtility:
-                //Difficult logic to work on
+                newLocation = board.moveToNearestUtility(currentLocation);
+                player.moveToLocation(newLocation);
+                //Todo Also add the rent rule.
                 Deck.addCard(this);
                 break;
             case AdvanceToNearestStation:
-                //Difficult logic to work on
+                newLocation = board.moveToNearestUtility(currentLocation);
+                player.moveToLocation(newLocation);
+                //Todo Also add the rent rule.
                 Deck.addCard(this);
                 break;
             case PayPlayers:
@@ -103,4 +111,6 @@ public class Card {
                 break;
         }
     }
+
+
 }

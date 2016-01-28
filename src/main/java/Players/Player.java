@@ -12,7 +12,7 @@ import java.util.Vector;
  * Created by marc on 20/11/2015.
  */
 public class Player {
-    private int currentLocation;
+    private Space currentLocation;
     private int money;
     private Vector<Space> ownedSpaces;
     private Dice[] dices;
@@ -20,11 +20,11 @@ public class Player {
 
 
 
-    public int getCurrentLocation() {
+    public Space getCurrentLocation() {
         return currentLocation;
     }
 
-    public void setCurrentLocation(int currentLocation) {
+    public void setCurrentLocation(Space currentLocation) {
         this.currentLocation = currentLocation;
     }
 
