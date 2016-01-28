@@ -11,29 +11,34 @@ import junit.framework.TestCase;
  */
 public class DeckTest extends TestCase {
 
+    private Deck deck = Deck.getInstance();
+    public void setUp(){
+        
+        deck.initializeBlankDeck();
+    }
     public void testInitialiseEmptyDeck(){
-        Deck deck = new Deck();
+       
         assertTrue(deck.drawChanceCard() == null);
         assertTrue(deck.drawCommunityChestCard() == null);
     }
     public void testAddingChanceCardToDeck(){
-        Deck deck = new Deck();
+       
         ChanceCard card = new ChanceCard("Test 1", CardAction.GoBackSpaces);
-        deck.addChanceCard(card);
+        deck.addCard(card);
         assertEquals(card,deck.drawChanceCard());
     }
     public void testAddingSeveralChanceCardToDeck(){
-        Deck deck = new Deck();
+       
         ChanceCard card = new ChanceCard("Test 1", CardAction.GoBackSpaces);
         ChanceCard card1 = new ChanceCard("Test 2", CardAction.GoBackSpaces);
         ChanceCard card2 = new ChanceCard("Test 3", CardAction.GoBackSpaces);
         ChanceCard card3 = new ChanceCard("Test 4", CardAction.GoBackSpaces);
         ChanceCard card4 = new ChanceCard("Test 5", CardAction.GoBackSpaces);
-        deck.addChanceCard(card);
-        deck.addChanceCard(card1);
-        deck.addChanceCard(card2);
-        deck.addChanceCard(card3);
-        deck.addChanceCard(card4);
+        deck.addCard(card);
+        deck.addCard(card1);
+        deck.addCard(card2);
+        deck.addCard(card3);
+        deck.addCard(card4);
 
         assertEquals(card,deck.drawChanceCard());
         assertEquals(card1,deck.drawChanceCard());
@@ -43,23 +48,23 @@ public class DeckTest extends TestCase {
 
     }
     public void testAddingCommunityChestCardsToDeck(){
-        Deck deck = new Deck();
+       
         CommunityChestCard card = new CommunityChestCard("Test 1", CardAction.GoBackSpaces);
-        deck.addCommunityChestCard(card);
+        deck.addCard(card);
         assertEquals(card,deck.drawCommunityChestCard());
     }
     public void testAddingSeveralCommunityChestCardsToDeck(){
-        Deck deck = new Deck();
+       
         CommunityChestCard card = new CommunityChestCard("Test 1", CardAction.GoBackSpaces);
         CommunityChestCard card1 = new CommunityChestCard("Test 2", CardAction.GoBackSpaces);
         CommunityChestCard card2 = new CommunityChestCard("Test 3", CardAction.GoBackSpaces);
         CommunityChestCard card3 = new CommunityChestCard("Test 4", CardAction.GoBackSpaces);
         CommunityChestCard card4 = new CommunityChestCard("Test 5", CardAction.GoBackSpaces);
-        deck.addCommunityChestCard(card);
-        deck.addCommunityChestCard(card1);
-        deck.addCommunityChestCard(card2);
-        deck.addCommunityChestCard(card3);
-        deck.addCommunityChestCard(card4);
+        deck.addCard(card);
+        deck.addCard(card1);
+        deck.addCard(card2);
+        deck.addCard(card3);
+        deck.addCard(card4);
 
         assertEquals(card,deck.drawCommunityChestCard());
         assertEquals(card1,deck.drawCommunityChestCard());
@@ -69,7 +74,7 @@ public class DeckTest extends TestCase {
 
     }
     public void testShuffleFunction(){
-        Deck deck = new Deck();
+       
         ChanceCard card = new ChanceCard("Test 1", CardAction.GoBackSpaces);
         ChanceCard card1 = new ChanceCard("Test 2", CardAction.GoBackSpaces);
         ChanceCard card2 = new ChanceCard("Test 3", CardAction.GoBackSpaces);
@@ -80,16 +85,16 @@ public class DeckTest extends TestCase {
         CommunityChestCard card7 = new CommunityChestCard("Test 3", CardAction.GoBackSpaces);
         CommunityChestCard card8 = new CommunityChestCard("Test 4", CardAction.GoBackSpaces);
         CommunityChestCard card9 = new CommunityChestCard("Test 5", CardAction.GoBackSpaces);
-        deck.addChanceCard(card);
-        deck.addChanceCard(card1);
-        deck.addChanceCard(card2);
-        deck.addChanceCard(card3);
-        deck.addChanceCard(card4);
-        deck.addCommunityChestCard(card5);
-        deck.addCommunityChestCard(card6);
-        deck.addCommunityChestCard(card7);
-        deck.addCommunityChestCard(card8);
-        deck.addCommunityChestCard(card9);
+        deck.addCard(card);
+        deck.addCard(card1);
+        deck.addCard(card2);
+        deck.addCard(card3);
+        deck.addCard(card4);
+        deck.addCard(card5);
+        deck.addCard(card6);
+        deck.addCard(card7);
+        deck.addCard(card8);
+        deck.addCard(card9);
         deck.shuffleDecks();
         
 

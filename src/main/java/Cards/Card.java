@@ -6,7 +6,7 @@ import Cards.Deck.Deck;
 import Players.Player;
 
 /**
- * TODO what about the go back spaces?
+ *
  * Created by userhp on 26/01/2016.
  */
 public class Card {
@@ -53,6 +53,7 @@ public class Card {
         this.spacesToMove = spacesToMove;
     }
     public void onDraw(Player player){
+        Deck deck = Deck.getInstance();
         Board board = Board.getInstance();
         Space currentLocation = player.getCurrentLocation();
         Space newLocation = null;
@@ -60,54 +61,54 @@ public class Card {
 
             case AdvanceToLocation:
                 player.moveToLocation(location);
-                Deck.addCard(this);
+                deck.addCard(this);
                 break;
             case CollectMoneyFromBank:
                 player.receiveMoney(feeToPlayer);
-                Deck.addCard(this);
+                deck.addCard(this);
                 break;
             case GetOutOfJail:
                 player.keepCard(this);
                 break;
             case GoToJail:
                 player.goToJail();
-                Deck.addCard(this);
+                deck.addCard(this);
                 break;
             case PayBank:
                 player.giveMoneyToBank(feeToPlayer);
-                Deck.addCard(this);
+                deck.addCard(this);
                 break;
             case CollectFromPlayers:
                 player.receiveMoneyFromPlayers(feeToPlayer);
-                Deck.addCard(this);
+                deck.addCard(this);
                 break;
             case PayBankDependingOnHousesAndHotelsOwned:
                 int houses = player.calculateHousesOwned();
                 int hotels = player.calculateHotelsOwned();
                 int payment = (houses*feePerHouse)+(hotels*feePerHotel);
                 player.giveMoneyToBank(payment);
-                Deck.addCard(this);
+                deck.addCard(this);
                 break;
             case GoBackSpaces:
                 newLocation = board.moveToSpace(currentLocation,-spacesToMove);
                 player.moveToLocation(newLocation);
-                Deck.addCard(this);
+                deck.addCard(this);
                 break;
             case AdvanceToNearestUtility:
                 newLocation = board.moveToNearestUtility(currentLocation);
                 player.moveToLocation(newLocation);
                 //Todo Also add the rent rule.
-                Deck.addCard(this);
+                deck.addCard(this);
                 break;
             case AdvanceToNearestStation:
                 newLocation = board.moveToNearestUtility(currentLocation);
                 player.moveToLocation(newLocation);
                 //Todo Also add the rent rule.
-                Deck.addCard(this);
+                deck.addCard(this);
                 break;
             case PayPlayers:
                 player.payOtherPlayers(feeToPlayer);
-                Deck.addCard(this);
+                deck.addCard(this);
                 break;
         }
     }

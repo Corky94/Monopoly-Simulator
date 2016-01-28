@@ -14,49 +14,53 @@ import static org.mockito.Mockito.*;
  */
 public class CardTest extends TestCase {
 
+    private Deck deck = Deck.getInstance();
+    public void setUp(){
+       deck.initializeBlankDeck();
+    }
 
     public void testOnDrawAdvanceToLocation() throws Exception {
         Player player = mock(Player.class);
         Space space = mock(Space.class);
         CommunityChestCard card = new CommunityChestCard("Test 1", CardAction.AdvanceToLocation,space );
-        Deck.initializeBlankDeck();
+       
         card.onDraw(player);
         verify(player,atLeastOnce()).moveToLocation(space);
     }
     public void testOnDrawCollectMoneyFromBank() throws Exception {
         Player player = mock(Player.class);
         CommunityChestCard card = new CommunityChestCard("Test 1", CardAction.CollectMoneyFromBank,10 );
-        Deck.initializeBlankDeck();
+       
         card.onDraw(player);
         verify(player,atLeastOnce()).receiveMoney(10);
     }
     public void testOnDrawGetOutOfJail() throws Exception {
         Player player = mock(Player.class);
-        Deck deck = mock(Deck.class);
+       
         Space space = mock(Space.class);
         CommunityChestCard card = new CommunityChestCard("Test 1",CardAction.GetOutOfJail );
-        Deck.initializeBlankDeck();
+        
         card.onDraw(player);
         verify(player,atLeastOnce()).keepCard(card);
     }
     public void testOnDrawPayBank() throws Exception {
         Player player = mock(Player.class);
         CommunityChestCard card = new CommunityChestCard("Test 1", CardAction.PayBank,10 );
-        Deck.initializeBlankDeck();
+        
         card.onDraw(player);
         verify(player,atLeastOnce()).giveMoneyToBank(10);
     }
     public void testOnDrawCollectFromPlayers() throws Exception {
         Player player = mock(Player.class);
         CommunityChestCard card = new CommunityChestCard("Test 1", CardAction.CollectFromPlayers,10 );
-        Deck.initializeBlankDeck();
+        
         card.onDraw(player);
         verify(player,atLeastOnce()).receiveMoneyFromPlayers(10);
     }
     public void testOnDrawPayBankDependingOnHouseAndHotels() throws Exception {
         Player player = mock(Player.class);
         CommunityChestCard card = new CommunityChestCard("Test 1", CardAction.PayBankDependingOnHousesAndHotelsOwned,10,20 );
-        Deck.initializeBlankDeck();
+        
         card.onDraw(player);
         verify(player,atLeastOnce()).giveMoneyToBank(anyInt());
     }
@@ -71,7 +75,7 @@ public class CardTest extends TestCase {
 
         when(player.getCurrentLocation()).thenReturn(space);
         CommunityChestCard card = new CommunityChestCard("Test 1", CardAction.GoBackSpaces,3);
-        Deck.initializeBlankDeck();
+       
         card.onDraw(player);
         verify(player,atLeastOnce()).moveToLocation(expectedSpace);
     }
@@ -82,7 +86,7 @@ public class CardTest extends TestCase {
         Space space = board.getSpaceOnBoard(10);
         when(player.getCurrentLocation()).thenReturn(space);
         CommunityChestCard card = new CommunityChestCard("Test 1", CardAction.AdvanceToNearestUtility);
-        Deck.initializeBlankDeck();
+       
         card.onDraw(player);
         verify(player,atLeastOnce()).moveToLocation(any(Space.class));
     }
@@ -93,14 +97,14 @@ public class CardTest extends TestCase {
         Space space = board.getSpaceOnBoard(10);
         when(player.getCurrentLocation()).thenReturn(space);
         CommunityChestCard card = new CommunityChestCard("Test 1", CardAction.AdvanceToNearestStation);
-        Deck.initializeBlankDeck();
+       
         card.onDraw(player);
         verify(player,atLeastOnce()).moveToLocation(any(Space.class));
     }
     public void testOnDrawPayOtherPlayers() throws Exception {
         Player player = mock(Player.class);
         CommunityChestCard card = new CommunityChestCard("Test 1", CardAction.PayPlayers,10 );
-        Deck.initializeBlankDeck();
+       
         card.onDraw(player);
         verify(player,atLeastOnce()).payOtherPlayers(10);
     }

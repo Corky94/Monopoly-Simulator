@@ -11,25 +11,30 @@ import java.util.*;
  * Created by userhp on 26/01/2016.
  */
 public  class Deck {
-    private static LinkedList<CommunityChestCard> CommunityChestDeck;
-    private static LinkedList<ChanceCard> ChanceDeck;
+    private  LinkedList<CommunityChestCard> CommunityChestDeck;
+    private  LinkedList<ChanceCard> ChanceDeck;
+
+    private static Deck instance = new Deck();
+    private Deck(){}
+
+    public static Deck getInstance() {
+        return instance ;
+    }
 
 
-
-
-    public static void shuffleDecks() {
+    public  void shuffleDecks() {
         Collections.shuffle(CommunityChestDeck);
         Collections.shuffle(ChanceDeck);
     }
 
-    public static void initilaizeDeck(String csvFile){
+    public  void initilaizeDeck(String csvFile){
 
     }
-    public static void initializeBlankDeck(){
+    public  void initializeBlankDeck(){
         CommunityChestDeck = new LinkedList<CommunityChestCard>();
         ChanceDeck = new LinkedList<ChanceCard>();
     }
-    public static ChanceCard drawChanceCard(){
+    public  ChanceCard drawChanceCard(){
         ChanceCard card = null;
         try{
             card = ChanceDeck.pop();
@@ -39,7 +44,7 @@ public  class Deck {
         }
         return card;
     }
-    public static void addCard(Card card){
+    public  void addCard(Card card){
         if (card instanceof ChanceCard){
             ChanceDeck.addLast((ChanceCard) card);
         }
@@ -47,10 +52,10 @@ public  class Deck {
             CommunityChestDeck.addLast((CommunityChestCard) card);
         }
     }
-    public static void addChanceCard(ChanceCard chanceCard){
+    public  void addChanceCard(ChanceCard chanceCard){
         ChanceDeck.addLast(chanceCard);
     }
-    public static CommunityChestCard drawCommunityChestCard(){
+    public  CommunityChestCard drawCommunityChestCard(){
         CommunityChestCard card = null;
         try{
             card = CommunityChestDeck.pop();
@@ -60,7 +65,7 @@ public  class Deck {
         }
         return card;
     }
-    public static void addCommunityChestCard(CommunityChestCard communityChestCard){
+    public  void addCommunityChestCard(CommunityChestCard communityChestCard){
         CommunityChestDeck.addLast(communityChestCard);
     }
 
