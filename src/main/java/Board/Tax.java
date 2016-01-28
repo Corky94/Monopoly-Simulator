@@ -24,6 +24,6 @@ public class Tax extends Space {
 
     @Override
     public void onVisit(Player player) {
-
+        player.spendMoney(fee);
     }
 }

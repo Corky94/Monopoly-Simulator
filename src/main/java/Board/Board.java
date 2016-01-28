@@ -1,20 +1,25 @@
 package Board;
 
+import Players.Player;
+
 import java.io.*;
+import java.util.Vector;
 
 /**
  * Contains the layout of all the spaces within the board.
  *
  * Created by marc on 27/12/2015.
  */
-public class Board {
+public  class Board {
 
-    private Space[] spaces;
-    public Board(String fileName){
-        populateBoard(fileName);
+    private Vector<Space> spaces;
+    private static Board instance = new Board();
+    private Board(){
     }
-
-    protected void populateBoard(String fileName) {
+    public static Board getInstance(){
+        return instance;
+    }
+    public void populateBoard(String fileName) {
         File in = new File(fileName);
         try {
             FileReader fr;
@@ -26,17 +31,17 @@ public class Board {
             while(!(br.readLine()== null))size++;
             fr = new FileReader(in);
             br = new BufferedReader(fr);
-            spaces = new Space[size-1];
+            spaces = new Vector<Space>(size-1);
 
             br.readLine();
             String line =br.readLine();
             while(!(line== null)){
 
                 String [] splittedstring = line.split(",");
-                int loc = Integer.parseInt(splittedstring[0]);
+                int loc = Integer.parseInt(splittedstring[0])-1;
                 Space space = generateSpace(splittedstring, loc);
 
-                spaces[loc-1]=space;
+                spaces.add(loc,space);
                 line = br.readLine();
             }
         } catch (FileNotFoundException e) {
@@ -51,7 +56,6 @@ public class Board {
         Group group = getGroup(splittedstring[2]);
 
         int cost = Integer.parseInt(splittedstring[3]);
-        //Todo Need to ensure mortgage is incorporated
         int mtg = Integer.parseInt(splittedstring[4]);
         int houseCost = Integer.parseInt(splittedstring[5]);
         int baseRent = Integer.parseInt(splittedstring[6]);
@@ -77,34 +81,34 @@ public class Board {
                 break;
 
             case Chance:
-                //TODO Complete Chance Board space
+               space = new Chance(name,loc,group);
                 break;
 
 
             case CommunityChest:
-                //TODO Complete Community Chest Board space
+               space = new CommunityChest(name,loc,group);
                 break;
 
 
             case Station:
-                //TODO Complete Station Board space
+                space = new Station(name,loc,group,cost,mtg);
                 break;
 
             case Utility:
-                //TODO Complete Utility Board space
+                space = new Utilities(name,loc,group,cost,mtg);
                 break;
 
             case GoToJail:
-                //TODO Complete Go to jail Board space
+                space = new GoToJail(name,loc,group);
                 break;
 
 
             case FreeParking:
-                //TODO Complete Free parking space
+                space = new FreeParking(name,loc,group);
                 break;
 
             default:
-                space = new Property(name,group,loc,baseRent,cost,houseCost,oneHouse,twoHouse,threeHouse,fourHouse,hotelRent);
+                space = new Property(name,group,loc,baseRent,cost,mtg,houseCost,oneHouse,twoHouse,threeHouse,fourHouse,hotelRent);
                 break;
 
         }
@@ -120,5 +124,73 @@ public class Board {
 
         }
         return group;
+    }
+    public Vector<Space> getAllSpaces(){
+        return spaces;
+    }
+    public Space getSpaceOnBoard(int loc){
+        return spaces.elementAt(loc);
+    }
+    public Space getSpaceOnBoard(String name){
+        for (Space s : spaces ) {
+            if (s.getName().equalsIgnoreCase(name)){
+                return s;
+            }
+        }
+        System.out.println("Space with that name not found");
+        return null;
+
+    }
+    public int getLocationOfSpace(Space space){
+        return spaces.indexOf(space);
+    }
+    public Space moveToSpace(Space currentLocation,int spacesToMove){
+        int newLocation = this.getLocationOfSpace(currentLocation) + spacesToMove;
+        if(newLocation<0){
+            newLocation = spaces.size()+1+newLocation;
+        }
+        else if(newLocation>spaces.size()){
+            newLocation = newLocation%(spaces.size()-1);
+        }
+
+        return spaces.elementAt(newLocation);
+    }
+    public Space moveToNearestStation(Space currentLocation){
+        int locationInVector = this.getLocationOfSpace(currentLocation);
+        for (Space space : spaces.subList(locationInVector,spaces.size())) {
+            if(space.getGroup() == Group.Station){
+                return space;
+            }
+
+        }
+        //In case the nearest station is past go.
+        for (Space space : spaces.subList(0,locationInVector)) {
+            if(space.getGroup() == Group.Station){
+                return space;
+            }
+
+        }
+        return null;
+    }
+    public Space moveToNearestUtility(Space currentLocation){
+        int locationInVector = this.getLocationOfSpace(currentLocation);
+        for (Space space : spaces.subList(locationInVector,spaces.size())) {
+            if(space.getGroup() == Group.Utility){
+                return space;
+            }
+
+        }
+        //In case the nearest station is past go.
+        for (Space space : spaces.subList(0,locationInVector)) {
+            if(space.getGroup() == Group.Utility){
+                return space;
+            }
+
+        }
+        return null;
+    }
+
+    public void goToJail(Player player) {
+        player.setCurrentLocation(this.getSpaceOnBoard("Jail"));
     }
 }
