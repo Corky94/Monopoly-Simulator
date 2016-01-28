@@ -19,6 +19,6 @@ public class Utilities extends Space {
 
     @Override
     public void onVisit(Player player) {
-
+        //Needs implementation of rules on utility rent
     }
 }

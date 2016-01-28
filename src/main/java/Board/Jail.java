@@ -20,6 +20,6 @@ public class Jail extends Space {
 
     @Override
     public void onVisit(Player player) {
-
+        //Jail Rules need to be implented here and on the player
     }
 }

@@ -17,6 +17,6 @@ public class GoToJail extends Space {
 
     @Override
     public void onVisit(Player player) {
-
+        Board.getInstance().goToJail(player);
     }
 }

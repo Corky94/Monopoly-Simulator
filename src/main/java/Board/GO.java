@@ -1,6 +1,7 @@
 package Board;
 
 import Players.Player;
+import Rules.Bank;
 
 /**
  * Needs to be completed
@@ -17,6 +18,6 @@ public class GO extends Space {
     }
     @Override
     public void onVisit(Player player) {
-        //Player gets money X
+        Bank.passGo(player);
     }
 }

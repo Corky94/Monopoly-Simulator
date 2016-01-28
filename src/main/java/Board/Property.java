@@ -1,6 +1,7 @@
 package Board;
 
 import Players.Player;
+import Rules.Bank;
 
 /**
  * Created by marc on 20/11/2015.
@@ -19,6 +20,7 @@ public class Property extends Space {
     private int hotels;
     private int houseCost;
     private int mortgagePrice;
+    private boolean mortgaged;
     private Player owner;
 
     public Property(String name, Group group, int location, int baseRent, int cost, int mortgagePrice,int houseCost, int oneHouseRent, int twoHouseRent, int threeHouseRent, int fourHouseRent, int hotelRent){
@@ -34,6 +36,7 @@ public class Property extends Space {
         this.threeHouseRent = threeHouseRent;
         this.fourHouseRent = fourHouseRent;
         this.hotelRent = hotelRent;
+        this.mortgaged = false;
         calculateRent();
 
     }
@@ -42,20 +45,15 @@ public class Property extends Space {
         return cost;
     }
 
-    public int getHouses() {
-        return houses;
+
+    public void addHouse() {
+        this.houses++;
     }
 
-    public void setHouses(int houses) {
-        this.houses = houses;
-    }
 
-    public int getHotels() {
-        return hotels;
-    }
-
-    public void setHotels(int hotels) {
-        this.hotels = hotels;
+    public void addHotel() {
+        houses=0;
+        this.hotels++;
     }
 
     public Player getOwner() {
@@ -70,7 +68,14 @@ public class Property extends Space {
     @Override
     public void onVisit(Player player) {
         if(owner == player || owner == null){
+            //Player can buy property, logic still needs to be developed.
+        }
+        else if(mortgaged){
 
+        }
+        else{
+            calculateRent();
+            Bank.payPlayer(player,owner,rent);
         }
 
     }
@@ -79,7 +84,7 @@ public class Property extends Space {
        if(hotels>0){
            rent = hotelRent;
        }
-       //Should be else if to incorperate the rule that the baserent doubles if owner has all the properties in group.
+       //Should be else if to incorperate the rule that the base rent doubles if owner has all the properties in group.
 
         else{
            switch(houses){
@@ -100,5 +105,13 @@ public class Property extends Space {
                    break;
            }
        }
+    }
+
+    public int getHouseCost() {
+        return houseCost;
+    }
+
+    public int getMortgagePrice() {
+        return mortgagePrice;
     }
 }

@@ -20,5 +20,7 @@ public class Station extends Space {
     @Override
     public void onVisit(Player player) {
 
+        //Needs implementation of rules on station rent
+
     }
 }

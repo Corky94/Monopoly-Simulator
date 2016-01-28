@@ -1,5 +1,7 @@
 package Board;
 
+import Cards.Card;
+import Cards.Deck.Deck;
 import Players.Player;
 
 /**
@@ -17,6 +19,8 @@ public class CommunityChest extends Space {
 
     @Override
     public void onVisit(Player player) {
-        //Draw Community Chest Card
+        Deck deck = Deck.getInstance();
+        Card c =deck.drawCommunityChestCard();
+        c.onDraw(player);
     }
 }

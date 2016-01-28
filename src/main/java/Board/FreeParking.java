@@ -3,7 +3,7 @@ package Board;
 import Players.Player;
 
 /**
- * Basis of the GoToJail space
+ * Basis of the free parking space
  * Created by userhp on 26/01/2016.
  */
 public class FreeParking extends Space {
@@ -17,6 +17,6 @@ public class FreeParking extends Space {
 
     @Override
     public void onVisit(Player player) {
-
+        //Currently nothing however may want rules
     }
 }

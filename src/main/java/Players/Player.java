@@ -83,12 +83,11 @@ public class Player {
         this.currentLocation = currentLocation;
     }
 
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
+   public void gainMoney(int amount){
+       money+=amount;
+   }
+    public void spendMoney(int amount){
+        money-=amount;
     }
 
     public void moveToLocation(Space location) {
