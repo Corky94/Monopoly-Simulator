@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3641d87a-8fb7-4c18-b3d6-bd14c122dec5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Board/Board.java" afterPath="$PROJECT_DIR$/src/main/java/Board/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Cards/Card.java" afterPath="$PROJECT_DIR$/src/main/java/Cards/Card.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Cards/ChanceCard.java" afterPath="$PROJECT_DIR$/src/main/java/Cards/ChanceCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Cards/CommunityChestCard.java" afterPath="$PROJECT_DIR$/src/main/java/Cards/CommunityChestCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Cards/Deck/Deck.java" afterPath="$PROJECT_DIR$/src/main/java/Cards/Deck/Deck.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Players/Player.java" afterPath="$PROJECT_DIR$/src/main/java/Players/Player.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/Board/BoardTest.java" afterPath="$PROJECT_DIR$/src/test/java/Board/BoardTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/Cards/CardTest.java" afterPath="$PROJECT_DIR$/src/test/java/Cards/CardTest.java" />
     </list>
     <ignored path="monopoly-simulator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -104,10 +96,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Board/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.57337886">
+            <state vertical-scroll-proportion="0.0">
               <caret line="150" column="54" selection-start-line="150" selection-start-column="54" selection-end-line="150" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -120,11 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BoardTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BoardTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/Board/BoardTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.9824562">
-              <caret line="10" column="45" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.21610169">
+              <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -204,13 +196,13 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Cards/Deck/Deck.java" />
         <option value="$PROJECT_DIR$/src/main/java/Players/Player.java" />
-        <option value="$PROJECT_DIR$/src/test/java/Board/BoardTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/Cards/Card.java" />
         <option value="$PROJECT_DIR$/src/main/java/Cards/ChanceCard.java" />
         <option value="$PROJECT_DIR$/src/main/java/Cards/CommunityChestCard.java" />
         <option value="$PROJECT_DIR$/src/test/java/Cards/CardTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Board/Board.java" />
+        <option value="$PROJECT_DIR$/src/test/java/Board/BoardTest.java" />
       </list>
     </option>
   </component>
@@ -1165,7 +1157,7 @@
       <workItem from="1453755519876" duration="4869000" />
       <workItem from="1453810464777" duration="10630000" />
       <workItem from="1453833151856" duration="8642000" />
-      <workItem from="1453895423255" duration="8245000" />
+      <workItem from="1453895423255" duration="8712000" />
     </task>
     <task id="LOCAL-00001" summary="Added changes and removed the money and transaction classes, running back on basics for now">
       <created>1453758024219</created>
@@ -1203,7 +1195,13 @@
       <option name="project" value="LOCAL" />
       <updated>1453891015725</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Ok think I have all the logic of the chance and community chest cards correct, need to look into a way to fully mock the tests, still struggling, I have made board singleton as all players will need access at points.  I still need to incorperate more logic into the advanceToNearestUtility/Station as they make adjustments to the base rules.">
+      <created>1453940340639</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1453940340639</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1239,7 +1237,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34419000" />
+    <option name="totallyTimeSpent" value="34886000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1252,7 +1250,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49369085" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49369085" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35139093" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1316,7 +1314,8 @@
     <MESSAGE value="Made adjustments added to the board added all the sections of the board just need to add the logic to it all." />
     <MESSAGE value="Ok begining to add the structure of the chance and community chest cards, some small changes to be done to incorperate the entire of the range of the cards available" />
     <MESSAGE value="Ok added to the logic of the chance and community chest cards, most are working and tests have been written. Still more to write but progress is running also made changes to the deck structure for a more suitable design, might be good a looking at a singleton class for the deck." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ok added to the logic of the chance and community chest cards, most are working and tests have been written. Still more to write but progress is running also made changes to the deck structure for a more suitable design, might be good a looking at a singleton class for the deck." />
+    <MESSAGE value="Ok think I have all the logic of the chance and community chest cards correct, need to look into a way to fully mock the tests, still struggling, I have made board singleton as all players will need access at points.  I still need to incorperate more logic into the advanceToNearestUtility/Station as they make adjustments to the base rules." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ok think I have all the logic of the chance and community chest cards correct, need to look into a way to fully mock the tests, still struggling, I have made board singleton as all players will need access at points.  I still need to incorperate more logic into the advanceToNearestUtility/Station as they make adjustments to the base rules." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1807,14 +1806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/Board/BoardTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.9824562">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Cards/ChanceCard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1881,7 +1872,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Board/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57337886">
+        <state vertical-scroll-proportion="0.0">
           <caret line="150" column="54" selection-start-line="150" selection-start-column="54" selection-end-line="150" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1890,6 +1881,14 @@
             <element signature="e#3620#3621#0" expanded="true" />
             <element signature="e#3664#3665#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Board/BoardTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21610169">
+          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>

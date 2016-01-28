@@ -13,7 +13,7 @@ public class BoardTest extends TestCase {
     public void testRetrieveSpaceFromIntLocation() throws Exception {
        Board board = Board.getInstance();
         board.populateBoard("Monopoly Map.csv");
-        Space go = board.getSpaceOnBoard(1);
+        Space go = board.getSpaceOnBoard(0);
         assertTrue(go.getName().equalsIgnoreCase("GO"));
     }
     public void testRetrieveSpaceFromName() throws Exception {
