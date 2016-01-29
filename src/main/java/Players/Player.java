@@ -1,13 +1,12 @@
 package Players;
 
-import Board.Board;
+import Board.*;
 import Board.Space;
 import Cards.Card;
 import Dice.Dice;
 
 import java.util.Arrays;
 import java.util.Vector;
-import java.util.stream.IntStream;
 
 /**
  *  TODO a lot of the logic needs to be developed here. A lot of time is needed however the rest of program needs to be done firs
@@ -86,8 +85,9 @@ public class Player {
    public void gainMoney(int amount){
        money+=amount;
    }
-    public void spendMoney(int amount){
+    public boolean spendMoney(int amount){
         money-=amount;
+        return false;
     }
 
     public void moveToLocation(Space location) {
@@ -121,5 +121,13 @@ public class Player {
     }
 
     public void payOtherPlayers(int feeToPlayer) {
+    }
+
+    public boolean wantsToBuyPropertyForPrice(Property property, int askingPriceOfProperty) {
+        return false;
+    }
+
+    public void addProperty(Space space) {
+        ownedSpaces.add(space);
     }
 }
