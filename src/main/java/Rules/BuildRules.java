@@ -22,4 +22,12 @@ public class BuildRules {
     public boolean canBuildHotel(Property property, Player player) {
         return false;
     }
+
+    public int amountOfHousesNeededForHotel() {
+        return 0;
+    }
+
+    public boolean canSellHouse(Property property, Player player) {
+        return false;
+    }
 }

@@ -2,6 +2,7 @@ package Rules;
 
 import Board.Property;
 import Players.Player;
+import junit.framework.Assert;
 import junit.framework.TestCase;
 import org.mockito.*;
 import static org.mockito.Mockito.*;
@@ -39,5 +40,21 @@ public class BankTest extends TestCase {
         verify(player1,never()).addProperty(property);
         verify(player2,never()).addProperty(property);
         verify(player3,never()).addProperty(property);
+    }
+
+
+    public void testBuyingHouse() throws Exception {
+        Property property = Mockito.mock(Property.class);
+        when(property.getHouseCost()).thenReturn(50);
+        BuildRules rules = Mockito.mock(BuildRules.class);
+        Player player = Mockito.mock(Player.class);
+        when(property.getOwner()).thenReturn(player);
+        when(player.spendMoney(50)).thenReturn(true);
+        when(rules.canBuildHouse(property,player)).thenReturn(true);
+        Bank.initializeBank(null,rules,null,null,null,1,0);
+        assertTrue(Bank.buyHouse(property,player));
+        verify(player, times(1)).spendMoney(50);
+        verify(property, times(1)).addHouse();
+
     }
 }

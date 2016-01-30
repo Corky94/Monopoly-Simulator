@@ -114,4 +114,12 @@ public class Property extends Space {
     public int getMortgagePrice() {
         return mortgagePrice;
     }
+
+    public void removeHouse() {
+        houses--;
+    }
+
+    public void removeHotel() {
+        hotels--;
+    }
 }
