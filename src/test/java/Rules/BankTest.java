@@ -22,6 +22,8 @@ public class BankTest extends TestCase {
         AuctionRules rules = Mockito.mock(AuctionRules.class);
         when(rules.getStartingPriceMultiplier()).thenReturn(0.1);
         when(rules.getStartingPriceMultiplier()).thenReturn(0.05);
+        Bank.initializeBank(null,null,rules,null,null,1,0);
+        Bank bank = Bank.getInstance();
         Player player1 = Mockito.mock(Player.class);
         Player player2 = Mockito.mock(Player.class);
         Player player3 = Mockito.mock(Player.class);
@@ -33,7 +35,7 @@ public class BankTest extends TestCase {
         when(player4.wantsToBuyPropertyForPrice(Matchers.eq(property),anyInt())).thenReturn(true);
 
         Player[] players = {player1,player2,player3,player4};
-        Bank.auctionProperty(property,players);
+        bank.auctionProperty(property,players);
 
         verify(player4,times(1)).addProperty(property);
         verify(property,times(1)).setOwner(player4);
@@ -52,7 +54,8 @@ public class BankTest extends TestCase {
         when(player.spendMoney(50)).thenReturn(true);
         when(rules.canBuildHouse(property,player)).thenReturn(true);
         Bank.initializeBank(null,rules,null,null,null,1,0);
-        assertTrue(Bank.buyHouse(property,player));
+        Bank bank = Bank.getInstance();
+        assertTrue(bank.buyHouse(property,player));
         verify(player, times(1)).spendMoney(50);
         verify(property, times(1)).addHouse();
 

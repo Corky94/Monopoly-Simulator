@@ -7,31 +7,30 @@ import Rules.StationRules;
 /**
  * Created by userhp on 26/01/2016.
  */
-public class Station extends Space {
-    private int cost;
-    private int mortagagePrice;
-    private Player owner;
+public class Station extends Ownable {
     private StationRules stationRules = StationRules.getInstance();
 
     public Station(String name, int loc, Group group, int cost, int mtg ){
         super.setGroup(group);
         super.setLocation(loc);
         super.setName(name);
-        this.cost= cost;
-        this.mortagagePrice =mtg;
+        super.setCost(cost);
+        super.setMortgagePrice(mtg);
+        super.setMortgaged(false);
     }
 
     @Override
     public void onVisit(Player player) {
-
+        Bank bank = Bank.getInstance();
+        Player owner = super.getOwner();
         if(owner == null){
-            if(player.wantsToBuyPropertyForPrice(this, cost)){
-                player.spendMoney(cost);
+            if(player.wantsToBuyPropertyForPrice(this, super.getCost())){
+                player.spendMoney(super.getCost());
                 player.addProperty(this);
                 owner = (player);
             }
             else{
-                Bank.auctionProperty(this,Bank.getAllPlayersInGame());
+                bank.auctionProperty(this,bank.getAllPlayersInGame());
             }
         }
         else{
@@ -41,15 +40,5 @@ public class Station extends Space {
         }
 
     }
-    public int getCost() {
-        return cost;
-    }
 
-    public Player getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
 }

@@ -7,30 +7,30 @@ import Rules.UtilityRules;
 /**
  * Created by userhp on 26/01/2016.
  */
-public class Utilities extends Space {
-    private int cost;
-    private int mortgagePrice;
-    private Player owner;
+public class Utilities extends Ownable {
+
     private UtilityRules utilityRules = UtilityRules.getInstance();
 
     public Utilities(String name, int loc, Group group, int cost,int mtg){
         super.setGroup(group);
         super.setLocation(loc);
         super.setName(name);
-        this.cost = cost;
-        this.mortgagePrice = mtg;
+        super.setCost(cost);
+        super.setMortgagePrice(mtg);
+        super.setMortgaged(false);
     }
 
     @Override
     public void onVisit(Player player) {
+        Bank bank = Bank.getInstance();
         if(getOwner() == null){
-            if(player.wantsToBuyPropertyForPrice(this, getCost())){
-                player.spendMoney(getCost());
+            if(player.wantsToBuyPropertyForPrice(this, super.getCost())){
+                player.spendMoney(super.getCost());
                 player.addProperty(this);
                 setOwner(player);
             }
             else{
-                Bank.auctionProperty(this,Bank.getAllPlayersInGame());
+                bank.auctionProperty(this,bank.getAllPlayersInGame());
             }
         }
         else{
@@ -41,15 +41,5 @@ public class Utilities extends Space {
 
     }
 
-    public int getCost() {
-        return cost;
-    }
 
-    public Player getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
 }

@@ -6,7 +6,7 @@ import Rules.Bank;
 /**
  * Created by marc on 20/11/2015.
  */
-public class Property extends Space {
+public class Property extends Ownable {
 
     private int baseRent;
     private int rent;
@@ -15,35 +15,32 @@ public class Property extends Space {
     private int threeHouseRent;
     private int fourHouseRent;
     private int hotelRent;
-    private int cost;
     private int houses;
     private int hotels;
     private int houseCost;
-    private int mortgagePrice;
-    private boolean mortgaged;
-    private Player owner;
+
+
+
 
     public Property(String name, Group group, int location, int baseRent, int cost, int mortgagePrice,int houseCost, int oneHouseRent, int twoHouseRent, int threeHouseRent, int fourHouseRent, int hotelRent){
         super.setGroup(group);
         super.setName(name);
         super.setLocation(location);
+        super.setCost(cost);
+        super.setMortgagePrice(mortgagePrice);
         this.baseRent = baseRent ;
-        this.cost = cost;
-        this.mortgagePrice = mortgagePrice;
         this.houseCost = houseCost;
         this.oneHouseRent = oneHouseRent;
         this.twoHouseRent = twoHouseRent;
         this.threeHouseRent = threeHouseRent;
         this.fourHouseRent = fourHouseRent;
         this.hotelRent = hotelRent;
-        this.mortgaged = false;
+        super.setMortgaged(false);
         calculateRent();
 
     }
 
-    public int getCost() {
-        return cost;
-    }
+
 
 
     public void addHouse() {
@@ -56,26 +53,21 @@ public class Property extends Space {
         this.hotels++;
     }
 
-    public Player getOwner() {
-        return owner;
-    }
 
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
 
 
     @Override
     public void onVisit(Player player) {
-        if(owner == player || owner == null){
+        Bank bank = Bank.getInstance();
+        if(super.getOwner() == player || super.getOwner() == null){
             //Player can buy property, logic still needs to be developed.
         }
-        else if(mortgaged){
+        else if(super.isMortgaged()){
 
         }
         else{
             calculateRent();
-            Bank.payPlayer(player,owner,rent);
+            bank.payPlayer(player,super.getOwner(),rent);
         }
 
     }
@@ -111,9 +103,6 @@ public class Property extends Space {
         return houseCost;
     }
 
-    public int getMortgagePrice() {
-        return mortgagePrice;
-    }
 
     public void removeHouse() {
         houses--;
