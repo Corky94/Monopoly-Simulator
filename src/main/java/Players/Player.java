@@ -21,7 +21,7 @@ public class Player {
     private int noOfRolls;
     private int turnInJail;
     private int sumOfDiceRolls;
-    private Vector<Space> ownedSpaces;
+    private Vector<Ownable> ownedSpaces;
     private Dice[] dices;
     private Vector<Card> cards;
     private boolean inJail = false;
@@ -141,7 +141,7 @@ public class Player {
         return false;
     }
 
-    public void addProperty(Space space) {
+    public void addProperty(Ownable space) {
         ownedSpaces.add(space);
     }
 
@@ -159,5 +159,20 @@ public class Player {
     }
     public int amountRolledOnDice(){
         return sumOfDiceRolls;
+    }
+
+    public int calculateNetWorth() {
+        //TODO test method
+        int netWorth = money;
+
+        for(Ownable space : ownedSpaces){
+            netWorth += space.getCost();
+            if(space instanceof Property){
+                netWorth += ((Property) space).getHotels()* ((Property) space).getHouseCost();
+                netWorth += ((Property) space).getHouses()* ((Property) space).getHouseCost();
+            }
+
+        }
+        return netWorth;
     }
 }

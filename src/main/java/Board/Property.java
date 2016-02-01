@@ -44,13 +44,13 @@ public class Property extends Ownable {
 
 
     public void addHouse() {
-        this.houses++;
+        this.houses = this.getHouses() + 1;
     }
 
 
     public void addHotel() {
         houses=0;
-        this.hotels++;
+        this.hotels = this.getHotels() + 1;
     }
 
 
@@ -73,13 +73,13 @@ public class Property extends Ownable {
     }
 
     private void calculateRent(){
-       if(hotels>0){
+       if(getHotels() >0){
            rent = hotelRent;
        }
        //Should be else if to incorperate the rule that the base rent doubles if owner has all the properties in group.
 
         else{
-           switch(houses){
+           switch(getHouses()){
                case 4:
                    rent = fourHouseRent;
                    break;
@@ -105,10 +105,18 @@ public class Property extends Ownable {
 
 
     public void removeHouse() {
-        houses--;
+        houses = getHouses() - 1;
     }
 
     public void removeHotel() {
-        hotels--;
+        hotels = getHotels() - 1;
+    }
+
+    public int getHouses() {
+        return houses;
+    }
+
+    public int getHotels() {
+        return hotels;
     }
 }

@@ -5,6 +5,8 @@ package Rules;
  */
 public class SellingRules {
     private static SellingRules instance = new SellingRules();
+    private static double priceReductionForSellingHouse;
+    private static double priceReductionForSellingHotel;
 
     private SellingRules() {
 
@@ -14,12 +16,17 @@ public class SellingRules {
     public static SellingRules getInstance() {
         return instance;
     }
+    public static void init(double reductionForSellingHouse, double reductionForSellingHotel){
+        priceReductionForSellingHouse = reductionForSellingHouse;
+        priceReductionForSellingHotel = reductionForSellingHotel;
+    }
 
     public double priceReductionForSellingOfHouse() {
-        return 0;
+
+        return priceReductionForSellingHouse;
     }
 
     public double priceReductionForSellingOfHotel() {
-        return 0;
+        return priceReductionForSellingHotel;
     }
 }

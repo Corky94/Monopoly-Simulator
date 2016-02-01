@@ -20,22 +20,23 @@ public class Station extends Ownable {
     }
 
     @Override
-    public void onVisit(Player player) {
+    public void onVisit(Player visitor) {
         Bank bank = Bank.getInstance();
         Player owner = super.getOwner();
         if(owner == null){
-            if(player.wantsToBuyPropertyForPrice(this, super.getCost())){
-                player.spendMoney(super.getCost());
-                player.addProperty(this);
-                owner = (player);
+            if(visitor.wantsToBuyPropertyForPrice(this, super.getCost())){
+                visitor.spendMoney(super.getCost());
+                visitor.addProperty(this);
+               setOwner(visitor);
             }
             else{
                 bank.auctionProperty(this,bank.getAllPlayersInGame());
             }
         }
         else{
-            if(!owner.equals(player)){
-                int rentOwed = stationRules.calculateRent(owner,player);
+            if(!owner.equals(visitor)){
+                int rentOwed = stationRules.calculateRent(owner,visitor);
+                bank.payPlayer(visitor,super.getOwner(),rentOwed);
             }
         }
 

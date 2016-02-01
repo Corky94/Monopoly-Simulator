@@ -1,6 +1,7 @@
 package Board;
 
 import Players.Player;
+import Rules.TaxRules;
 
 /**
  * Contains the information for tax spaces
@@ -24,6 +25,11 @@ public class Tax extends Space {
 
     @Override
     public void onVisit(Player player) {
-        player.spendMoney(fee);
+        if(super.getName().equalsIgnoreCase("Income Tax")){
+            player.spendMoney(TaxRules.getInstance().calculateIncomeTax(player));
+        }
+        else{
+            player.spendMoney(fee);
+        }
     }
 }
