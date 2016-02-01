@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3641d87a-8fb7-4c18-b3d6-bd14c122dec5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Rules/JailRules.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Rules/Bank.java" afterPath="$PROJECT_DIR$/src/main/java/Rules/Bank.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/Rules/BankTest.java" afterPath="$PROJECT_DIR$/src/test/java/Rules/BankTest.java" />
     </list>
     <ignored path="monopoly-simulator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1188,7 +1185,7 @@
       <workItem from="1453992294919" duration="1057000" />
       <workItem from="1454072844373" duration="14884000" />
       <workItem from="1454272710618" duration="4849000" />
-      <workItem from="1454328818249" duration="967000" />
+      <workItem from="1454328818249" duration="1149000" />
     </task>
     <task id="LOCAL-00001" summary="Added changes and removed the money and transaction classes, running back on basics for now">
       <created>1453758024219</created>
@@ -1220,7 +1217,13 @@
       <option name="project" value="LOCAL" />
       <updated>1454273983628</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Made minor changes to the bank class and tests, also written new tests and new class rules. Seems the transactions have been implemented now to move onto the implementing the basis of all the rules.">
+      <created>1454329944589</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1454329944589</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1256,7 +1259,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26845000" />
+    <option name="totallyTimeSpent" value="27027000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -1264,6 +1267,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3248" sideWeight="0.45594713" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3392" sideWeight="0.53817916" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1283,7 +1287,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3248" sideWeight="0.45594713" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3392" sideWeight="0.46182084" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4633968" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1335,7 +1338,8 @@
     <MESSAGE value="Implemented the basis of auctions and and improved the Bank file, bit by bit coming together." />
     <MESSAGE value="Ok made changes to incorporate the adjustment of rules, created the classes for the GUI. Also  need to find an elegant way to make Bank a singleton, going to have tomorrow off, need a rest. But Hopefully have all the basic rules done and the the basis of a GUI by the end of next week. I need to improve my tests, they are not rigorous enough." />
     <MESSAGE value="Made bank singleton also added an abstract class called ownable, which allows for a better inheritence of classes and allows for better written bank class, the bank is almost completed, but still need to work at it." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made bank singleton also added an abstract class called ownable, which allows for a better inheritence of classes and allows for better written bank class, the bank is almost completed, but still need to work at it." />
+    <MESSAGE value="Made minor changes to the bank class and tests, also written new tests and new class rules. Seems the transactions have been implemented now to move onto the implementing the basis of all the rules." />
+    <option name="LAST_COMMIT_MESSAGE" value="Made minor changes to the bank class and tests, also written new tests and new class rules. Seems the transactions have been implemented now to move onto the implementing the basis of all the rules." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
