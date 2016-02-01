@@ -60,4 +60,89 @@ public class BankTest extends TestCase {
         verify(property, times(1)).addHouse();
 
     }
+    public void testBuyingAHouseWithNoHousesInBank() throws Exception {
+        Property property = Mockito.mock(Property.class);
+        when(property.getHouseCost()).thenReturn(50);
+        BuildRules rules = Mockito.mock(BuildRules.class);
+        Player player = Mockito.mock(Player.class);
+        when(property.getOwner()).thenReturn(player);
+        when(player.spendMoney(50)).thenReturn(true);
+        when(rules.canBuildHouse(property,player)).thenReturn(true);
+        Bank.initializeBank(null,rules,null,null,null,0,0);
+        Bank bank = Bank.getInstance();
+        assertFalse(bank.buyHouse(property,player));
+        verify(player, never()).spendMoney(50);
+        verify(property, never()).addHouse();
+
+    }
+    public void testBuyingAHotel() throws Exception {
+        Property property = Mockito.mock(Property.class);
+        when(property.getHouseCost()).thenReturn(50);
+        BuildRules rules = Mockito.mock(BuildRules.class);
+        Player player = Mockito.mock(Player.class);
+        when(property.getOwner()).thenReturn(player);
+        when(player.spendMoney(50)).thenReturn(true);
+        when(rules.canBuildHotel(property,player)).thenReturn(true);
+        when(rules.amountOfHousesNeededForHotel()).thenReturn(4);
+        Bank.initializeBank(null,rules,null,null,null,0,1);
+        Bank bank = Bank.getInstance();
+        assertTrue(bank.buyHotel(property,player));
+        verify(player, times(1)).spendMoney(50);
+        verify(property, times(1)).addHotel();
+        assertEquals(4,bank.getHousesInBank());
+    }
+    public void testBuyingAHotelWhenNoHotelsInBank() throws Exception {
+        Property property = Mockito.mock(Property.class);
+        when(property.getHouseCost()).thenReturn(50);
+        BuildRules rules = Mockito.mock(BuildRules.class);
+        Player player = Mockito.mock(Player.class);
+        when(property.getOwner()).thenReturn(player);
+        when(player.spendMoney(50)).thenReturn(true);
+        when(rules.canBuildHotel(property,player)).thenReturn(true);
+        when(rules.amountOfHousesNeededForHotel()).thenReturn(4);
+        Bank.initializeBank(null,rules,null,null,null,0,0);
+        Bank bank = Bank.getInstance();
+        assertFalse(bank.buyHotel(property,player));
+        verify(player, never()).spendMoney(50);
+        verify(property, never()).addHotel();
+        assertEquals(bank.getHousesInBank(),0);
+    }
+
+    public void testSellingAHouse() throws Exception {
+        Property property = Mockito.mock(Property.class);
+        when(property.getHouseCost()).thenReturn(50);
+        BuildRules rules = Mockito.mock(BuildRules.class);
+        SellingRules sellingRules = Mockito.mock(SellingRules.class);
+        when(sellingRules.priceReductionForSellingOfHouse()).thenReturn(0.5);
+        Player player = Mockito.mock(Player.class);
+        when(property.getOwner()).thenReturn(player);
+        when(rules.canSellHouse(property,player)).thenReturn(true);
+        Bank.initializeBank(null,rules,null,sellingRules,null,0,0);
+        Bank bank = Bank.getInstance();
+        bank.sellHouse(property,player);
+        verify(player, times(1)).receiveMoney(25);
+        verify(property, times(1)).removeHouse();
+        assertEquals(bank.getHousesInBank(),1);
+    }
+    public void testSellingAHotel() throws Exception {
+        Property property = Mockito.mock(Property.class);
+        when(property.getHouseCost()).thenReturn(50);
+        BuildRules rules = Mockito.mock(BuildRules.class);
+        SellingRules sellingRules = Mockito.mock(SellingRules.class);
+        when(sellingRules.priceReductionForSellingOfHotel()).thenReturn(0.1);
+        Player player = Mockito.mock(Player.class);
+        when(property.getOwner()).thenReturn(player);
+        when(rules.canSellHouse(property,player)).thenReturn(true);
+        when(rules.amountOfHousesNeededForHotel()).thenReturn(4);
+        Bank.initializeBank(null,rules,null,sellingRules,null,4,0);
+        Bank bank = Bank.getInstance();
+        bank.sellHotel(property,player);
+        verify(player, times(1)).receiveMoney(5);
+        verify(property, times(1)).removeHotel();
+        verify(property, times(4)).addHouse();
+        assertEquals(bank.getHotelsInBank(),1);
+        assertEquals(bank.getHousesInBank(),0);
+
+    }
+
 }

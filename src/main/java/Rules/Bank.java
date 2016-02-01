@@ -55,8 +55,9 @@ public class Bank {
     }
 
     public   void payPlayer(Player playerToSend, Player playerToReceive,int amount){
-        playerToSend.spendMoney(amount);
-        playerToReceive.gainMoney(amount);
+        if(playerToSend.spendMoney(amount)){
+            playerToReceive.gainMoney(amount);
+        }
 
     }
     public  void passGo(Player player){
@@ -92,11 +93,13 @@ public class Bank {
                 hotelBuilt = false;
             } else {
                 if (player.spendMoney(property.getHouseCost())) {
-                    //Todo Add houses back once hotel is built
+
                     housesInBank += buildRules.amountOfHousesNeededForHotel();
                     hotelsInBank--;
                     property.addHotel();
-                    // TODO logic for removing the houses from the property
+                    for(int i =0; i < buildRules.amountOfHousesNeededForHotel();i++){
+                        property.removeHouse();
+                    }
                     hotelBuilt = true;
                 } else {
                     hotelBuilt = false;
@@ -112,7 +115,7 @@ public class Bank {
     public  void sellHouse(Property property,Player player){
         if (player.equals(property.getOwner()) && buildRules.canSellHouse(property, player)) {
 
-            player.receiveMoney((int) (property.getHouseCost()/sellingRules.priceReductionForSellingOfHouse()));
+            player.receiveMoney((int) (property.getHouseCost()*sellingRules.priceReductionForSellingOfHouse()));
             property.removeHouse();
             housesInBank++;
         }
@@ -120,10 +123,20 @@ public class Bank {
     public  void sellHotel(Property property,Player player){
         if (player.equals(property.getOwner()) && buildRules.canSellHouse(property, player)) {
 
-            player.receiveMoney((int) (property.getHouseCost()/sellingRules.priceReductionForSellingOfHotel()));
+            player.receiveMoney((int) (property.getHouseCost()*sellingRules.priceReductionForSellingOfHotel()));
             property.removeHotel();
             hotelsInBank++;
-            //Todo ensure that the owner gets houses back.
+            for(int i =0; i < buildRules.amountOfHousesNeededForHotel();i++){
+                if(housesInBank>0){
+                    property.addHouse();
+                    housesInBank--;
+                }
+                else{
+                    break;
+                }
+
+            }
+
         }
     }
     public  void auctionProperty(Ownable property, Player[] players){
