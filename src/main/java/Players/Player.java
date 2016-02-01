@@ -81,8 +81,9 @@ public class Player {
     }
 
     public void setCurrentLocation(Space currentLocation) {
-        currentLocation.onVisit(this);
+
         this.currentLocation = currentLocation;
+        currentLocation.onVisit(this);
     }
 
    public void gainMoney(int amount){

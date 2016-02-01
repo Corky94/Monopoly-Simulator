@@ -23,6 +23,7 @@ public class PlayerTest extends TestCase {
         Dice[] dices = {d1,d2};
         Player player = new Player(1500,dices);
         Player spy = spy(player);
+        doReturn(100).when(spy).calculateNetWorth();
         int result = spy.rollDice();
 
         verify(spy,times(1)).rollDice();
@@ -41,6 +42,7 @@ public class PlayerTest extends TestCase {
         Dice[] dices = {d1,d2};
         Player player = new Player(1500,dices);
         Player spy = spy(player);
+        doReturn(100).when(spy).calculateNetWorth();
         int result = spy.rollDice();
 
         verify(spy,times(2)).rollDice();
@@ -60,6 +62,7 @@ public class PlayerTest extends TestCase {
         Dice[] dices = {d1,d2};
         Player player = new Player(1500,dices);
         Player spy = spy(player);
+        doReturn(100).when(spy).calculateNetWorth();
         int result = spy.rollDice();
 
         verify(spy,times(1)).goToJail();
