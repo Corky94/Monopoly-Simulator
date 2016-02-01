@@ -1,9 +1,7 @@
 package Rules;
 
 import Board.Group;
-import Board.Property;
 import Players.Player;
-import junit.framework.Assert;
 import junit.framework.TestCase;
 import org.mockito.*;
 import static org.mockito.Mockito.*;
