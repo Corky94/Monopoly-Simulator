@@ -3,7 +3,7 @@ Location,Name,Group,Cost,Mortgage,House Cost,Base Rent,1 house rent,2 house rent
 2,Old Kent Road,Brown,60,30,50,2,10,30,90,160,250
 3,Community Chest,CommunityChest,0,0,0,0,0,0,0,0,0
 4,Whitechapel Road,Brown,60,30,50,4,20,60,180,320,450
-5,Income Tax,Tax,100,0,0,0,0,0,0,0,0
+5,Income Tax,Tax,200,0,0,0,0,0,0,0,0
 6,Kings Cross Station,Station,200,100,0,0,0,0,0,0,0
 7,The Angel Islington,LightBlue,100,50,50,6,30,90,270,400,550
 8,Chance,Chance,0,0,0,0,0,0,0,0,0

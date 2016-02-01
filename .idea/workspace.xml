@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3641d87a-8fb7-4c18-b3d6-bd14c122dec5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/monopoly-simulator.iml" afterPath="$PROJECT_DIR$/monopoly-simulator.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Board/Utilities.java" afterPath="$PROJECT_DIR$/src/main/java/Board/Utilities.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Rules/UtilityRules.java" afterPath="$PROJECT_DIR$/src/main/java/Rules/UtilityRules.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/Rules/UtilityRulesTest.java" afterPath="$PROJECT_DIR$/src/test/java/Rules/UtilityRulesTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Monopoly Map.csv" afterPath="$PROJECT_DIR$/Monopoly Map.csv" />
     </list>
     <ignored path="monopoly-simulator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,14 +76,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Utilities.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Utilities.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Board/Utilities.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.05974026">
+            <state vertical-scroll-proportion="0.0">
               <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Monopoly Map.csv" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Monopoly Map.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.22077923">
+              <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -214,6 +221,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Rules/UtilityRules.java" />
         <option value="$PROJECT_DIR$/src/test/java/Rules/UtilityRulesTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Board/Utilities.java" />
+        <option value="$PROJECT_DIR$/Monopoly Map.csv" />
       </list>
     </option>
   </component>
@@ -1181,7 +1189,7 @@
       <workItem from="1454072844373" duration="14884000" />
       <workItem from="1454272710618" duration="4849000" />
       <workItem from="1454328818249" duration="1149000" />
-      <workItem from="1454344849409" duration="1877000" />
+      <workItem from="1454344849409" duration="1973000" />
     </task>
     <task id="LOCAL-00001" summary="Added changes and removed the money and transaction classes, running back on basics for now">
       <created>1453758024219</created>
@@ -1219,7 +1227,13 @@
       <option name="project" value="LOCAL" />
       <updated>1454329944589</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Completed the utility rules, and tested the extensibility, need to test the full workings of the utility board class, but that will be soon">
+      <created>1454348340008</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1454348340008</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1255,7 +1269,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28904000" />
+    <option name="totallyTimeSpent" value="29000000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -1308,7 +1322,8 @@
     <MESSAGE value="Ok made changes to incorporate the adjustment of rules, created the classes for the GUI. Also  need to find an elegant way to make Bank a singleton, going to have tomorrow off, need a rest. But Hopefully have all the basic rules done and the the basis of a GUI by the end of next week. I need to improve my tests, they are not rigorous enough." />
     <MESSAGE value="Made bank singleton also added an abstract class called ownable, which allows for a better inheritence of classes and allows for better written bank class, the bank is almost completed, but still need to work at it." />
     <MESSAGE value="Made minor changes to the bank class and tests, also written new tests and new class rules. Seems the transactions have been implemented now to move onto the implementing the basis of all the rules." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made minor changes to the bank class and tests, also written new tests and new class rules. Seems the transactions have been implemented now to move onto the implementing the basis of all the rules." />
+    <MESSAGE value="Completed the utility rules, and tested the extensibility, need to test the full workings of the utility board class, but that will be soon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed the utility rules, and tested the extensibility, need to test the full workings of the utility board class, but that will be soon" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1442,13 +1457,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Monopoly Map.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1855,11 +1863,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Board/Utilities.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.05974026">
+        <state vertical-scroll-proportion="0.0">
           <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Monopoly Map.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22077923">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
