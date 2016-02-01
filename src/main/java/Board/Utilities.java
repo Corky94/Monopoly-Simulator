@@ -23,11 +23,11 @@ public class Utilities extends Ownable {
     @Override
     public void onVisit(Player player) {
         Bank bank = Bank.getInstance();
-        if(getOwner() == null){
+        if(super.getOwner() == null){
             if(player.wantsToBuyPropertyForPrice(this, super.getCost())){
                 player.spendMoney(super.getCost());
                 player.addProperty(this);
-                setOwner(player);
+                super.setOwner(player);
             }
             else{
                 bank.auctionProperty(this,bank.getAllPlayersInGame());
@@ -36,6 +36,7 @@ public class Utilities extends Ownable {
         else{
             if(!getOwner().equals(player)){
                 int rentOwed = utilityRules.calculateRent(getOwner(),player);
+                bank.payPlayer(player,super.getOwner(),rentOwed);
             }
         }
 

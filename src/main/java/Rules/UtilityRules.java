@@ -8,8 +8,8 @@ import Board.Group;
  */
 public class UtilityRules {
     private static UtilityRules instance = new UtilityRules();
-    private static int multiplerForOneUtility;
-    private static int multiplerForBothUtilities;
+    private static int multiplierForOneUtility;
+    private static int multiplierForBothUtilities;
 
     private UtilityRules(){}
 
@@ -18,19 +18,20 @@ public class UtilityRules {
     public static UtilityRules getInstance() {
         return instance;
     }
-    public static void init(int multiplerForOneUtilityInit, int multiplerForBothUtilitiesInit){
-    	multiplerForOneUtility = multiplerForOneUtilityInit;
-    	multiplerForBothUtilities = multiplerForBothUtilitiesInit;
+    public static void init(int multiplierForOneUtilityInit, int multiplierForBothUtilitiesInit){
+    	multiplierForOneUtility = multiplierForOneUtilityInit;
+    	multiplierForBothUtilities = multiplierForBothUtilitiesInit;
     }
 
     public int calculateRent(Player owner, Player visitor) {
         int rentOwed = 0;
-    	if(owner.ownsSpacesOfGroup(Group.Utility) == 2){
-    		rentOwed = visitor.amountRolledOnDice()*multiplerForBothUtilities;
+    	if(owner.ownsSpacesOfGroup(Group.Utility) == 2 || visitor.getMoveTaken().equals(MoveType.Card)){
+    		rentOwed = visitor.amountRolledOnDice()* multiplierForBothUtilities;
     	}
         else{
-            rentOwed = visitor.amountRolledOnDice()*multiplerForOneUtility;
+            rentOwed = visitor.amountRolledOnDice()* multiplierForOneUtility;
         }
+
         return rentOwed;
         
     }
