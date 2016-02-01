@@ -4,7 +4,7 @@ import Board.*;
 import Board.Space;
 import Cards.Card;
 import Dice.Dice;
-import Rules.Move;
+import Rules.MoveType;
 
 import java.util.Arrays;
 import java.util.Vector;
@@ -17,7 +17,7 @@ import java.util.Vector;
 public class Player {
     private Space currentLocation;
     private int money;
-    private Move moveTaken;
+    private MoveType moveTaken;
     private int noOfRolls;
     private int turnInJail;
     private int sumOfDiceRolls;
@@ -29,7 +29,7 @@ public class Player {
 
 
     public Player (int initialMoney, Dice[] dices){
-        moveTaken = Move.DiceRoll;
+        moveTaken = MoveType.DiceRoll;
         money = initialMoney;
         this.dices = dices;
         currentLocation = board.getSpaceOnBoard("Go");
@@ -114,7 +114,7 @@ public class Player {
     }
 
     public void goToJail() {
-        moveTaken = Move.GoToJail;
+        moveTaken = MoveType.GoToJail;
         this.inJail = true;
         currentLocation=board.getSpaceOnBoard("Jail");
         board.goToJail(this);
@@ -145,7 +145,19 @@ public class Player {
         ownedSpaces.add(space);
     }
 
-    public Move getMoveTaken() {
+    public MoveType getMoveTaken() {
         return moveTaken;
+    }
+    public int ownsSpacesOfGroup(Group group){
+        int amountOfSpacesOwned =0;
+        for (Space space : ownedSpaces){
+            if(space.getGroup().equals(group)){
+                amountOfSpacesOwned++;
+            }
+        }
+        return amountOfSpacesOwned;
+    }
+    public int amountRolledOnDice(){
+        return sumOfDiceRolls;
     }
 }

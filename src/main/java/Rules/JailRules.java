@@ -7,6 +7,7 @@ public class JailRules {
     private static JailRules instance = new JailRules();
     private int amountOfRollsToGetOutOfJail;
     private int feeToPayToGetOutOfJail;
+    private boolean canEarnRent;
 
     private JailRules(){};
 
@@ -18,5 +19,8 @@ public class JailRules {
     }
     public int feeToPayToGetOutOfJail(){
         return feeToPayToGetOutOfJail;
+    }
+    public boolean canEarnRent(){
+        return canEarnRent;
     }
 }

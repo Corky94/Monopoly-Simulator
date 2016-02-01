@@ -1,7 +1,8 @@
 package Rules;
 
 /**
- * Created by userhp on 30/01/2016.
+ * Created by userhp on 01/02/2016.
  */
-public enum Move { DiceRoll, Card, GoToJail
+public class Move {
+   private MoveType moveType;
 }
