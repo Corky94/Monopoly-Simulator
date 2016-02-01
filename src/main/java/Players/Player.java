@@ -1,13 +1,13 @@
 package Players;
 
-import Board.Board;
+import Board.*;
 import Board.Space;
 import Cards.Card;
 import Dice.Dice;
+import Rules.Move;
 
 import java.util.Arrays;
 import java.util.Vector;
-import java.util.stream.IntStream;
 
 /**
  *  TODO a lot of the logic needs to be developed here. A lot of time is needed however the rest of program needs to be done firs
@@ -17,6 +17,7 @@ import java.util.stream.IntStream;
 public class Player {
     private Space currentLocation;
     private int money;
+    private Move moveTaken;
     private int noOfRolls;
     private int turnInJail;
     private int sumOfDiceRolls;
@@ -28,6 +29,7 @@ public class Player {
 
 
     public Player (int initialMoney, Dice[] dices){
+        moveTaken = Move.DiceRoll;
         money = initialMoney;
         this.dices = dices;
         currentLocation = board.getSpaceOnBoard("Go");
@@ -86,14 +88,25 @@ public class Player {
    public void gainMoney(int amount){
        money+=amount;
    }
-    public void spendMoney(int amount){
-        money-=amount;
+
+    public boolean spendMoney(int amount){
+        boolean enoughMoney;
+        if(money-amount<0){
+            enoughMoney= false;
+        }
+        else{
+            money-=amount;
+            enoughMoney=true;
+        }
+        return enoughMoney;
+
     }
 
     public void moveToLocation(Space location) {
     }
 
     public void receiveMoney(int feeToPlayer) {
+
     }
 
     public void keepCard(Card card) {
@@ -101,6 +114,7 @@ public class Player {
     }
 
     public void goToJail() {
+        moveTaken = Move.GoToJail;
         this.inJail = true;
         currentLocation=board.getSpaceOnBoard("Jail");
         board.goToJail(this);
@@ -121,5 +135,17 @@ public class Player {
     }
 
     public void payOtherPlayers(int feeToPlayer) {
+    }
+
+    public boolean wantsToBuyPropertyForPrice(Space property, int askingPriceOfProperty) {
+        return false;
+    }
+
+    public void addProperty(Space space) {
+        ownedSpaces.add(space);
+    }
+
+    public Move getMoveTaken() {
+        return moveTaken;
     }
 }

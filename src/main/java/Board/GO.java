@@ -18,6 +18,7 @@ public class GO extends Space {
     }
     @Override
     public void onVisit(Player player) {
-        Bank.passGo(player);
+        Bank bank = Bank.getInstance();
+        bank.passGo(player);
     }
 }
