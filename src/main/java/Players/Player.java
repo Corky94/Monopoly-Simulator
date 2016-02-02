@@ -3,7 +3,7 @@ package Players;
 import Board.*;
 import Board.Space;
 import Cards.Card;
-import Dice.Dice;
+import Dice.*;
 import Rules.MoveType;
 import Rules.SellingRules;
 
@@ -18,10 +18,8 @@ import java.util.Vector;
 public class Player {
     private Space currentLocation;
     private int money;
-    private MoveType moveTaken;
-    private int noOfRolls;
-    private int turnInJail;
-    private int sumOfDiceRolls;
+    private MoveType moveTaken;   
+    private int turnInJail;    
     private Vector<Ownable> ownedSpaces;
     private Dice[] dices;
     private Vector<Card> cards;
@@ -36,42 +34,22 @@ public class Player {
         currentLocation = board.getSpaceOnBoard("Go");
         noOfRolls=0;
     }
-    public int rollDice(){
-        noOfRolls++;
-        int[] diceResults = new int[dices.length];
-
-        for (int i = 0; i < dices.length; i++) {
-            Dice d = dices[i];
-            diceResults[i] = d.rollTheDice();
+    public DiceRoll rollDice(){        
+        Vector<Integer> diceResults = new Vector<Integer>();
+        for (Dice d : dices) {
+            diceResults.add(d.rollTheDice());
         }
-        int firstResult = diceResults[0];
+        int sumOfDiceRolls = 0;
+        int firstResult = diceResults.get(0);
         boolean allTheSame = true;
         for (int result: diceResults) {
+            sumOfDiceRolls += result;
             if (result!=firstResult) {
-                allTheSame=false;
-                break;
+                allTheSame=false;                
             }
-        }
-        sumOfDiceRolls = Arrays.stream(diceResults).sum();
-        if(allTheSame)
-        {
-            if(noOfRolls>=3){
-               this.goToJail();
-                sumOfDiceRolls = -1;
-            }
-            else {
-                this.setCurrentLocation(board.moveToSpace(currentLocation, sumOfDiceRolls));
-                rollDice();
-            }
-        }
-        else{
-            noOfRolls=0;
-            this.setCurrentLocation(board.moveToSpace(currentLocation, sumOfDiceRolls));
-            return sumOfDiceRolls;
-        }
-        //FIXME a poor work around I need a way to implement this without being recursive.
-        noOfRolls=0;
-        return sumOfDiceRolls;
+        }        
+        DiceRoll roll = new DiceRoll(sumOfDiceRolls,allTheSame);
+        return roll;
 
 
 
@@ -162,9 +140,7 @@ public class Player {
         }
         return amountOfSpacesOwned;
     }
-    public int amountRolledOnDice(){
-        return sumOfDiceRolls;
-    }
+    
 
     public int calculateNetWorth() {
         //TODO test method

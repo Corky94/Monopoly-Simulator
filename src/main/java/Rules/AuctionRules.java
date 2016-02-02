@@ -9,6 +9,9 @@ public class AuctionRules {
     public static AuctionRules getInstance() {
         return instance;
     }
+    public static void init(double startingPriceMultipler, double incrementMultipler){
+        
+    }
 
     public double getStartingPriceMultiplier() {
         return 0;
