@@ -5,6 +5,7 @@ import Board.Space;
 import Cards.Card;
 import Dice.Dice;
 import Rules.MoveType;
+import Rules.SellingRules;
 
 import java.util.Arrays;
 import java.util.Vector;
@@ -145,6 +146,9 @@ public class Player {
     public void addProperty(Ownable space) {
         ownedSpaces.add(space);
     }
+    public void removeProperty(Ownable space) {
+        ownedSpaces.remove(space);
+    }
 
     public MoveType getMoveTaken() {
         return moveTaken;
@@ -175,5 +179,30 @@ public class Player {
 
         }
         return netWorth;
+    }
+
+    public int calculateSaleableItems() {
+        //Todo test method
+
+        int saleableMoney = money;
+
+        for(Ownable space : ownedSpaces){
+            saleableMoney += space.getMortgagePrice();
+            if(space instanceof Property){
+                saleableMoney += ((Property) space).getHotels()* ((Property) space).getHouseCost() * SellingRules.getInstance().priceReductionForSellingOfHotel();
+                saleableMoney += ((Property) space).getHouses()* ((Property) space).getHouseCost() * SellingRules.getInstance().priceReductionForSellingOfHouse();
+            }
+        }
+
+
+
+        return saleableMoney;
+    }
+
+    public int getMoney(){
+        return money;
+    }
+    public Vector<Ownable> getOwnedSpaces(){
+        return ownedSpaces;
     }
 }

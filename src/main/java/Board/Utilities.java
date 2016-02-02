@@ -1,5 +1,6 @@
 package Board;
 
+import Players.AllPlayers;
 import Players.Player;
 import Rules.Bank;
 import Rules.UtilityRules;
@@ -30,7 +31,7 @@ public class Utilities extends Ownable {
                 super.setOwner(player);
             }
             else{
-                bank.auctionProperty(this,bank.getAllPlayersInGame());
+                bank.auctionProperty(this);
             }
         }
         else{

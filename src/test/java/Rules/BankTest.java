@@ -1,10 +1,14 @@
 package Rules;
 
 import Board.Property;
+import Players.AllPlayers;
 import Players.Player;
-import junit.framework.Assert;
 import junit.framework.TestCase;
 import org.mockito.*;
+
+import java.util.Arrays;
+import java.util.Vector;
+
 import static org.mockito.Mockito.*;
 /**
  * Created by userhp on 29/01/2016.
@@ -22,7 +26,7 @@ public class BankTest extends TestCase {
         AuctionRules rules = Mockito.mock(AuctionRules.class);
         when(rules.getStartingPriceMultiplier()).thenReturn(0.1);
         when(rules.getStartingPriceMultiplier()).thenReturn(0.05);
-        Bank.initializeBank(null,null,rules,null,null,1,0);
+        Bank.initializeBank(null,null,rules,null, 1,0);
         Bank bank = Bank.getInstance();
         Player player1 = Mockito.mock(Player.class);
         Player player2 = Mockito.mock(Player.class);
@@ -34,8 +38,10 @@ public class BankTest extends TestCase {
         when(player3.wantsToBuyPropertyForPrice(Matchers.eq(property),anyInt())).thenReturn(true).thenReturn(false);
         when(player4.wantsToBuyPropertyForPrice(Matchers.eq(property),anyInt())).thenReturn(true);
 
-        Player[] players = {player1,player2,player3,player4};
-        bank.auctionProperty(property,players);
+        Player[] p = {player1,player2,player3,player4};
+        Vector<Player> players = new Vector<Player>(Arrays.asList(p));
+        AllPlayers.init(players);
+        bank.auctionProperty(property);
 
         verify(player4,times(1)).addProperty(property);
         verify(property,times(1)).setOwner(player4);
@@ -53,7 +59,7 @@ public class BankTest extends TestCase {
         when(property.getOwner()).thenReturn(player);
         when(player.spendMoney(50)).thenReturn(true);
         when(rules.canBuildHouse(property,player)).thenReturn(true);
-        Bank.initializeBank(null,rules,null,null,null,1,0);
+        Bank.initializeBank(null,rules,null,null, 1,0);
         Bank bank = Bank.getInstance();
         assertTrue(bank.buyHouse(property,player));
         verify(player, times(1)).spendMoney(50);
@@ -68,7 +74,7 @@ public class BankTest extends TestCase {
         when(property.getOwner()).thenReturn(player);
         when(player.spendMoney(50)).thenReturn(true);
         when(rules.canBuildHouse(property,player)).thenReturn(true);
-        Bank.initializeBank(null,rules,null,null,null,0,0);
+        Bank.initializeBank(null,rules,null,null, 0,0);
         Bank bank = Bank.getInstance();
         assertFalse(bank.buyHouse(property,player));
         verify(player, never()).spendMoney(50);
@@ -84,7 +90,7 @@ public class BankTest extends TestCase {
         when(player.spendMoney(50)).thenReturn(true);
         when(rules.canBuildHotel(property,player)).thenReturn(true);
         when(rules.amountOfHousesNeededForHotel()).thenReturn(4);
-        Bank.initializeBank(null,rules,null,null,null,0,1);
+        Bank.initializeBank(null,rules,null,null, 0,1);
         Bank bank = Bank.getInstance();
         assertTrue(bank.buyHotel(property,player));
         verify(player, times(1)).spendMoney(50);
@@ -100,7 +106,7 @@ public class BankTest extends TestCase {
         when(player.spendMoney(50)).thenReturn(true);
         when(rules.canBuildHotel(property,player)).thenReturn(true);
         when(rules.amountOfHousesNeededForHotel()).thenReturn(4);
-        Bank.initializeBank(null,rules,null,null,null,0,0);
+        Bank.initializeBank(null,rules,null,null, 0,0);
         Bank bank = Bank.getInstance();
         assertFalse(bank.buyHotel(property,player));
         verify(player, never()).spendMoney(50);
@@ -117,7 +123,7 @@ public class BankTest extends TestCase {
         Player player = Mockito.mock(Player.class);
         when(property.getOwner()).thenReturn(player);
         when(rules.canSellHouse(property,player)).thenReturn(true);
-        Bank.initializeBank(null,rules,null,sellingRules,null,0,0);
+        Bank.initializeBank(null,rules,null,sellingRules, 0,0);
         Bank bank = Bank.getInstance();
         bank.sellHouse(property,player);
         verify(player, times(1)).receiveMoney(25);
@@ -134,7 +140,7 @@ public class BankTest extends TestCase {
         when(property.getOwner()).thenReturn(player);
         when(rules.canSellHouse(property,player)).thenReturn(true);
         when(rules.amountOfHousesNeededForHotel()).thenReturn(4);
-        Bank.initializeBank(null,rules,null,sellingRules,null,4,0);
+        Bank.initializeBank(null,rules,null,sellingRules, 4,0);
         Bank bank = Bank.getInstance();
         bank.sellHotel(property,player);
         verify(player, times(1)).receiveMoney(5);

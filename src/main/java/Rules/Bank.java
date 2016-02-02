@@ -2,9 +2,10 @@ package Rules;
 
 import Board.Ownable;
 import Board.Property;
-import Board.Station;
-import Board.Utilities;
+import Players.AllPlayers;
 import Players.Player;
+
+import java.util.Vector;
 
 /**
  * Created by userhp on 28/01/2016.
@@ -33,26 +34,20 @@ public class Bank {
 
     //OK need to adjust this class, needs to be a singleton and needs to ensure that initialization is done before the
     // getting of the instance
-    //Todo Move the location of players being stored to another section of the code.
-    private static Player[] allPlayersInGame;
+
 
     public static void initializeBank(GoRules goRulesInit, BuildRules buildRulesInit, AuctionRules auctionRulesInit,
-                                      SellingRules sellingRulesInit, Player[] players, int amountOfHouses, int amountOfHotels){
+                                      SellingRules sellingRulesInit, int amountOfHouses, int amountOfHotels){
         goRules = goRulesInit;
         buildRules = buildRulesInit;
         auctionRules = auctionRulesInit;
         sellingRules = sellingRulesInit;
-        allPlayersInGame = players;
         housesInBank = amountOfHouses;
         hotelsInBank = amountOfHotels;
         initialized = true;
     }
-    public  void addPlayersToMatch(Player[] players){
-        allPlayersInGame=players;
-    }
-    public  Player[] getAllPlayersInGame() {
-        return allPlayersInGame;
-    }
+
+
 
     public   void payPlayer(Player playerToSend, Player playerToReceive,int amount){
         if(playerToSend.spendMoney(amount)){
@@ -139,7 +134,8 @@ public class Bank {
 
         }
     }
-    public  void auctionProperty(Ownable property, Player[] players){
+    public  void auctionProperty(Ownable property){
+        Vector<Player> players = AllPlayers.getInstance().getAllPlayers();
         int baseCostOfProperty = property.getCost();
         int startingPriceOfProperty = (int)(baseCostOfProperty * auctionRules.getStartingPriceMultiplier());
         int currentPriceOfProperty = startingPriceOfProperty;

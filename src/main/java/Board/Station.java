@@ -30,7 +30,7 @@ public class Station extends Ownable {
                setOwner(visitor);
             }
             else{
-                bank.auctionProperty(this,bank.getAllPlayersInGame());
+                bank.auctionProperty(this);
             }
         }
         else{
