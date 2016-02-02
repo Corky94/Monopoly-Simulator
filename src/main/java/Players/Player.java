@@ -4,6 +4,7 @@ import Board.*;
 import Board.Space;
 import Cards.Card;
 import Dice.*;
+import Rules.GoRules;
 import Rules.MoveType;
 import Rules.SellingRules;
 
@@ -25,6 +26,7 @@ public class Player {
     private Vector<Card> cards;
     private boolean inJail = false;
     private Board board =Board.getInstance();
+    private DiceRoll lastDiceRoll;
 
 
     public Player (int initialMoney, Dice[] dices){
@@ -32,7 +34,7 @@ public class Player {
         money = initialMoney;
         this.dices = dices;
         currentLocation = board.getSpaceOnBoard("Go");
-        noOfRolls=0;
+
     }
     public DiceRoll rollDice(){        
         Vector<Integer> diceResults = new Vector<Integer>();
@@ -49,6 +51,7 @@ public class Player {
             }
         }        
         DiceRoll roll = new DiceRoll(sumOfDiceRolls,allTheSame);
+        lastDiceRoll = roll;
         return roll;
 
 
@@ -83,6 +86,11 @@ public class Player {
     }
 
     public void moveToLocation(Space location) {
+        if(this.currentLocation.getLocation()> location.getLocation()){
+            receiveMoney(GoRules.getInstance().getSalary());
+        }
+        currentLocation = location;
+        location.onVisit(this);
     }
 
     public void receiveMoney(int feeToPlayer) {
@@ -180,5 +188,9 @@ public class Player {
     }
     public Vector<Ownable> getOwnedSpaces(){
         return ownedSpaces;
+    }
+
+    public DiceRoll getLastDiceRoll() {
+        return lastDiceRoll;
     }
 }

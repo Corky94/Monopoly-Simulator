@@ -1,6 +1,7 @@
 package Rules;
 
 import Board.Group;
+import Dice.DiceRoll;
 import Players.Player;
 import junit.framework.TestCase;
 import org.mockito.*;
@@ -22,8 +23,9 @@ public class UtilityRulesTest extends TestCase {
         Player owner = Mockito.mock(Player.class);
         Player visitor = Mockito.mock(Player.class);
         when(owner.ownsSpacesOfGroup(Group.Utility)).thenReturn(1);
-
-        when(visitor.amountRolledOnDice()).thenReturn(10);
+        DiceRoll roll = mock(DiceRoll.class);
+        when(roll.getSumOfDiceRolls()).thenReturn(10);
+        when(visitor.getLastDiceRoll()).thenReturn(roll);
         when(visitor.getMoveTaken()).thenReturn(MoveType.DiceRoll);
         assertEquals(40,rules.calculateRent(owner,visitor));
 
@@ -35,7 +37,9 @@ public class UtilityRulesTest extends TestCase {
         Player owner = Mockito.mock(Player.class);
         Player visitor = Mockito.mock(Player.class);
         when(owner.ownsSpacesOfGroup(Group.Utility)).thenReturn(2);
-        when(visitor.amountRolledOnDice()).thenReturn(10);
+        DiceRoll roll = mock(DiceRoll.class);
+        when(roll.getSumOfDiceRolls()).thenReturn(10);
+        when(visitor.getLastDiceRoll()).thenReturn(roll);
         when(visitor.getMoveTaken()).thenReturn(MoveType.DiceRoll);
         assertEquals(100,rules.calculateRent(owner,visitor));
 
@@ -47,7 +51,9 @@ public class UtilityRulesTest extends TestCase {
         Player owner = Mockito.mock(Player.class);
         Player visitor = Mockito.mock(Player.class);
         when(owner.ownsSpacesOfGroup(Group.Utility)).thenReturn(1);
-        when(visitor.amountRolledOnDice()).thenReturn(10);
+        DiceRoll roll = mock(DiceRoll.class);
+        when(roll.getSumOfDiceRolls()).thenReturn(10);
+        when(visitor.getLastDiceRoll()).thenReturn(roll);
         when(visitor.getMoveTaken()).thenReturn(MoveType.DiceRoll);
         assertEquals(200,rules.calculateRent(owner,visitor));
 
@@ -59,7 +65,9 @@ public class UtilityRulesTest extends TestCase {
         Player owner = Mockito.mock(Player.class);
         Player visitor = Mockito.mock(Player.class);
         when(owner.ownsSpacesOfGroup(Group.Utility)).thenReturn(2);
-        when(visitor.amountRolledOnDice()).thenReturn(10);
+        DiceRoll roll = mock(DiceRoll.class);
+        when(roll.getSumOfDiceRolls()).thenReturn(10);
+        when(visitor.getLastDiceRoll()).thenReturn(roll);
         when(visitor.getMoveTaken()).thenReturn(MoveType.DiceRoll);
         assertEquals(500,rules.calculateRent(owner,visitor));
 
@@ -72,8 +80,9 @@ public class UtilityRulesTest extends TestCase {
         Player owner = Mockito.mock(Player.class);
         Player visitor = Mockito.mock(Player.class);
         when(owner.ownsSpacesOfGroup(Group.Utility)).thenReturn(1);
-
-        when(visitor.amountRolledOnDice()).thenReturn(10);
+        DiceRoll roll = mock(DiceRoll.class);
+        when(roll.getSumOfDiceRolls()).thenReturn(10);
+        when(visitor.rollDice()).thenReturn(roll);
         when(visitor.getMoveTaken()).thenReturn(MoveType.Card);
         assertEquals(100,rules.calculateRent(owner,visitor));
 
@@ -85,7 +94,9 @@ public class UtilityRulesTest extends TestCase {
         Player owner = Mockito.mock(Player.class);
         Player visitor = Mockito.mock(Player.class);
         when(owner.ownsSpacesOfGroup(Group.Utility)).thenReturn(2);
-        when(visitor.amountRolledOnDice()).thenReturn(10);
+        DiceRoll roll = mock(DiceRoll.class);
+        when(roll.getSumOfDiceRolls()).thenReturn(10);
+        when(visitor.rollDice()).thenReturn(roll);
         when(visitor.getMoveTaken()).thenReturn(MoveType.Card);
         assertEquals(100,rules.calculateRent(owner,visitor));
 

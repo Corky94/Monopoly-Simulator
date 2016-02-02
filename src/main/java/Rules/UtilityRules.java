@@ -25,11 +25,14 @@ public class UtilityRules {
 
     public int calculateRent(Player owner, Player visitor) {
         int rentOwed = 0;
-    	if(owner.ownsSpacesOfGroup(Group.Utility) == 2 || visitor.getMoveTaken().equals(MoveType.Card)){
-    		rentOwed = visitor.amountRolledOnDice()* multiplierForBothUtilities;
+    	if( visitor.getMoveTaken().equals(MoveType.Card)){
+    		rentOwed = visitor.rollDice().getSumOfDiceRolls()* multiplierForBothUtilities;
     	}
+        else if(owner.ownsSpacesOfGroup(Group.Utility) == 2){
+            rentOwed = visitor.getLastDiceRoll().getSumOfDiceRolls()* multiplierForBothUtilities;
+        }
         else{
-            rentOwed = visitor.amountRolledOnDice()* multiplierForOneUtility;
+            rentOwed = visitor.getLastDiceRoll().getSumOfDiceRolls()* multiplierForOneUtility;
         }
 
         return rentOwed;
