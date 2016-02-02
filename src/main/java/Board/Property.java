@@ -36,7 +36,6 @@ public class Property extends Ownable {
         this.fourHouseRent = fourHouseRent;
         this.hotelRent = hotelRent;
         super.setMortgaged(false);
-        calculateRent();
 
     }
 
