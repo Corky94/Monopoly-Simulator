@@ -145,6 +145,7 @@ public  class Board {
         return spaces.indexOf(space);
     }
     public Space moveToSpace(Space currentLocation,int spacesToMove){
+        //Needs to check if movesPast go
         int newLocation = this.getLocationOfSpace(currentLocation) + spacesToMove;
         if(newLocation<0){
             newLocation = spaces.size()+1+newLocation;

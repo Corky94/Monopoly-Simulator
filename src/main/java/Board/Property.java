@@ -59,11 +59,19 @@ public class Property extends Ownable {
     @Override
     public void onVisit(Player player) {
         Bank bank = Bank.getInstance();
-        if(super.getOwner() == player || super.getOwner() == null){
-            //Player can buy property, logic still needs to be developed.
-        }
-        else if(super.isMortgaged()){
+        if(super.getOwner() == null){
+            if(player.wantsToBuyPropertyForPrice(this,super.getCost())){
+                player.spendMoney(super.getCost());
+                player.addProperty(this);
+                super.setOwner(player);
+            }
+            else{
+                bank.auctionProperty(this);
+            }
 
+        }
+        else if(super.isMortgaged() || getOwner().equals(player)){
+            //No Rent is paid
         }
         else{
             calculateRent();
@@ -93,7 +101,13 @@ public class Property extends Ownable {
                    rent = oneHouseRent;
                    break;
                default:
-                   rent = baseRent;
+                   if(super.getOwner().ownsSpacesOfGroup(super.getGroup()) == 3){
+                       rent = baseRent*2;
+                   }
+                   else{
+                       rent = baseRent;
+                   }
+
                    break;
            }
        }
