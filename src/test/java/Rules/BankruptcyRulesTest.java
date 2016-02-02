@@ -2,6 +2,7 @@ package Rules;
 
 import Board.Ownable;
 import Board.Property;
+import Board.Space;
 import Board.Station;
 import Players.AllPlayers;
 import Players.Player;
@@ -53,6 +54,39 @@ public class BankruptcyRulesTest extends TestCase {
     }
 
     public void testBankruptByBank() throws Exception {
+
+            Station station = mock(Station.class);
+            Property property = mock(Property.class);
+            when(station.getCost()).thenReturn(200);
+            when(property.getCost()).thenReturn(350);
+            Vector<Ownable> ownables=spy(new Vector<Ownable>());
+            ownables.add(station);
+            ownables.add(property);
+            Player bankruptPlayer = Mockito.mock(Player.class);
+            Player playerToBuyProperty = Mockito.mock(Player.class);
+            when(bankruptPlayer.getMoney()).thenReturn(500);
+            doNothing().when(playerToBuyProperty).addProperty(any(Ownable.class));
+            when(bankruptPlayer.getOwnedSpaces()).thenReturn(ownables);
+            Vector<Player> players = new Vector<Player>();
+            players.add(bankruptPlayer);
+            players.add(playerToBuyProperty);
+        when(playerToBuyProperty.wantsToBuyPropertyForPrice(any(Ownable.class),anyInt())).thenReturn(true);
+            AllPlayers.init(players);
+            AuctionRules rules = Mockito.mock(AuctionRules.class);
+            when(rules.getStartingPriceMultiplier()).thenReturn(0.1);
+            when(rules.getIncrementMultiplier()).thenReturn(0.05);
+            Bank.initializeBank(null,null,rules,null, 1,0);
+
+
+            BankruptcyRules.getInstance().bankruptByBank(bankruptPlayer);
+            AllPlayers spy = spy(AllPlayers.getInstance());
+
+            verify(playerToBuyProperty,times(2)).addProperty(any(Ownable.class));
+            verify(station,times(1)).setOwner(playerToBuyProperty);
+            verify(property,times(1)).setOwner(playerToBuyProperty);
+            assertEquals(1,spy.getAllPlayers().size());
+
+
 
     }
 }

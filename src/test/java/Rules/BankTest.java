@@ -25,7 +25,7 @@ public class BankTest extends TestCase {
         when(property.getCost()).thenReturn(500);
         AuctionRules rules = Mockito.mock(AuctionRules.class);
         when(rules.getStartingPriceMultiplier()).thenReturn(0.1);
-        when(rules.getStartingPriceMultiplier()).thenReturn(0.05);
+        when(rules.getIncrementMultiplier()).thenReturn(0.05);
         Bank.initializeBank(null,null,rules,null, 1,0);
         Bank bank = Bank.getInstance();
         Player player1 = Mockito.mock(Player.class);

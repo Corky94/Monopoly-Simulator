@@ -5,4 +5,21 @@ package Rules;
  */
 public class Move {
    private MoveType moveType;
+   private int sumOfDiceRolled;
+
+   public MoveType getMoveType() {
+      return moveType;
+   }
+
+   public void setMoveType(MoveType moveType) {
+      this.moveType = moveType;
+   }
+
+   public int getSumOfDiceRolled() {
+      return sumOfDiceRolled;
+   }
+
+   public void setSumOfDiceRolled(int sumOfDiceRolled) {
+      this.sumOfDiceRolled = sumOfDiceRolled;
+   }
 }

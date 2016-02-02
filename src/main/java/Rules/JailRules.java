@@ -5,11 +5,16 @@ package Rules;
  */
 public class JailRules {
     private static JailRules instance = new JailRules();
-    private int amountOfRollsToGetOutOfJail;
-    private int feeToPayToGetOutOfJail;
-    private boolean canEarnRent;
+    private static int amountOfRollsToGetOutOfJail;
+    private static int feeToPayToGetOutOfJail;
+    private static boolean canEarnRent;
 
     private JailRules(){};
+    public static void init(int rollsToGetOutOfJail, int fee, boolean earnRent){
+        amountOfRollsToGetOutOfJail = rollsToGetOutOfJail;
+        feeToPayToGetOutOfJail = fee;
+        canEarnRent = earnRent;
+    }
 
     public static JailRules getInstance(){
         return instance;
