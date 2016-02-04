@@ -191,7 +191,5 @@ public  class Board {
         return null;
     }
 
-    public void goToJail(Player player) {
-        player.setCurrentLocation(this.getSpaceOnBoard("Jail"));
-    }
+
 }
