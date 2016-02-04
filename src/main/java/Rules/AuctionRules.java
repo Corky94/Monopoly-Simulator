@@ -5,19 +5,22 @@ package Rules;
  */
 public class AuctionRules {
     private static  AuctionRules instance = new AuctionRules();
+    private static double startingPirceMultipler;
+    private static double incrementMultipler;
     private AuctionRules(){}
     public static AuctionRules getInstance() {
         return instance;
     }
-    public static void init(double startingPriceMultipler, double incrementMultipler){
-        
+    public static void init(double startingPriceMultiplerInit, double incrementMultiplerInit){
+        startingPirceMultipler = startingPriceMultiplerInit;
+        incrementMultipler = incrementMultiplerInit;
     }
 
     public double getStartingPriceMultiplier() {
-        return 0;
+        return startingPirceMultipler;
     }
 
     public double getIncrementMultiplier() {
-        return 0;
+        return incrementMultipler;
     }
 }

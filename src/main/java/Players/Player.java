@@ -4,6 +4,7 @@ import Board.*;
 import Board.Space;
 import Cards.Card;
 import Dice.*;
+import Rules.BankruptcyRules;
 import Rules.GoRules;
 import Rules.MoveType;
 import Rules.SellingRules;
@@ -94,7 +95,7 @@ public class Player {
     }
 
     public void receiveMoney(int feeToPlayer) {
-
+        money +=feeToPlayer;
     }
 
     public void keepCard(Card card) {
@@ -109,20 +110,76 @@ public class Player {
     }
 
     public void giveMoneyToBank(int feeToPlayer) {
+        if(!this.spendMoney(feeToPlayer)){
+            if(BankruptcyRules.getInstance().checkForBankruptcy(this,feeToPlayer)){
+                BankruptcyRules.getInstance().bankruptByBank(this);
+            }
+            else{
+                this.sellItemsToMakeMoney(feeToPlayer);
+                this.spendMoney(feeToPlayer);
+            }
+        }
+
+    }
+
+    public void sellItemsToMakeMoney(int moneyNeeded) {
+
     }
 
     public void receiveMoneyFromPlayers(int feeToPlayer) {
+        for(Player player : AllPlayers.getInstance().getAllPlayers()){
+            if(!player.spendMoney(feeToPlayer)){
+                if(BankruptcyRules.getInstance().checkForBankruptcy(player,feeToPlayer)){
+                    BankruptcyRules.getInstance().bankruptByPlayer(this,player);
+                }
+                else{
+                    player.sellItemsToMakeMoney(feeToPlayer);
+                    player.spendMoney(feeToPlayer);
+                    this.receiveMoney(feeToPlayer);
+                }
+            }
+            else{
+                this.receiveMoney(feeToPlayer);
+            }
+        }
     }
 
     public int calculateHotelsOwned() {
-        return 0;
+        int numberOfHotels = 0;
+        for(Ownable property: ownedSpaces){
+            if(property instanceof Property){
+                numberOfHotels += ((Property) property).getHotels();
+            }
+        }
+        return numberOfHotels;
     }
 
     public int calculateHousesOwned() {
-        return 0;
+        int numberOfHouses = 0;
+        for(Ownable property: ownedSpaces){
+            if(property instanceof Property){
+                numberOfHouses += ((Property) property).getHouses();
+            }
+        }
+        return numberOfHouses;
     }
 
     public void payOtherPlayers(int feeToPlayer) {
+        for(Player player : AllPlayers.getInstance().getAllPlayers()){
+            if(!this.spendMoney(feeToPlayer)){
+                if(BankruptcyRules.getInstance().checkForBankruptcy(this,feeToPlayer)){
+                    BankruptcyRules.getInstance().bankruptByPlayer(player,this);
+                }
+                else{
+                    this.sellItemsToMakeMoney(feeToPlayer);
+                    this.spendMoney(feeToPlayer);
+                    player.receiveMoney(feeToPlayer);
+                }
+            }
+            else{
+                player.receiveMoney(feeToPlayer);
+            }
+        }
     }
 
     public boolean wantsToBuyPropertyForPrice(Space property, int askingPriceOfProperty) {
@@ -177,8 +234,6 @@ public class Player {
                 saleableMoney += ((Property) space).getHouses()* ((Property) space).getHouseCost() * SellingRules.getInstance().priceReductionForSellingOfHouse();
             }
         }
-
-
 
         return saleableMoney;
     }

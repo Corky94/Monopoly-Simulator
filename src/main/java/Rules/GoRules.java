@@ -4,11 +4,14 @@ package Rules;
  * Created by userhp on 28/01/2016.
  */
 public class GoRules {
-    private int salary;
+    private static int salary;
     private static GoRules instance = new GoRules();
 
     private GoRules(){
         salary = 200;
+    }
+    private static void GoRulesInit(int initSalary){
+        salary = initSalary;
     }
 
     public static GoRules getInstance() {
@@ -17,10 +20,7 @@ public class GoRules {
     public int getSalary(){
         return salary;
     }
-    public void setSalary(int newSalary){
-        salary = newSalary;
-    }
     public void updateSalary(double percentage){
-        salary = salary + (int)(salary*percentage);
+        salary +=  (int)(salary*percentage);
     }
 }
