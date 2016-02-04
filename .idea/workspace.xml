@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3641d87a-8fb7-4c18-b3d6-bd14c122dec5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Players/Player.java" afterPath="$PROJECT_DIR$/src/main/java/Players/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Rules/AuctionRules.java" afterPath="$PROJECT_DIR$/src/main/java/Rules/AuctionRules.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Rules/GoRules.java" afterPath="$PROJECT_DIR$/src/main/java/Rules/GoRules.java" />
     </list>
     <ignored path="monopoly-simulator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -153,7 +150,7 @@
       <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Players/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.8831168">
+            <state vertical-scroll-proportion="3.3402598">
               <caret line="141" column="20" selection-start-line="141" selection-start-column="20" selection-end-line="141" selection-end-column="20" />
               <folding>
                 <element signature="e#1081#1090#0" expanded="true" />
@@ -1249,7 +1246,7 @@
       <workItem from="1454272710618" duration="4849000" />
       <workItem from="1454328818249" duration="1149000" />
       <workItem from="1454344849409" duration="9133000" />
-      <workItem from="1454368700317" duration="16669000" />
+      <workItem from="1454368700317" duration="16755000" />
     </task>
     <task id="LOCAL-00001" summary="Added changes and removed the money and transaction classes, running back on basics for now">
       <created>1453758024219</created>
@@ -1347,7 +1344,13 @@
       <option name="project" value="LOCAL" />
       <updated>1454439085593</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Ok finished the rules and unit tested them, Now moving onto the players logic. This may take a while">
+      <created>1454592578224</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1454592578224</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1383,7 +1386,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52829000" />
+    <option name="totallyTimeSpent" value="52915000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
@@ -1474,7 +1477,8 @@
     <MESSAGE value="Fixed the failed build hopefully all works" />
     <MESSAGE value="Implmented bankruptcy checks and what to do if the user is bankrupt, still need to work out the logic for the player on how to deal with not having enough money but being able to sell all their items." />
     <MESSAGE value="Ok refactored some code, improved the player dice roll, and refractored changes throughout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ok refactored some code, improved the player dice roll, and refractored changes throughout" />
+    <MESSAGE value="Ok finished the rules and unit tested them, Now moving onto the players logic. This may take a while" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ok finished the rules and unit tested them, Now moving onto the players logic. This may take a while" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2023,7 +2027,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Players/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8831168">
+        <state vertical-scroll-proportion="3.3402598">
           <caret line="141" column="20" selection-start-line="141" selection-start-column="20" selection-end-line="141" selection-end-column="20" />
           <folding>
             <element signature="e#1081#1090#0" expanded="true" />
