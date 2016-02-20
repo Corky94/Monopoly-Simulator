@@ -7,6 +7,7 @@ import Dice.*;
 import Rules.*;
 
 import java.util.Arrays;
+import java.util.Stack;
 import java.util.Vector;
 
 /**
@@ -44,11 +45,11 @@ public class Player {
             DiceRoll roll = rollDice();
             int rolls = 1;
             while (roll.isReRoll()) {
-                if (rolls >= JailRules.getInstance().amountOfDoublesToBeSentToJail()) {
-                    this.goToJail();
-                    turnInJail = 0;
-                    break;
-                }
+//                if (rolls >= JailRules.getInstance().amountOfDoublesToBeSentToJail()) {
+//                    this.goToJail();
+//                    turnInJail = 0;
+//                    break;
+//                }
                 this.moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
                 roll = rollDice();
             }
@@ -60,20 +61,20 @@ public class Player {
 
     private void playTurnInJail() {
         turnInJail++;
-        if (turnInJail > JailRules.getInstance().amountOfRollsToGetOutOfJail()) {
-            inJail = false;
-            turnInJail = 0;
-        } else if (this.wantsToPayJailFine()) {
-            spendMoney(JailRules.getInstance().feeToPayToGetOutOfJail());
-            inJail = false;
-            turnInJail = 0;
-        } else {
+//        if (turnInJail > JailRules.getInstance().amountOfRollsToGetOutOfJail()) {
+//            inJail = false;
+//            turnInJail = 0;
+//        } else if (this.wantsToPayJailFine()) {
+//            spendMoney(JailRules.getInstance().feeToPayToGetOutOfJail());
+//            inJail = false;
+//            turnInJail = 0;
+//        } else {
             DiceRoll roll = rollDice();
             if (roll.isReRoll()) {
                 moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
                 inJail = false;
                 turnInJail = 0;
-            }
+                // }
         }
     }
 
@@ -129,7 +130,7 @@ public class Player {
 
     public void moveToLocation(Space location) {
         if(this.currentLocation.getLocation()> location.getLocation()){
-            receiveMoney(GoRules.getInstance().getSalary());
+            //receiveMoney(GoRules.getInstance().getSalary());
         }
         currentLocation = location;
         location.onVisit(this);
@@ -288,5 +289,15 @@ public class Player {
 
     public DiceRoll getLastDiceRoll() {
         return lastDiceRoll;
+    }
+
+    public Stack<Property> getOwnedPropertiesOfGroup(Group group) {
+        Stack<Property> propertyStack = new Stack<Property>();
+        for (Ownable ownable : ownedSpaces) {
+            if (ownable.getGroup().equals(group)) {
+                propertyStack.add((Property) ownable);
+            }
+        }
+        return propertyStack;
     }
 }

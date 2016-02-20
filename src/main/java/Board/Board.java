@@ -191,5 +191,13 @@ public  class Board {
         return null;
     }
 
+    public int amountOfSpacesInGroup(Group group) {
+        int spaceCount = 0;
+        for (Space space : spaces) {
+            if (space.getGroup().equals(group)) spaceCount++;
+        }
+        return spaceCount;
+    }
+
 
 }
