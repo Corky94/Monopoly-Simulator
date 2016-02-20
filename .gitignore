@@ -1,3 +1,4 @@
 .idea/libraries/Maven__junit_junit_3_8_1.xml
 .idea/libraries/Maven__org_mockito_mockito_all_1_9_5.xml
 *.class
+.idea/libraries/

@@ -4,12 +4,10 @@ import Board.*;
 import Board.Space;
 import Cards.Card;
 import Dice.*;
-import Rules.BankruptcyRules;
-import Rules.GoRules;
-import Rules.MoveType;
-import Rules.SellingRules;
+import Rules.*;
 
 import java.util.Arrays;
+import java.util.Stack;
 import java.util.Vector;
 
 /**
@@ -33,10 +31,58 @@ public class Player {
     public Player (int initialMoney, Dice[] dices){
         moveTaken = MoveType.DiceRoll;
         money = initialMoney;
+        ownedSpaces = new Vector<Ownable>();
         this.dices = dices;
         currentLocation = board.getSpaceOnBoard("Go");
 
     }
+
+    // Todo implement actions for if in jail.
+    public void onTurn() {
+        if (inJail) {
+            this.playTurnInJail();
+        } else {
+            DiceRoll roll = rollDice();
+            int rolls = 1;
+            while (roll.isReRoll()) {
+//                if (rolls >= JailRules.getInstance().amountOfDoublesToBeSentToJail()) {
+//                    this.goToJail();
+//                    turnInJail = 0;
+//                    break;
+//                }
+                this.moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
+                roll = rollDice();
+            }
+            if (!inJail) {
+                this.moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
+            }
+        }
+    }
+
+    private void playTurnInJail() {
+        turnInJail++;
+//        if (turnInJail > JailRules.getInstance().amountOfRollsToGetOutOfJail()) {
+//            inJail = false;
+//            turnInJail = 0;
+//        } else if (this.wantsToPayJailFine()) {
+//            spendMoney(JailRules.getInstance().feeToPayToGetOutOfJail());
+//            inJail = false;
+//            turnInJail = 0;
+//        } else {
+            DiceRoll roll = rollDice();
+            if (roll.isReRoll()) {
+                moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
+                inJail = false;
+                turnInJail = 0;
+                // }
+        }
+    }
+
+    private boolean wantsToPayJailFine() {
+        return false;
+    }
+
+    //Todo methods for allowing players to buy houses and hotels.
     public DiceRoll rollDice(){        
         Vector<Integer> diceResults = new Vector<Integer>();
         for (Dice d : dices) {
@@ -63,11 +109,7 @@ public class Player {
         return currentLocation;
     }
 
-    public void setCurrentLocation(Space currentLocation) {
 
-        this.currentLocation = currentLocation;
-        currentLocation.onVisit(this);
-    }
 
    public void gainMoney(int amount){
        money+=amount;
@@ -88,7 +130,7 @@ public class Player {
 
     public void moveToLocation(Space location) {
         if(this.currentLocation.getLocation()> location.getLocation()){
-            receiveMoney(GoRules.getInstance().getSalary());
+            //receiveMoney(GoRules.getInstance().getSalary());
         }
         currentLocation = location;
         location.onVisit(this);
@@ -106,7 +148,6 @@ public class Player {
         moveTaken = MoveType.GoToJail;
         this.inJail = true;
         currentLocation=board.getSpaceOnBoard("Jail");
-        board.goToJail(this);
     }
 
     public void giveMoneyToBank(int feeToPlayer) {
@@ -123,7 +164,7 @@ public class Player {
     }
 
     public void sellItemsToMakeMoney(int moneyNeeded) {
-
+        // TODO Need to work out a suitable way of doing this. Using heuristics.
     }
 
     public void receiveMoneyFromPlayers(int feeToPlayer) {
@@ -183,6 +224,7 @@ public class Player {
     }
 
     public boolean wantsToBuyPropertyForPrice(Space property, int askingPriceOfProperty) {
+        //Todo Implement a decent heuristic to determine whether the player wants to buy the property.
         return false;
     }
 
@@ -247,5 +289,15 @@ public class Player {
 
     public DiceRoll getLastDiceRoll() {
         return lastDiceRoll;
+    }
+
+    public Stack<Property> getOwnedPropertiesOfGroup(Group group) {
+        Stack<Property> propertyStack = new Stack<Property>();
+        for (Ownable ownable : ownedSpaces) {
+            if (ownable.getGroup().equals(group)) {
+                propertyStack.add((Property) ownable);
+            }
+        }
+        return propertyStack;
     }
 }

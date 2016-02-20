@@ -21,6 +21,11 @@
             <version>1.9.5</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.luaj</groupId>
+            <artifactId>luaj-jse</artifactId>
+            <version>3.0.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -32,6 +37,7 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 </project>
