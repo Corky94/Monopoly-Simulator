@@ -5,6 +5,7 @@ import Players.Player;
 import junit.framework.TestCase;
 import org.mockito.Mockito;
 
+import java.nio.file.Paths;
 import java.util.Stack;
 
 import static org.mockito.Matchers.*;
@@ -16,7 +17,7 @@ import static org.mockito.Mockito.*;
 public class BuildRulesTest extends TestCase {
 
     public void testCanBuildHouse() throws Exception {
-        BuildRules rules = new BuildRules("C:\\Users\\userhp\\Documents\\monopoly-simulator\\src\\main\\LuaFiles\\BuildRules.lua");
+        BuildRules rules = new BuildRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/BuildRules.lua");
         Player player = Mockito.mock(Player.class);
         when(player.ownsSpacesOfGroup(any(Group.class))).thenReturn(3);
         Board boardTest = Board.getInstance();
@@ -33,7 +34,7 @@ public class BuildRulesTest extends TestCase {
     }
 
     public void testCannotBuildHouse() throws Exception {
-        BuildRules rules = new BuildRules("C:\\Users\\userhp\\Documents\\monopoly-simulator\\src\\main\\LuaFiles\\BuildRules.lua");
+        BuildRules rules = new BuildRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/BuildRules.lua");
         Player player = Mockito.mock(Player.class);
         when(player.ownsSpacesOfGroup(any(Group.class))).thenReturn(2);
         Board boardTest = Board.getInstance();
