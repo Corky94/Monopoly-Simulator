@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3641d87a-8fb7-4c18-b3d6-bd14c122dec5" name="Default" comment="Started to implement the methods of the player logic and test them, this will take time, but it is building slowly">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/LuaFiles/BuildRules.lua" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/LuaFiles/GoRules.lua" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/LuaFiles/JailRules.lua" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/Rules/BuildRulesTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/Rules/GoRulesTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/Rules/JailRulesTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/monopoly-simulator.iml" afterPath="$PROJECT_DIR$/monopoly-simulator.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Board/Board.java" afterPath="$PROJECT_DIR$/src/main/java/Board/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Players/Player.java" afterPath="$PROJECT_DIR$/src/main/java/Players/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Rules/BuildRules.java" afterPath="$PROJECT_DIR$/src/main/java/Rules/BuildRules.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Rules/GoRules.java" afterPath="$PROJECT_DIR$/src/main/java/Rules/GoRules.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Rules/JailRules.java" afterPath="$PROJECT_DIR$/src/main/java/Rules/JailRules.java" />
-    </list>
+    <list default="true" id="3641d87a-8fb7-4c18-b3d6-bd14c122dec5" name="Default" comment="Huge changes made to the framework of the code, moving away from java, using it mostly as a top layer and structure, the core of the logic will be written in LUA, this will allow for changes to be made on the program during runtime, and allows for limitless possibilities to incorporate new rules. Currently two weeks behind schedule. need to put the hours in." />
     <ignored path="monopoly-simulator.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -49,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Rules/JailRules.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="76" selection-start-line="34" selection-start-column="76" selection-end-line="34" selection-end-column="76" />
+              <caret line="35" column="76" selection-start-line="35" selection-start-column="76" selection-end-line="35" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Rules/BuildRules.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-0.13793103">
-              <caret line="46" column="48" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
+              <caret line="45" column="48" selection-start-line="45" selection-start-column="48" selection-end-line="45" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -107,8 +90,8 @@
               <caret line="28" column="87" selection-start-line="28" selection-start-column="87" selection-end-line="28" selection-end-column="87" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#935#945#0" expanded="true" />
-                <element signature="e#1718#1728#0" expanded="true" />
+                <element signature="e#937#947#0" expanded="true" />
+                <element signature="e#1724#1734#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/LuaFiles/BuildRules.lua">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -226,9 +209,9 @@
         <option value="$PROJECT_DIR$/src/main/LuaFiles/GoRules.lua" />
         <option value="$PROJECT_DIR$/src/main/java/Board/Board.java" />
         <option value="$PROJECT_DIR$/src/main/java/Players/Player.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Rules/BuildRules.java" />
         <option value="$PROJECT_DIR$/src/test/java/Rules/BuildRulesTest.java" />
         <option value="$PROJECT_DIR$/src/main/LuaFiles/BuildRules.lua" />
+        <option value="$PROJECT_DIR$/src/main/java/Rules/BuildRules.java" />
       </list>
     </option>
   </component>
@@ -1212,7 +1195,7 @@
       <workItem from="1454930364899" duration="885000" />
       <workItem from="1455042366981" duration="1760000" />
       <workItem from="1455044245632" duration="10653000" />
-      <workItem from="1455922290930" duration="4462000" />
+      <workItem from="1455922290930" duration="4638000" />
     </task>
     <task id="LOCAL-00001" summary="Added changes and removed the money and transaction classes, running back on basics for now">
       <created>1453758024219</created>
@@ -1322,7 +1305,13 @@
       <option name="project" value="LOCAL" />
       <updated>1454599987080</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Huge changes made to the framework of the code, moving away from java, using it mostly as a top layer and structure, the core of the logic will be written in LUA, this will allow for changes to be made on the program during runtime, and allows for limitless possibilities to incorporate new rules. Currently two weeks behind schedule. need to put the hours in.">
+      <created>1455931919348</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1455931919348</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1358,7 +1347,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76840000" />
+    <option name="totallyTimeSpent" value="77016000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1457,7 +1446,8 @@
     <MESSAGE value="Ok refactored some code, improved the player dice roll, and refractored changes throughout" />
     <MESSAGE value="Ok finished the rules and unit tested them, Now moving onto the players logic. This may take a while" />
     <MESSAGE value="Started to implement the methods of the player logic and test them, this will take time, but it is building slowly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started to implement the methods of the player logic and test them, this will take time, but it is building slowly" />
+    <MESSAGE value="Huge changes made to the framework of the code, moving away from java, using it mostly as a top layer and structure, the core of the logic will be written in LUA, this will allow for changes to be made on the program during runtime, and allows for limitless possibilities to incorporate new rules. Currently two weeks behind schedule. need to put the hours in." />
+    <option name="LAST_COMMIT_MESSAGE" value="Huge changes made to the framework of the code, moving away from java, using it mostly as a top layer and structure, the core of the logic will be written in LUA, this will allow for changes to be made on the program during runtime, and allows for limitless possibilities to incorporate new rules. Currently two weeks behind schedule. need to put the hours in." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1660,6 +1650,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1674,6 +1665,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+          <folding>
+            <element signature="e#363#364#0" expanded="false" />
+            <element signature="e#396#397#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1696,6 +1691,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1703,6 +1699,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1718,6 +1715,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1815,8 +1813,8 @@
           <caret line="28" column="87" selection-start-line="28" selection-start-column="87" selection-end-line="28" selection-end-column="87" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#935#945#0" expanded="true" />
-            <element signature="e#1718#1728#0" expanded="true" />
+            <element signature="e#937#947#0" expanded="true" />
+            <element signature="e#1724#1734#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1840,7 +1838,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/LuaFiles/BuildRules.lua">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1864,7 +1862,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Rules/JailRules.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="76" selection-start-line="34" selection-start-column="76" selection-end-line="34" selection-end-column="76" />
+          <caret line="35" column="76" selection-start-line="35" selection-start-column="76" selection-end-line="35" selection-end-column="76" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1874,7 +1872,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Rules/BuildRules.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.13793103">
-          <caret line="46" column="48" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
+          <caret line="45" column="48" selection-start-line="45" selection-start-column="48" selection-end-line="45" selection-end-column="48" />
           <folding />
         </state>
       </provider>
