@@ -80,15 +80,12 @@ public class BankruptcyRulesTest extends TestCase {
             AuctionRules rules = Mockito.mock(AuctionRules.class);
             when(rules.getStartingPriceMultiplier()).thenReturn(0.1);
             when(rules.getIncrementMultiplier()).thenReturn(0.05);
-            Bank.initializeBank(null,null,rules,null, 1,0);
-
+        Bank bank = Mockito.mock(Bank.class);
+        AllRules.setBankRules(bank);
 
         AllRules.getBankruptcyRules().bankruptByBank(bankruptPlayer);
             AllPlayers spy = spy(AllPlayers.getInstance());
 
-            verify(playerToBuyProperty,times(2)).addProperty(any(Ownable.class));
-            verify(station,times(1)).setOwner(playerToBuyProperty);
-            verify(property,times(1)).setOwner(playerToBuyProperty);
             assertEquals(1,spy.getAllPlayers().size());
 
 
