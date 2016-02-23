@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3641d87a-8fb7-4c18-b3d6-bd14c122dec5" name="Default" comment="Refractored the rules to move away from singleton, they are now all held in a static class but overall easier to test and run in the long run.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/LuaFiles/Bank.lua" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/LuaFiles/TestingLuaFiles/BankTestWithNoHousesOrHotels.lua" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Board/GO.java" afterPath="$PROJECT_DIR$/src/main/java/Board/GO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Board/Property.java" afterPath="$PROJECT_DIR$/src/main/java/Board/Property.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Board/Space.java" afterPath="$PROJECT_DIR$/src/main/java/Board/Space.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Board/Station.java" afterPath="$PROJECT_DIR$/src/main/java/Board/Station.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Board/Utilities.java" afterPath="$PROJECT_DIR$/src/main/java/Board/Utilities.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Cards/Card.java" afterPath="$PROJECT_DIR$/src/main/java/Cards/Card.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Players/Player.java" afterPath="$PROJECT_DIR$/src/main/java/Players/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Rules/Bank.java" afterPath="$PROJECT_DIR$/src/main/java/Rules/Bank.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Rules/BankruptcyRules.java" afterPath="$PROJECT_DIR$/src/main/java/Rules/BankruptcyRules.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Rules/GoRules.java" afterPath="$PROJECT_DIR$/src/main/java/Rules/GoRules.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/Rules/BankTest.java" afterPath="$PROJECT_DIR$/src/test/java/Rules/BankTest.java" />
-    </list>
+    <list default="true" id="3641d87a-8fb7-4c18-b3d6-bd14c122dec5" name="Default" comment="Implmented and refractored rules into Lua, Bank.lua is small as I need to work out what really needs to go into the lua file, for now it will stay in java" />
     <ignored path="monopoly-simulator.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -134,7 +119,7 @@
             <state vertical-scroll-proportion="-4.0">
               <caret line="169" column="45" selection-start-line="169" selection-start-column="45" selection-end-line="169" selection-end-column="45" />
               <folding>
-                <element signature="e#2975#2983#0" expanded="true" />
+                <element signature="e#2978#2986#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1267,7 +1252,7 @@
       <workItem from="1455042366981" duration="1760000" />
       <workItem from="1455044245632" duration="10653000" />
       <workItem from="1455922290930" duration="10196000" />
-      <workItem from="1456224672897" duration="16976000" />
+      <workItem from="1456224672897" duration="17056000" />
     </task>
     <task id="LOCAL-00001" summary="Added changes and removed the money and transaction classes, running back on basics for now">
       <created>1453758024219</created>
@@ -1425,7 +1410,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456235715596</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Implmented and refractored rules into Lua, Bank.lua is small as I need to work out what really needs to go into the lua file, for now it will stay in java">
+      <created>1456242171091</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1456242171091</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1461,7 +1452,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99550000" />
+    <option name="totallyTimeSpent" value="99630000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1510,7 +1501,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Integration with CI server completed continuing with the development. The board layout still needs to be completed." />
     <MESSAGE value="Implemented the basis of auctions and and improved the Bank file, bit by bit coming together." />
     <MESSAGE value="Ok made changes to incorporate the adjustment of rules, created the classes for the GUI. Also  need to find an elegant way to make Bank a singleton, going to have tomorrow off, need a rest. But Hopefully have all the basic rules done and the the basis of a GUI by the end of next week. I need to improve my tests, they are not rigorous enough." />
     <MESSAGE value="Made bank singleton also added an abstract class called ownable, which allows for a better inheritence of classes and allows for better written bank class, the bank is almost completed, but still need to work at it." />
@@ -1535,7 +1525,8 @@
     <MESSAGE value="Tax Rules Implemented and tested in lua" />
     <MESSAGE value="Utility Rules implemented and tested in Lua" />
     <MESSAGE value="Refractored the rules to move away from singleton, they are now all held in a static class but overall easier to test and run in the long run." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refractored the rules to move away from singleton, they are now all held in a static class but overall easier to test and run in the long run." />
+    <MESSAGE value="Implmented and refractored rules into Lua, Bank.lua is small as I need to work out what really needs to go into the lua file, for now it will stay in java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implmented and refractored rules into Lua, Bank.lua is small as I need to work out what really needs to go into the lua file, for now it will stay in java" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1543,13 +1534,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Rules/Bank.java</url>
-          <line>62</line>
+          <line>61</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Rules/Bank.java</url>
-          <line>64</line>
+          <line>63</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
@@ -1910,8 +1901,8 @@
         <state vertical-scroll-proportion="0.30858085">
           <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
           <folding>
-            <element signature="e#492#493#0" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
+            <element signature="e#494#495#0" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1976,7 +1967,7 @@
         <state vertical-scroll-proportion="-4.0">
           <caret line="169" column="45" selection-start-line="169" selection-start-column="45" selection-end-line="169" selection-end-column="45" />
           <folding>
-            <element signature="e#2975#2983#0" expanded="true" />
+            <element signature="e#2978#2986#0" expanded="true" />
           </folding>
         </state>
       </provider>
