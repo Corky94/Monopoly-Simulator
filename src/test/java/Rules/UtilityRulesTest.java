@@ -5,6 +5,9 @@ import Dice.DiceRoll;
 import Players.Player;
 import junit.framework.TestCase;
 import org.mockito.*;
+
+import java.nio.file.Paths;
+
 import static org.mockito.Mockito.*;
 /**
  * Created by userhp on 29/01/2016.
@@ -17,9 +20,7 @@ public class UtilityRulesTest extends TestCase {
     }
 
     public void testCalculateRentWithOneUtility() throws Exception {
-        UtilityRules.init(4,10);
-
-        UtilityRules rules = UtilityRules.getInstance();
+        UtilityRules rules = new UtilityRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/UtilityRules.lua");
         Player owner = Mockito.mock(Player.class);
         Player visitor = Mockito.mock(Player.class);
         when(owner.ownsSpacesOfGroup(Group.Utility)).thenReturn(1);
@@ -32,8 +33,7 @@ public class UtilityRulesTest extends TestCase {
         
     }
     public void testCalculateRentWithBothUtilities() throws Exception {
-        UtilityRules.init(4,10);
-        UtilityRules rules = UtilityRules.getInstance();
+        UtilityRules rules = new UtilityRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/UtilityRules.lua");
         Player owner = Mockito.mock(Player.class);
         Player visitor = Mockito.mock(Player.class);
         when(owner.ownsSpacesOfGroup(Group.Utility)).thenReturn(2);
@@ -47,7 +47,8 @@ public class UtilityRulesTest extends TestCase {
     }
     public void testCalculateRentWithOneUtilityAndDifferentRuleSet() throws Exception {
         UtilityRules.init(20,50);
-        UtilityRules rules = UtilityRules.getInstance();
+        UtilityRules rules = new UtilityRules(Paths.get("").toAbsolutePath().toString() +
+                "/src/main/LuaFiles/TestingLuaFiles/UtilityRulesTestDifferentRuleSet.lua");
         Player owner = Mockito.mock(Player.class);
         Player visitor = Mockito.mock(Player.class);
         when(owner.ownsSpacesOfGroup(Group.Utility)).thenReturn(1);
@@ -61,7 +62,8 @@ public class UtilityRulesTest extends TestCase {
     }
     public void testCalculateRentWithBothUtilitiesAndDifferentRuleSet() throws Exception {
         UtilityRules.init(20,50);
-        UtilityRules rules = UtilityRules.getInstance();
+        UtilityRules rules = new UtilityRules(Paths.get("").toAbsolutePath().toString() +
+                "/src/main/LuaFiles/TestingLuaFiles/UtilityRulesTestDifferentRuleSet.lua");
         Player owner = Mockito.mock(Player.class);
         Player visitor = Mockito.mock(Player.class);
         when(owner.ownsSpacesOfGroup(Group.Utility)).thenReturn(2);
@@ -74,9 +76,7 @@ public class UtilityRulesTest extends TestCase {
 
     }
     public void testCalculateRentWithOneUtilityWhenArrivingViaCard() throws Exception {
-        UtilityRules.init(4,10);
-
-        UtilityRules rules = UtilityRules.getInstance();
+        UtilityRules rules = new UtilityRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/UtilityRules.lua");
         Player owner = Mockito.mock(Player.class);
         Player visitor = Mockito.mock(Player.class);
         when(owner.ownsSpacesOfGroup(Group.Utility)).thenReturn(1);
@@ -89,8 +89,7 @@ public class UtilityRulesTest extends TestCase {
 
     }
     public void testCalculateRentWithBothUtilitiesWhenArrivingByCard() throws Exception {
-        UtilityRules.init(4,10);
-        UtilityRules rules = UtilityRules.getInstance();
+        UtilityRules rules = new UtilityRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/UtilityRules.lua");
         Player owner = Mockito.mock(Player.class);
         Player visitor = Mockito.mock(Player.class);
         when(owner.ownsSpacesOfGroup(Group.Utility)).thenReturn(2);
