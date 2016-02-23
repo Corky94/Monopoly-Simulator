@@ -4,6 +4,10 @@ import Board.Ownable;
 import Board.Property;
 import Players.AllPlayers;
 import Players.Player;
+import org.luaj.vm2.Lua;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.util.Vector;
 
@@ -11,48 +15,42 @@ import java.util.Vector;
  * Created by userhp on 28/01/2016.
  */
 public class Bank {
-    private  static GoRules goRules;
+    private static GoRules goRules;
     private static BuildRules buildRules;
     private static AuctionRules auctionRules;
     private static SellingRules sellingRules;
-    private static boolean initialized;
     private static int hotelsInBank;
     private static int housesInBank;
 
-    private static Bank instance = new Bank();
-
-    private  Bank(){
-
-    }
-    public static Bank getInstance(){
-        if(!initialized){
-            System.out.println("Needs to be initialised before creating instance\n Run Bank.initializeBank(args) first");
-        }
-        return instance;
-    }
+    private BankruptcyRules bankruptcyRules;
 
 
-    //OK need to adjust this class, needs to be a singleton and needs to ensure that initialization is done before the
-    // getting of the instance
+    private LuaValue _G;
 
-
-    public static void initializeBank(GoRules goRulesInit, BuildRules buildRulesInit, AuctionRules auctionRulesInit,
-                                      SellingRules sellingRulesInit, int amountOfHouses, int amountOfHotels){
-        goRules = goRulesInit;
-        buildRules = buildRulesInit;
-        auctionRules = auctionRulesInit;
-        sellingRules = sellingRulesInit;
-        housesInBank = amountOfHouses;
-        hotelsInBank = amountOfHotels;
-        initialized = true;
+    public Bank(String luaFileLocation) {
+        _G = JsePlatform.standardGlobals();
+        _G.get("dofile").call(LuaValue.valueOf(luaFileLocation));
+        LuaValue getStartingHousesInBankMethod = _G.get("getStartingHousesInBank");
+        LuaValue getStartingHotelsInBankMethod = _G.get("getStartingHotelsInBank");
+        housesInBank = getStartingHousesInBankMethod.call().toint();
+        hotelsInBank = getStartingHotelsInBankMethod.call().toint();
+        goRules = AllRules.getGoRules();
+        buildRules = AllRules.getBuildRules();
+        auctionRules = AllRules.getAuctionRules();
+        sellingRules = AllRules.getSellingRules();
+        bankruptcyRules = AllRules.getBankruptcyRules();
     }
 
 
+    public void payPlayer(Player playerToSend, Player playerToReceive, int amount) {
+        LuaValue luaPlayerToSend = CoerceJavaToLua.coerce(playerToSend);
+        LuaValue luaPlayerToReceive = CoerceJavaToLua.coerce(playerToReceive);
+        LuaValue luaPaymentAmount = CoerceJavaToLua.coerce(amount);
+        LuaValue luaBankruptcyRules = CoerceJavaToLua.coerce(bankruptcyRules);
 
-    public   void payPlayer(Player playerToSend, Player playerToReceive,int amount){
-        if(playerToSend.spendMoney(amount)){
-            playerToReceive.gainMoney(amount);
-        }
+        LuaValue[] luaMethodArgs = {luaPlayerToSend, luaPlayerToReceive, luaPaymentAmount, luaBankruptcyRules};
+        LuaValue luaPayPlayerMethod = _G.get("payPlayer");
+        luaPayPlayerMethod.invoke(luaMethodArgs);
 
     }
     public  void passGo(Player player){

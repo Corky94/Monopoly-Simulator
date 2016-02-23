@@ -9,8 +9,6 @@ import Rules.Bank;
  */
 public class GO extends Space {
 
-    private int salary;
-
     public GO(String name, int location, Group group){
         super.setName(name);
         super.setGroup(group);
@@ -18,7 +16,6 @@ public class GO extends Space {
     }
     @Override
     public void onVisit(Player player) {
-        Bank bank = Bank.getInstance();
-        bank.passGo(player);
+        bankRules.passGo(player);
     }
 }

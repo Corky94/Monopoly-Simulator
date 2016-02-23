@@ -7,7 +7,7 @@ import org.luaj.vm2.lib.jse.JsePlatform;
  * Created by userhp on 28/01/2016.
  */
 public class GoRules {
-    LuaValue _G;
+    private LuaValue _G;
 
     public GoRules(String luaFileLocation) {
         _G = JsePlatform.standardGlobals();

@@ -3,6 +3,8 @@ package Players;
 import Board.*;
 import Board.Space;
 import Cards.Card;
+import Cards.CardAction;
+import Cards.Deck.Deck;
 import Dice.*;
 import Rules.*;
 
@@ -16,8 +18,10 @@ import java.util.Vector;
  * Created by marc on 20/11/2015.
  */
 public class Player {
+    private JailRules jailRules;
+    private GoRules goRules;
     private Space currentLocation;
-    private int money;
+    private int money = 0;
     private MoveType moveTaken;   
     private int turnInJail;    
     private Vector<Ownable> ownedSpaces;
@@ -27,8 +31,7 @@ public class Player {
     private Board board =Board.getInstance();
     private DiceRoll lastDiceRoll;
 
-    private BankruptcyRules bankruptcyRules = AllRules.getBankruptcyRules();
-
+    private BankruptcyRules bankruptcyRules;
 
     public Player (int initialMoney, Dice[] dices){
         moveTaken = MoveType.DiceRoll;
@@ -36,7 +39,9 @@ public class Player {
         ownedSpaces = new Vector<Ownable>();
         this.dices = dices;
         currentLocation = board.getSpaceOnBoard("Go");
-
+        bankruptcyRules = AllRules.getBankruptcyRules();
+        goRules = AllRules.getGoRules();
+        jailRules = AllRules.getJailRules();
     }
 
     // Todo implement actions for if in jail.
@@ -47,11 +52,11 @@ public class Player {
             DiceRoll roll = rollDice();
             int rolls = 1;
             while (roll.isReRoll()) {
-//                if (rolls >= JailRules.getInstance().amountOfDoublesToBeSentToJail()) {
-//                    this.goToJail();
-//                    turnInJail = 0;
-//                    break;
-//                }
+                if (rolls >= jailRules.amountOfDoublesToBeSentToJail()) {
+                    this.goToJail();
+                    turnInJail = 0;
+                    break;
+                }
                 this.moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
                 roll = rollDice();
             }
@@ -63,20 +68,31 @@ public class Player {
 
     private void playTurnInJail() {
         turnInJail++;
-//        if (turnInJail > JailRules.getInstance().amountOfRollsToGetOutOfJail()) {
-//            inJail = false;
-//            turnInJail = 0;
-//        } else if (this.wantsToPayJailFine()) {
-//            spendMoney(JailRules.getInstance().feeToPayToGetOutOfJail());
-//            inJail = false;
-//            turnInJail = 0;
-//        } else {
+        if (cards.size() > 0) {
+            for (Card card : cards) {
+                if (card.getAction().equals(CardAction.GetOutOfJail)) {
+                    inJail = false;
+                    turnInJail = 0;
+                    cards.remove(card);
+                    Deck.getInstance().addCard(card);
+                    break;
+                }
+            }
+        } else if (turnInJail > jailRules.amountOfRollsToGetOutOfJail()) {
+            inJail = false;
+            turnInJail = 0;
+        } else if (this.wantsToPayJailFine()) {
+            spendMoney(jailRules.feeToPayToGetOutOfJail());
+            inJail = false;
+            turnInJail = 0;
+        } else {
             DiceRoll roll = rollDice();
             if (roll.isReRoll()) {
                 moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
                 inJail = false;
                 turnInJail = 0;
                 // }
+            }
         }
     }
 
@@ -132,7 +148,7 @@ public class Player {
 
     public void moveToLocation(Space location) {
         if(this.currentLocation.getLocation()> location.getLocation()){
-            //receiveMoney(GoRules.getInstance().getSalary());
+            receiveMoney(goRules.getSalary());
         }
         currentLocation = location;
         location.onVisit(this);

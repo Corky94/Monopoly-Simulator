@@ -24,7 +24,6 @@ public class Utilities extends Ownable {
 
     @Override
     public void onVisit(Player player) {
-        Bank bank = Bank.getInstance();
         if(super.getOwner() == null){
             if(player.wantsToBuyPropertyForPrice(this, super.getCost())){
                 player.spendMoney(super.getCost());
@@ -32,13 +31,13 @@ public class Utilities extends Ownable {
                 super.setOwner(player);
             }
             else{
-                bank.auctionProperty(this);
+                bankRules.auctionProperty(this);
             }
         }
         else{
             if(!getOwner().equals(player)){
                 int rentOwed = utilityRules.calculateRent(getOwner(),player);
-                bank.payPlayer(player,super.getOwner(),rentOwed);
+                bankRules.payPlayer(player, super.getOwner(), rentOwed);
             }
         }
 

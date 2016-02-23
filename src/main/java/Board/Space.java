@@ -1,6 +1,8 @@
 package Board;
 
 import Players.Player;
+import Rules.AllRules;
+import Rules.Bank;
 
 /**
  * Created by marc on 20/11/2015.
@@ -9,6 +11,8 @@ public abstract class Space {
     private Group group;
     private int location;
     private String name;
+    protected Bank bankRules = AllRules.getBankRules();
+
 
 
     public Group getGroup(){

@@ -35,7 +35,7 @@ public class BankruptcyRules {
 
         Vector<Ownable> ownedSpaces = bankruptPlayer.getOwnedSpaces();
         for(Ownable space : ownedSpaces){
-            Bank.getInstance().auctionProperty(space);
+            AllRules.getBankRules().auctionProperty(space);
             bankruptPlayer.removeProperty(space);
         }
         System.out.println("Player is out the game");

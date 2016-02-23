@@ -1,6 +1,7 @@
 package Board;
 
 import Players.Player;
+import Rules.AllRules;
 import Rules.Bank;
 
 /**
@@ -18,8 +19,7 @@ public class Property extends Ownable {
     private int houses;
     private int hotels;
     private int houseCost;
-
-
+    private final Bank bankRules;
 
 
     public Property(String name, Group group, int location, int baseRent, int cost, int mortgagePrice,int houseCost, int oneHouseRent, int twoHouseRent, int threeHouseRent, int fourHouseRent, int hotelRent){
@@ -37,6 +37,7 @@ public class Property extends Ownable {
         this.hotelRent = hotelRent;
         super.setMortgaged(false);
 
+        bankRules = AllRules.getBankRules();
     }
 
 
@@ -57,7 +58,6 @@ public class Property extends Ownable {
 
     @Override
     public void onVisit(Player player) {
-        Bank bank = Bank.getInstance();
         if(super.getOwner() == null){
             if(player.wantsToBuyPropertyForPrice(this,super.getCost())){
                 player.spendMoney(super.getCost());
@@ -65,7 +65,7 @@ public class Property extends Ownable {
                 super.setOwner(player);
             }
             else{
-                bank.auctionProperty(this);
+                bankRules.auctionProperty(this);
             }
 
         }
@@ -74,7 +74,7 @@ public class Property extends Ownable {
         }
         else{
             calculateRent();
-            bank.payPlayer(player,super.getOwner(),rent);
+            bankRules.payPlayer(player, super.getOwner(), rent);
         }
 
     }

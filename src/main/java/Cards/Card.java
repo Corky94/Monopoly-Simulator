@@ -22,6 +22,9 @@ public class Card {
         this.action = action;
     }
 
+    public CardAction getAction() {
+        return action;
+    }
 
     protected void setFee(int fee) {
         feeToPlayer = fee;
