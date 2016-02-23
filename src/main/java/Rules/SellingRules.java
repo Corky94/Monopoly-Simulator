@@ -7,24 +7,8 @@ import org.luaj.vm2.lib.jse.JsePlatform;
  * Created by userhp on 30/01/2016.
  */
 public class SellingRules {
-    private static SellingRules instance = new SellingRules();
-    private static double priceReductionForSellingHouse;
-    private static double priceReductionForSellingHotel;
 
-    private SellingRules() {
-
-    }
-
-    public static SellingRules getInstance() {
-        return instance;
-    }
-
-    public static void init(double reductionForSellingHouse, double reductionForSellingHotel) {
-        priceReductionForSellingHouse = reductionForSellingHouse;
-        priceReductionForSellingHotel = reductionForSellingHotel;
-    }
-
-    LuaValue _G;
+    private LuaValue _G;
 
     public SellingRules(String luaFileLocation) {
         _G = JsePlatform.standardGlobals();

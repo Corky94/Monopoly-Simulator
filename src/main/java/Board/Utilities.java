@@ -2,6 +2,7 @@ package Board;
 
 import Players.AllPlayers;
 import Players.Player;
+import Rules.AllRules;
 import Rules.Bank;
 import Rules.UtilityRules;
 
@@ -10,7 +11,7 @@ import Rules.UtilityRules;
  */
 public class Utilities extends Ownable {
 
-    private UtilityRules utilityRules = UtilityRules.getInstance();
+    private UtilityRules utilityRules = AllRules.getUtilityRules();
 
     public Utilities(String name, int loc, Group group, int cost,int mtg){
         super.setGroup(group);

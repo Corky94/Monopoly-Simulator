@@ -16,12 +16,6 @@ import java.util.Stack;
  * Created by userhp on 29/01/2016.
  */
 public class BuildRules {
-    private static BuildRules instance  = new BuildRules();
-
-    private BuildRules(){}
-    public static BuildRules getInstance() {
-        return instance;
-    }
 
     LuaValue _G;
 

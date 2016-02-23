@@ -19,10 +19,15 @@ import static org.mockito.Mockito.*;
  */
 public class BankruptcyRulesTest extends TestCase {
 
+    @Override
+    public void setUp() throws Exception {
+        AllRules.setBankruptcyRules(new BankruptcyRules());
+    }
+
     public void testCheckForBankruptcyIfPlayerHasEnoughMoney() throws Exception {
         Player player = Mockito.mock(Player.class);
         when(player.calculateSaleableItems()).thenReturn(500);
-        assertFalse(BankruptcyRules.getInstance().checkForBankruptcy(player,400));
+        assertFalse(AllRules.getBankruptcyRules().checkForBankruptcy(player, 400));
     }
 
     public void testBankruptByPlayer() throws Exception {
@@ -42,7 +47,7 @@ public class BankruptcyRulesTest extends TestCase {
         players.add(bankruptPlayer);
         players.add(owedPlayer);
         AllPlayers.init(players);
-        BankruptcyRules.getInstance().bankruptByPlayer(owedPlayer,bankruptPlayer);
+        AllRules.getBankruptcyRules().bankruptByPlayer(owedPlayer, bankruptPlayer);
         AllPlayers spy = spy(AllPlayers.getInstance());
         verify(owedPlayer,times(1)).receiveMoney(500);
         verify(owedPlayer,times(2)).addProperty(any(Ownable.class));
@@ -78,7 +83,7 @@ public class BankruptcyRulesTest extends TestCase {
             Bank.initializeBank(null,null,rules,null, 1,0);
 
 
-            BankruptcyRules.getInstance().bankruptByBank(bankruptPlayer);
+        AllRules.getBankruptcyRules().bankruptByBank(bankruptPlayer);
             AllPlayers spy = spy(AllPlayers.getInstance());
 
             verify(playerToBuyProperty,times(2)).addProperty(any(Ownable.class));

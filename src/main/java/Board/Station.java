@@ -1,6 +1,7 @@
 package Board;
 
 import Players.Player;
+import Rules.AllRules;
 import Rules.Bank;
 import Rules.StationRules;
 
@@ -8,7 +9,7 @@ import Rules.StationRules;
  * Created by userhp on 26/01/2016.
  */
 public class Station extends Ownable {
-    private StationRules stationRules = StationRules.getInstance();
+    private StationRules stationRules = AllRules.getStationRules();
 
     public Station(String name, int loc, Group group, int cost, int mtg ){
         super.setGroup(group);

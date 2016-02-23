@@ -27,6 +27,8 @@ public class Player {
     private Board board =Board.getInstance();
     private DiceRoll lastDiceRoll;
 
+    private BankruptcyRules bankruptcyRules = AllRules.getBankruptcyRules();
+
 
     public Player (int initialMoney, Dice[] dices){
         moveTaken = MoveType.DiceRoll;
@@ -152,8 +154,8 @@ public class Player {
 
     public void giveMoneyToBank(int feeToPlayer) {
         if(!this.spendMoney(feeToPlayer)){
-            if(BankruptcyRules.getInstance().checkForBankruptcy(this,feeToPlayer)){
-                BankruptcyRules.getInstance().bankruptByBank(this);
+            if (bankruptcyRules.checkForBankruptcy(this, feeToPlayer)) {
+                bankruptcyRules.bankruptByBank(this);
             }
             else{
                 this.sellItemsToMakeMoney(feeToPlayer);
@@ -170,8 +172,8 @@ public class Player {
     public void receiveMoneyFromPlayers(int feeToPlayer) {
         for(Player player : AllPlayers.getInstance().getAllPlayers()){
             if(!player.spendMoney(feeToPlayer)){
-                if(BankruptcyRules.getInstance().checkForBankruptcy(player,feeToPlayer)){
-                    BankruptcyRules.getInstance().bankruptByPlayer(this,player);
+                if (bankruptcyRules.checkForBankruptcy(player, feeToPlayer)) {
+                    bankruptcyRules.bankruptByPlayer(this, player);
                 }
                 else{
                     player.sellItemsToMakeMoney(feeToPlayer);
@@ -208,8 +210,8 @@ public class Player {
     public void payOtherPlayers(int feeToPlayer) {
         for(Player player : AllPlayers.getInstance().getAllPlayers()){
             if(!this.spendMoney(feeToPlayer)){
-                if(BankruptcyRules.getInstance().checkForBankruptcy(this,feeToPlayer)){
-                    BankruptcyRules.getInstance().bankruptByPlayer(player,this);
+                if (bankruptcyRules.checkForBankruptcy(this, feeToPlayer)) {
+                    bankruptcyRules.bankruptByPlayer(player, this);
                 }
                 else{
                     this.sellItemsToMakeMoney(feeToPlayer);
@@ -272,8 +274,8 @@ public class Player {
         for(Ownable space : ownedSpaces){
             saleableMoney += space.getMortgagePrice();
             if(space instanceof Property){
-                saleableMoney += ((Property) space).getHotels()* ((Property) space).getHouseCost() * SellingRules.getInstance().priceReductionForSellingOfHotel();
-                saleableMoney += ((Property) space).getHouses()* ((Property) space).getHouseCost() * SellingRules.getInstance().priceReductionForSellingOfHouse();
+                saleableMoney += ((Property) space).getHotels() * ((Property) space).getHouseCost() * AllRules.getSellingRules().priceReductionForSellingOfHotel();
+                saleableMoney += ((Property) space).getHouses() * ((Property) space).getHouseCost() * AllRules.getSellingRules().priceReductionForSellingOfHouse();
             }
         }
 

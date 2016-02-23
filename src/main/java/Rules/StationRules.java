@@ -12,26 +12,6 @@ import org.luaj.vm2.lib.jse.JsePlatform;
  */
 public class StationRules {
 
-    private static StationRules instance =  new StationRules();
-    private static int oneStationRent;
-    private static int twoStationRent;
-    private static int threeStationRent;
-    private static int fourStationRent;
-
-    private StationRules(){}
-
-    public static StationRules getInstance() {
-        return instance;
-    }
-
-
-    public static void init(int one,int two,int three,int four){
-        oneStationRent=one;
-        twoStationRent=two;
-        threeStationRent =three;
-        fourStationRent = four;
-    }
-
     private LuaValue _G;
 
     public StationRules(String luaFileLocation) {

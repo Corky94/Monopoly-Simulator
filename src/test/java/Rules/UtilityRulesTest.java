@@ -46,7 +46,6 @@ public class UtilityRulesTest extends TestCase {
 
     }
     public void testCalculateRentWithOneUtilityAndDifferentRuleSet() throws Exception {
-        UtilityRules.init(20,50);
         UtilityRules rules = new UtilityRules(Paths.get("").toAbsolutePath().toString() +
                 "/src/main/LuaFiles/TestingLuaFiles/UtilityRulesTestDifferentRuleSet.lua");
         Player owner = Mockito.mock(Player.class);
@@ -61,7 +60,6 @@ public class UtilityRulesTest extends TestCase {
 
     }
     public void testCalculateRentWithBothUtilitiesAndDifferentRuleSet() throws Exception {
-        UtilityRules.init(20,50);
         UtilityRules rules = new UtilityRules(Paths.get("").toAbsolutePath().toString() +
                 "/src/main/LuaFiles/TestingLuaFiles/UtilityRulesTestDifferentRuleSet.lua");
         Player owner = Mockito.mock(Player.class);

@@ -10,11 +10,7 @@ import java.util.Vector;
  * Rules for checking if the player is bankrupt
  */
 public class BankruptcyRules {
-    private static  BankruptcyRules instance = new BankruptcyRules();
-    private BankruptcyRules(){}
-    public static BankruptcyRules getInstance() {
-        return instance;
-    }
+
 
     public boolean checkForBankruptcy(Player player, int moneyOwed){
         boolean bankrupt = false;

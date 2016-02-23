@@ -1,6 +1,7 @@
 package Board;
 
 import Players.Player;
+import Rules.AllRules;
 import Rules.TaxRules;
 
 /**
@@ -26,7 +27,7 @@ public class Tax extends Space {
     @Override
     public void onVisit(Player player) {
         if(super.getName().equalsIgnoreCase("Income Tax")){
-            player.spendMoney(TaxRules.getInstance().calculateIncomeTax(player));
+            player.spendMoney(AllRules.getTaxRules().calculateIncomeTax(player));
         }
         else{
             player.spendMoney(fee);
