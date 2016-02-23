@@ -23,6 +23,13 @@ public class BuildRules {
         return instance;
     }
 
+    LuaValue _G;
+
+    public BuildRules(String luaFileLocation) {
+        _G = JsePlatform.standardGlobals();
+        _G.get("dofile").call(LuaValue.valueOf(luaFileLocation));
+    }
+
     public boolean canBuildHouse(Property property, Player player) {
 
         Board board = Board.getInstance();
@@ -47,22 +54,36 @@ public class BuildRules {
     }
 
     public boolean canBuildHotel(Property property, Player player) {
-        return false;
+        Board board = Board.getInstance();
+        LuaValue luaBoard = CoerceJavaToLua.coerce(board);
+        LuaValue luaProperty = CoerceJavaToLua.coerce(property);
+        LuaValue luaPlayer = CoerceJavaToLua.coerce(player);
+
+        Stack<Property> playerOwnedPropertiesOfGroup = player.getOwnedPropertiesOfGroup(property.getGroup());
+
+        LuaTable luaPlayerOwnedProperties = LuaTable.tableOf();
+
+
+        for (int i = 0; i < playerOwnedPropertiesOfGroup.size(); i++) {
+            luaPlayerOwnedProperties.insert(i, CoerceJavaToLua.coerce(playerOwnedPropertiesOfGroup.pop()));
+        }
+
+
+        LuaValue methodCanBuildHotel = _G.get("canBuildHotel");
+        LuaValue[] luaArgs = {luaProperty, luaPlayer, luaBoard, luaPlayerOwnedProperties.toLuaValue()};
+        Varargs canBuildHotel = methodCanBuildHotel.invoke(luaArgs);
+        return canBuildHotel.arg1().toboolean();
     }
 
     public int amountOfHousesNeededForHotel() {
-        return 0;
+        return _G.get("getAmountOfHousesNeededForHotel").call().toint();
     }
 
+    //Todo Implemenent Method
     public boolean canSellHouse(Property property, Player player) {
         return false;
     }
 
 
-    LuaValue _G;
 
-    public BuildRules(String luaFileLocation) {
-        _G = JsePlatform.standardGlobals();
-        _G.get("dofile").call(LuaValue.valueOf(luaFileLocation));
-    }
 }

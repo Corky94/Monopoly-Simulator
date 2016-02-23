@@ -7,8 +7,15 @@
 --
 
 --Can be changed as wanted
+local amountOfHousesNeededForHotel = 4
+
 function houseCheck(amountOfHousesInPropertyA, amountOfHousesInPropertyB)
-    return not amountOfHousesInPropertyA == amountOfHousesInPropertyB
+    return amountOfHousesInPropertyA == amountOfHousesInPropertyB or amountOfHousesInPropertyA == amountOfHousesInPropertyB - 1
+end
+
+--DO not edit
+function getAmountOfHousesNeededForHotel()
+    return amountOfHousesNeededForHotel
 end
 
 
@@ -26,7 +33,7 @@ function canBuildHouse(property, player, board, properties)
 
         housesOnProperty = property:getHouses()
         for k, v in pairs(properties) do
-            if houseCheck(v:getHouses(), housesOnProperty) then
+            if not houseCheck(housesOnProperty, v:getHouses()) then
                 allowedToBuildHouse = false
             end -- end if
         end
@@ -34,5 +41,25 @@ function canBuildHouse(property, player, board, properties)
     return allowedToBuildHouse
 end
 
+function allPropertiesHaveSameAmountOfHouses(property, properties)
+    enoughHouses = true
+    housesOnProperty = property:getHouses()
+    for k, v in pairs(properties) do
+        if not v:getHouses() == housesOnProperty then
+            enoughHouses = false
+        end -- end if
+    end
+    return enoughHouses
+end
 
+--DO NOT CHANGE NAME OR PARAMETERS of this method, also must return boolean
+function canBuildHotel(property, player, board, properties)
+    allowedToBuildHotel = true
+    if not property:getHouses() == amountOfHousesNeededForHotel
+            and not allPropertiesHaveSameAmountOfHouses(property, properties)
+            and not canBuildHouse(property, player, board, properties) then
+        allowedToBuildHotel = false;
+    end
+    return allowedToBuildHotel
+end
 

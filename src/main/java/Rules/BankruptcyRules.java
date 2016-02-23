@@ -7,7 +7,7 @@ import Players.Player;
 import java.util.Vector;
 
 /**
- * Created by userhp on 29/01/2016.
+ * Rules for checking if the player is bankrupt
  */
 public class BankruptcyRules {
     private static  BankruptcyRules instance = new BankruptcyRules();
