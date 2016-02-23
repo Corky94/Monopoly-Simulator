@@ -6,6 +6,8 @@ import Players.Player;
 import junit.framework.TestCase;
 import org.mockito.Mockito;
 
+import java.nio.file.Paths;
+
 import static org.mockito.Mockito.when;
 
 /**
@@ -19,8 +21,8 @@ public class TaxRulesTest extends TestCase {
         when(tax.getFee()).thenReturn(200);
         when(player.getCurrentLocation()).thenReturn(tax);
         when(player.calculateNetWorth()).thenReturn(100);
-        TaxRules.init(0.1,true);
-        TaxRules rules = TaxRules.getInstance();
+
+        TaxRules rules = new TaxRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/TaxRules.lua");
         assertEquals(10,rules.calculateIncomeTax(player));
     }
     public void testCalculateIncomeTaxWhereNetWorthIsMoreThanSetTax() throws Exception {
@@ -29,8 +31,7 @@ public class TaxRulesTest extends TestCase {
         when(tax.getFee()).thenReturn(200);
         when(player.getCurrentLocation()).thenReturn(tax);
         when(player.calculateNetWorth()).thenReturn(4000);
-        TaxRules.init(0.1,true);
-        TaxRules rules = TaxRules.getInstance();
+        TaxRules rules = new TaxRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/TaxRules.lua");
         assertEquals(200,rules.calculateIncomeTax(player));
     }
     public void testCalculateIncomeTaxWhenNoFixedTaxIsAllowed() throws Exception {
@@ -39,8 +40,8 @@ public class TaxRulesTest extends TestCase {
         when(tax.getFee()).thenReturn(200);
         when(player.getCurrentLocation()).thenReturn(tax);
         when(player.calculateNetWorth()).thenReturn(4000);
-        TaxRules.init(0.1,false);
-        TaxRules rules = TaxRules.getInstance();
+        TaxRules rules = new TaxRules(Paths.get("").toAbsolutePath().toString() +
+                "/src/main/LuaFiles/TestingLuaFiles/TaxRulesTestNoFixedTax.lua");
         assertEquals(400,rules.calculateIncomeTax(player));
     }
     public void testCalculateIncomeTaxWhenNoFixedTaxIsAllowedAndDifferentTaxPercentage() throws Exception {
@@ -49,8 +50,9 @@ public class TaxRulesTest extends TestCase {
         when(tax.getFee()).thenReturn(200);
         when(player.getCurrentLocation()).thenReturn(tax);
         when(player.calculateNetWorth()).thenReturn(4000);
-        TaxRules.init(0.25,false);
-        TaxRules rules = TaxRules.getInstance();
+        TaxRules rules = new TaxRules(Paths.get("").toAbsolutePath().toString() +
+                "/src/main/LuaFiles/TestingLuaFiles/TaxRulesTestNoFixedTaxAndDifferentIncomeTaxPercentage.lua");
         assertEquals(1000,rules.calculateIncomeTax(player));
     }
+
 }
