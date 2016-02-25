@@ -8,9 +8,7 @@ import Cards.Deck.Deck;
 import Dice.*;
 import Rules.*;
 
-import java.util.Arrays;
-import java.util.Stack;
-import java.util.Vector;
+import java.util.*;
 
 /**
  *  TODO a lot of the logic needs to be developed here. A lot of time is needed however the rest of program needs to be done firs
@@ -32,6 +30,7 @@ public class Player {
     private DiceRoll lastDiceRoll;
 
     private BankruptcyRules bankruptcyRules;
+    private Bank bankRules;
 
     public Player (int initialMoney, Dice[] dices){
         moveTaken = MoveType.DiceRoll;
@@ -42,9 +41,10 @@ public class Player {
         bankruptcyRules = AllRules.getBankruptcyRules();
         goRules = AllRules.getGoRules();
         jailRules = AllRules.getJailRules();
+        bankRules = AllRules.getBankRules();
+
     }
 
-    // Todo implement actions for if in jail.
     public void onTurn() {
         if (inJail) {
             this.playTurnInJail();
@@ -62,6 +62,38 @@ public class Player {
             }
             if (!inJail) {
                 this.moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
+            }
+        }
+    }
+
+    //To Be Expanded
+    public void betweenTurns() {
+        anyHousesOrHotelsToBuild();
+    }
+
+    private void anyHousesOrHotelsToBuild() {
+        List<Ownable> properties = (List) ownedSpaces;
+        Collections.sort(properties, new OwnableComparator());
+        Collections.reverse(properties);
+        boolean buildingProperties = true;
+        while (buildingProperties) {
+            if (properties.size() == 0) {
+                break;
+            }
+            for (Ownable space : properties) {
+                if (space instanceof Property) {
+                    if (money * 0.5 < ((Property) space).getHouseCost()) {
+                        buildingProperties = false;
+                        break;
+                    }
+                    if (AllRules.getBuildRules().canBuildHotel((Property) space, this)) {
+                        bankRules.buyHotel((Property) space, this);
+                    } else if (AllRules.getBuildRules().canBuildHotel((Property) space, this)) {
+                        bankRules.buyHouse((Property) space, this);
+                    } else {
+                        properties.remove(space);
+                    }
+                }
             }
         }
     }
@@ -97,10 +129,14 @@ public class Player {
     }
 
     private boolean wantsToPayJailFine() {
-        return false;
+        boolean payFine = false;
+        if (money * 0.1 > AllRules.getJailRules().feeToPayToGetOutOfJail()) {
+            payFine = true;
+        }
+        return payFine;
     }
 
-    //Todo methods for allowing players to buy houses and hotels.
+
     public DiceRoll rollDice(){        
         Vector<Integer> diceResults = new Vector<Integer>();
         for (Dice d : dices) {
@@ -182,8 +218,29 @@ public class Player {
     }
 
     public void sellItemsToMakeMoney(int moneyNeeded) {
-        // TODO Need to work out a suitable way of doing this. Using heuristics.
+        //For now best way to do this is to sell the minimum amount of houses and mortgage as little as possible.
+        List<Ownable> sortedProperties = (List) ownedSpaces;
+        Collections.sort(sortedProperties, new OwnableComparator());
+        while (money < moneyNeeded) {
+            for (Ownable space : ownedSpaces) {
+                if (space instanceof Property) {
+                    if (((Property) space).getHotels() > 0) {
+                        bankRules.sellHotel((Property) space, this);
+                    } else if (((Property) space).getHouses() > 0) {
+                        bankRules.sellHouse((Property) space, this);
+                    } else {
+                        bankRules.mortgageProperty(space, this);
+                    }
+                } else {
+                    bankRules.mortgageProperty(space, this);
+                }
+                if (money > moneyNeeded) {
+                    break;
+                }
+            }
+        }
     }
+
 
     public void receiveMoneyFromPlayers(int feeToPlayer) {
         for(Player player : AllPlayers.getInstance().getAllPlayers()){
@@ -242,8 +299,27 @@ public class Player {
     }
 
     public boolean wantsToBuyPropertyForPrice(Space property, int askingPriceOfProperty) {
-        //Todo Implement a decent heuristic to determine whether the player wants to buy the property.
-        return false;
+        boolean willingToBuyProperty = false;
+        int amountOfSpacesOwnedOfGroup = ownsSpacesOfGroup(property.getGroup());
+        int amountOfSpacesOnBoardOfGroup = board.amountOfSpacesInGroup(property.getGroup());
+        int amountOfMoneyWillingToSpend = 0;
+
+        //VERY BASIC HEURISTIC
+        switch (amountOfSpacesOnBoardOfGroup - amountOfSpacesOwnedOfGroup) {
+            case 1:
+                amountOfMoneyWillingToSpend = (int) (money * 0.7);
+                break;
+            case 2:
+                amountOfMoneyWillingToSpend = (int) (money * 0.6);
+                break;
+            default:
+                amountOfMoneyWillingToSpend = (int) (money * 0.5);
+                break;
+        }
+        if (amountOfMoneyWillingToSpend < askingPriceOfProperty) {
+            willingToBuyProperty = true;
+        }
+        return willingToBuyProperty;
     }
 
     public void addProperty(Ownable space) {

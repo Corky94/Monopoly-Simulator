@@ -9,7 +9,13 @@ import java.io.*;
 public class Main {
 
     public static void main(String args[]){
+        //Init Board,
+        //Init Cards
+        //Init Rules
 
+        //Init Players
+
+        //Run Simulation
 
     }
 }

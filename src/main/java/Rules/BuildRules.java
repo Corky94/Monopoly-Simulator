@@ -75,7 +75,7 @@ public class BuildRules {
 
     //Todo Implemenent Method
     public boolean canSellHouse(Property property, Player player) {
-        return false;
+        return true;
     }
 
 
