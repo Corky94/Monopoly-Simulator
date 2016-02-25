@@ -4,6 +4,8 @@ import Players.Player;
 import Rules.AllRules;
 import Rules.Bank;
 
+import java.util.Comparator;
+
 /**
  * Created by marc on 20/11/2015.
  */
@@ -19,7 +21,7 @@ public class Property extends Ownable {
     private int houses;
     private int hotels;
     private int houseCost;
-    private final Bank bankRules;
+    private Bank bankRules;
 
 
     public Property(String name, Group group, int location, int baseRent, int cost, int mortgagePrice,int houseCost, int oneHouseRent, int twoHouseRent, int threeHouseRent, int fourHouseRent, int hotelRent){
@@ -132,4 +134,6 @@ public class Property extends Ownable {
     public int getHotels() {
         return hotels;
     }
+
+
 }

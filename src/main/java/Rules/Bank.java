@@ -168,4 +168,14 @@ public class Bank {
     public  int getHousesInBank() {
         return housesInBank;
     }
+
+    public void mortgageProperty(Ownable space, Player player) {
+        space.setMortgaged(true);
+        player.gainMoney(space.getMortgagePrice());
+    }
+
+    public void unmortgageProperty(Ownable space, Player player) {
+        player.spendMoney((int) (space.getMortgagePrice() * 0.1));
+        space.setMortgaged(false);
+    }
 }
