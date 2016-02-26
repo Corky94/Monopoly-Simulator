@@ -52,6 +52,22 @@ public class BuildRulesTest extends TestCase {
 
     }
 
+    public void testCannotBuildHotel() throws Exception {
+        BuildRules rules = new BuildRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/BuildRules.lua");
+        Player player = Mockito.mock(Player.class);
+        when(player.ownsSpacesOfGroup(any(Group.class))).thenReturn(1);
+        Board boardTest = Board.getInstance();
+        boardTest.populateBoard("Monopoly Map.csv");
+        Property mockProperty = mock(Property.class);
+        when(mockProperty.getHouses()).thenReturn(4);
+        when(mockProperty.getGroup()).thenReturn(Group.Green);
+        Stack<Property> mockStack = new Stack<Property>();
+        mockStack.add(mockProperty);
+        when(player.getOwnedPropertiesOfGroup(any(Group.class))).thenReturn(mockStack);
+        assertFalse(rules.canBuildHotel(mockProperty, player));
+
+    }
+
     public void testCannotBuildHouse() throws Exception {
         BuildRules rules = new BuildRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/BuildRules.lua");
         Player player = Mockito.mock(Player.class);

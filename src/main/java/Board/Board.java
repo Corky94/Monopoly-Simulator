@@ -148,12 +148,15 @@ public  class Board {
         //Needs to check if movesPast go
         int newLocation = this.getLocationOfSpace(currentLocation) + spacesToMove;
         if(newLocation<0){
-            newLocation = spaces.size()+1+newLocation;
-        }
-        else if(newLocation>spaces.size()){
+            newLocation = spaces.size() + newLocation;
+        } else if (newLocation >= spaces.size()) {
             newLocation = newLocation%(spaces.size()-1);
         }
-
+        try {
+            spaces.elementAt(newLocation);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw e;
+        }
         return spaces.elementAt(newLocation);
     }
     public Space moveToNearestStation(Space currentLocation){

@@ -150,6 +150,7 @@ public class Bank {
                     askingPriceOfProperty += incrementOfAuction;
                 }
             }
+
             if(topBidder.equals(oldTopBidder)){
                 auctionRunning = false;
             }

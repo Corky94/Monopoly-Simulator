@@ -22,7 +22,7 @@ public class BankruptcyRules {
     public void bankruptByPlayer(Player owedPlayer, Player bankruptPlayer){
         int allBankruptPlayerMoney = bankruptPlayer.getMoney();
         owedPlayer.receiveMoney(allBankruptPlayerMoney);
-        Vector<Ownable> ownedSpaces = bankruptPlayer.getOwnedSpaces();
+        Vector<Ownable> ownedSpaces = (Vector<Ownable>) bankruptPlayer.getOwnedSpaces().clone();
         for(Ownable space : ownedSpaces){
             owedPlayer.addProperty(space);
             bankruptPlayer.removeProperty(space);

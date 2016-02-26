@@ -71,7 +71,7 @@ public class CardTest extends TestCase {
         board.populateBoard("Monopoly Map.csv");
         Player player = mock(Player.class);
         Space space = board.getSpaceOnBoard(1);
-        Space expectedSpace = board.getSpaceOnBoard(39);
+        Space expectedSpace = board.getSpaceOnBoard(38);
 
         when(player.getCurrentLocation()).thenReturn(space);
         CommunityChestCard card = new CommunityChestCard("Test 1", CardAction.GoBackSpaces,3);

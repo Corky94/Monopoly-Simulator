@@ -11,8 +11,6 @@ import Rules.*;
 import java.util.*;
 
 /**
- *  TODO a lot of the logic needs to be developed here. A lot of time is needed however the rest of program needs to be done firs
- *
  * Created by marc on 20/11/2015.
  */
 public class Player {
@@ -33,6 +31,7 @@ public class Player {
     private Bank bankRules;
 
     public Player (int initialMoney, Dice[] dices){
+        cards = new Vector<Card>();
         moveTaken = MoveType.DiceRoll;
         money = initialMoney;
         ownedSpaces = new Vector<Ownable>();
@@ -62,24 +61,48 @@ public class Player {
             }
             if (!inJail) {
                 this.moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
+                moveTaken = MoveType.DiceRoll;
             }
         }
     }
 
     //To Be Expanded
     public void betweenTurns() {
+        anyPropertiesToUnmortgage();
+        askOtherPlayersForPropertiesWanted();
         anyHousesOrHotelsToBuild();
+
+    }
+
+    //Implementing this method may allow for the simulation to run more smoothly.
+    private void askOtherPlayersForPropertiesWanted() {
+    }
+
+    private void anyPropertiesToUnmortgage() {
+        List<Ownable> properties = (List) ownedSpaces.clone();
+        Collections.sort(properties, new OwnableComparator());
+        for (Ownable space : properties) {
+            if (space.isMortgaged() && wantToUnmortgageProperty(space)) {
+                bankRules.unmortgageProperty(space, this);
+            }
+        }
+    }
+
+    private boolean wantToUnmortgageProperty(Ownable space) {
+        boolean wantToUnmortgage = false;
+        if (money * 0.3 > space.getMortgagePrice() * 0.1) {
+            wantToUnmortgage = true;
+        }
+        return wantToUnmortgage;
     }
 
     private void anyHousesOrHotelsToBuild() {
-        List<Ownable> properties = (List) ownedSpaces;
+        List<Ownable> properties = (List) ownedSpaces.clone();
         Collections.sort(properties, new OwnableComparator());
         Collections.reverse(properties);
         boolean buildingProperties = true;
-        while (buildingProperties) {
-            if (properties.size() == 0) {
-                break;
-            }
+        while (buildingProperties && properties.size() > 0) {
+            Vector<Ownable> removeFromSearch = new Vector<Ownable>();
             for (Ownable space : properties) {
                 if (space instanceof Property) {
                     if (money * 0.5 < ((Property) space).getHouseCost()) {
@@ -87,14 +110,22 @@ public class Player {
                         break;
                     }
                     if (AllRules.getBuildRules().canBuildHotel((Property) space, this)) {
-                        bankRules.buyHotel((Property) space, this);
-                    } else if (AllRules.getBuildRules().canBuildHotel((Property) space, this)) {
-                        bankRules.buyHouse((Property) space, this);
+                        if (!bankRules.buyHotel((Property) space, this)) {
+                            removeFromSearch.add(space);
+                        }
+
+                    } else if (AllRules.getBuildRules().canBuildHouse((Property) space, this)) {
+                        if (!bankRules.buyHouse((Property) space, this)) {
+                            removeFromSearch.add(space);
+                        }
                     } else {
-                        properties.remove(space);
+                        removeFromSearch.add(space);
                     }
+                } else {
+                    removeFromSearch.add(space);
                 }
             }
+            properties.removeAll(removeFromSearch);
         }
     }
 
@@ -219,7 +250,7 @@ public class Player {
 
     public void sellItemsToMakeMoney(int moneyNeeded) {
         //For now best way to do this is to sell the minimum amount of houses and mortgage as little as possible.
-        List<Ownable> sortedProperties = (List) ownedSpaces;
+        List<Ownable> sortedProperties = (List) ownedSpaces.clone();
         Collections.sort(sortedProperties, new OwnableComparator());
         while (money < moneyNeeded) {
             for (Ownable space : ownedSpaces) {
@@ -316,7 +347,7 @@ public class Player {
                 amountOfMoneyWillingToSpend = (int) (money * 0.5);
                 break;
         }
-        if (amountOfMoneyWillingToSpend < askingPriceOfProperty) {
+        if (amountOfMoneyWillingToSpend > askingPriceOfProperty) {
             willingToBuyProperty = true;
         }
         return willingToBuyProperty;

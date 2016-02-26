@@ -18,23 +18,25 @@ function getAmountOfHousesNeededForHotel()
     return amountOfHousesNeededForHotel
 end
 
+function ownsAllOfGroup(board, player, property)
+    group = property:getGroup()
+    amountOfPropertiesRequired = board:amountOfSpacesInGroup(group)
+    amountOfPropertiesOwned = player:ownsSpacesOfGroup(group)
+    return amountOfPropertiesOwned == amountOfPropertiesRequired
+end
 
 
 
 --DO NOT CHANGE NAME OR PARAMETERS of this method, also must return boolean
 function canBuildHouse(property, player, board, properties)
-    allowedToBuildHouse = true;
-    group = property:getGroup()
-    amountOfPropertiesRequired = board:amountOfSpacesInGroup(group)
-    amountOfPropertiesOwned = player:ownsSpacesOfGroup(group)
-    if amountOfPropertiesOwned < amountOfPropertiesRequired then
-        allowedToBuildHouse = false
-    else
+    allowedToBuildHouse = false;
+
+    if ownsAllOfGroup(board, player, property) then
 
         housesOnProperty = property:getHouses()
         for k, v in pairs(properties) do
-            if not houseCheck(housesOnProperty, v:getHouses()) then
-                allowedToBuildHouse = false
+            if houseCheck(housesOnProperty, v:getHouses()) then
+                allowedToBuildHouse = true
             end -- end if
         end
     end
@@ -54,11 +56,12 @@ end
 
 --DO NOT CHANGE NAME OR PARAMETERS of this method, also must return boolean
 function canBuildHotel(property, player, board, properties)
-    allowedToBuildHotel = true
-    if not property:getHouses() == amountOfHousesNeededForHotel
-            and not allPropertiesHaveSameAmountOfHouses(property, properties)
-            and not canBuildHouse(property, player, board, properties) then
-        allowedToBuildHotel = false;
+    allowedToBuildHotel = false
+    if property:getHouses() == amountOfHousesNeededForHotel
+            and allPropertiesHaveSameAmountOfHouses(property, properties)
+            and ownsAllOfGroup(board, player, property)
+            and property:getHotels() == 0 then
+        allowedToBuildHotel = true;
     end
     return allowedToBuildHotel
 end

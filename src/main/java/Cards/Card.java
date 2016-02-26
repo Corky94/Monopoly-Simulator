@@ -18,6 +18,40 @@ public class Card {
     private int feePerHotel;
     private Space location;
 
+    protected Card() {
+
+    }
+
+    public Card(String name, CardAction action) {
+        setAction(action);
+        setName(name);
+    }
+
+    public Card(String name, CardAction action, int feeOrSpaces) {
+        setAction(action);
+        setName(name);
+        if (action.equals(CardAction.GoBackSpaces)) {
+            setSpacesToMove(feeOrSpaces);
+        } else {
+            setFee(feeOrSpaces);
+        }
+    }
+
+    public Card(String name, CardAction action, Space location) {
+        setAction(action);
+        setName(name);
+        setLocation(location);
+
+    }
+
+    public Card(String name, CardAction action, int feePerHouse, int feePerHotel) {
+        setAction(action);
+        setName(name);
+        setFeePerHouse(feePerHouse);
+        setFeePerHotel(feePerHotel);
+
+    }
+
     protected void setAction(CardAction action) {
         this.action = action;
     }

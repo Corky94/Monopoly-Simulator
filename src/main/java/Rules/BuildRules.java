@@ -1,7 +1,6 @@
 package Rules;
 
-import Board.Board;
-import Board.Property;
+import Board.*;
 import Players.Player;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
