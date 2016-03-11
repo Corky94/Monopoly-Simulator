@@ -32,7 +32,7 @@ public class PlayerTest extends TestCase {
         when(property3.getHotels()).thenReturn(0);
         when(property3.getCost()).thenReturn(300);
         when(property3.getHouseCost()).thenReturn(50);
-        Player player = spy(new Player(1500, dices));
+        Player player = spy(new Player("Player 1", 1500, dices));
         player.addProperty(property1);
         player.addProperty(property2);
         player.addProperty(property3);

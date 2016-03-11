@@ -176,7 +176,15 @@ public class Bank {
     }
 
     public void unmortgageProperty(Ownable space, Player player) {
-        player.spendMoney((int) (space.getMortgagePrice() * 0.1));
+        player.spendMoney((int) (space.getMortgagePrice() + (space.getMortgagePrice() * 0.1)));
         space.setMortgaged(false);
+    }
+
+    public void tradeProperty(Ownable spaceToTrade, Player playerToReceive, Player playerToSell, int amountFor) {
+        if (playerToReceive.spendMoney(amountFor)) {
+            spaceToTrade.setOwner(playerToReceive);
+            playerToSell.removeProperty(spaceToTrade);
+            playerToReceive.addProperty(spaceToTrade);
+        }
     }
 }

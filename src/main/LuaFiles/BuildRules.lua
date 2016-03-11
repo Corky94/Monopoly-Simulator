@@ -47,7 +47,7 @@ function allPropertiesHaveSameAmountOfHouses(property, properties)
     enoughHouses = true
     housesOnProperty = property:getHouses()
     for k, v in pairs(properties) do
-        if not v:getHouses() == housesOnProperty then
+        if not v:getHouses() == housesOnProperty or not v:getHotels() == 1 then
             enoughHouses = false
         end -- end if
     end

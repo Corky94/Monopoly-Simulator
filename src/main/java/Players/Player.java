@@ -7,13 +7,16 @@ import Cards.CardAction;
 import Cards.Deck.Deck;
 import Dice.*;
 import Rules.*;
-
+import Logger.*;
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Created by marc on 20/11/2015.
  */
 public class Player {
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private String loggingName;
     private JailRules jailRules;
     private GoRules goRules;
     private Space currentLocation;
@@ -30,7 +33,7 @@ public class Player {
     private BankruptcyRules bankruptcyRules;
     private Bank bankRules;
 
-    public Player (int initialMoney, Dice[] dices){
+    public Player(String name, int initialMoney, Dice[] dices) {
         cards = new Vector<Card>();
         moveTaken = MoveType.DiceRoll;
         money = initialMoney;
@@ -41,6 +44,8 @@ public class Player {
         goRules = AllRules.getGoRules();
         jailRules = AllRules.getJailRules();
         bankRules = AllRules.getBankRules();
+        loggingName = name;
+        DataLogger.writeToLog(this, currentLocation);
 
     }
 
@@ -49,6 +54,7 @@ public class Player {
             this.playTurnInJail();
         } else {
             DiceRoll roll = rollDice();
+            LOGGER.info(loggingName + " rolled dice of " + roll.getSumOfDiceRolls());
             int rolls = 1;
             while (roll.isReRoll()) {
                 if (rolls >= jailRules.amountOfDoublesToBeSentToJail()) {
@@ -57,6 +63,7 @@ public class Player {
                     break;
                 }
                 this.moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
+
                 roll = rollDice();
             }
             if (!inJail) {
@@ -64,6 +71,7 @@ public class Player {
                 moveTaken = MoveType.DiceRoll;
             }
         }
+
     }
 
     //To Be Expanded
@@ -71,11 +79,43 @@ public class Player {
         anyPropertiesToUnmortgage();
         askOtherPlayersForPropertiesWanted();
         anyHousesOrHotelsToBuild();
-
     }
 
     //Implementing this method may allow for the simulation to run more smoothly.
     private void askOtherPlayersForPropertiesWanted() {
+        Group[] ownableGroups = {Group.Station, Group.Utility,
+                Group.Brown, Group.DarkBlue, Group.Green, Group.LightBlue,
+                Group.Orange, Group.Red, Group.Violet, Group.Yellow};
+        for (Group g : ownableGroups) {
+            Stack<Ownable> ownedPropertiesOfGroup = getOwnedPropertiesOfGroup(g);
+            Vector<Space> allSpacesOfGroup = board.getAllSpacesOfGroup(g);
+            if ((allSpacesOfGroup.size() - ownedPropertiesOfGroup.size()) == 1) {
+                allSpacesOfGroup.removeAll(ownedPropertiesOfGroup);
+                Ownable space = (Ownable) allSpacesOfGroup.get(0);
+                LOGGER.info(loggingName + " wants space " + space.getName());
+
+                if (space.getOwner() != (null)) {
+                    if (space.getOwner().askToBuyPropertyFor(space, space.getCost() * 10)) {
+                        bankRules.tradeProperty(space, this, space.getOwner(), space.getCost() * 10);
+                    }
+                }
+            }
+
+
+        }
+        // Need to work out a suitable way of describing what properties are wanted and and algorithm for selling them.
+        // This may take a while 
+    }
+
+    public boolean askToBuyPropertyFor(Ownable space, int askingPrice) {
+        double rand = new Random().nextDouble();
+        boolean tradeProperty = false;
+        if (rand > 0.25) {
+            tradeProperty = true;
+
+        }
+        LOGGER.info(loggingName + " wants to trade space " + space.getName() + ": " + tradeProperty);
+        return tradeProperty;
     }
 
     private void anyPropertiesToUnmortgage() {
@@ -90,7 +130,7 @@ public class Player {
 
     private boolean wantToUnmortgageProperty(Ownable space) {
         boolean wantToUnmortgage = false;
-        if (money * 0.3 > space.getMortgagePrice() * 0.1) {
+        if (money * 0.3 > (space.getMortgagePrice() + (space.getMortgagePrice() * 0.1))) {
             wantToUnmortgage = true;
         }
         return wantToUnmortgage;
@@ -208,12 +248,15 @@ public class Player {
         else{
             money-=amount;
             enoughMoney=true;
+            LOGGER.info(loggingName + " spent " + amount + "\nThey now have: " + money);
         }
         return enoughMoney;
 
     }
 
     public void moveToLocation(Space location) {
+        DataLogger.writeToLog(this, location);
+        LOGGER.info(loggingName + " moved to location " + location.getName());
         if(this.currentLocation.getLocation()> location.getLocation()){
             receiveMoney(goRules.getSalary());
         }
@@ -354,9 +397,11 @@ public class Player {
     }
 
     public void addProperty(Ownable space) {
+        LOGGER.info(loggingName + " now owns " + space.getName());
         ownedSpaces.add(space);
     }
     public void removeProperty(Ownable space) {
+        LOGGER.info(loggingName + " no longer owns " + space.getName());
         ownedSpaces.remove(space);
     }
 
@@ -416,13 +461,17 @@ public class Player {
         return lastDiceRoll;
     }
 
-    public Stack<Property> getOwnedPropertiesOfGroup(Group group) {
-        Stack<Property> propertyStack = new Stack<Property>();
+    public Stack<Ownable> getOwnedPropertiesOfGroup(Group group) {
+        Stack<Ownable> propertyStack = new Stack<Ownable>();
         for (Ownable ownable : ownedSpaces) {
             if (ownable.getGroup().equals(group)) {
-                propertyStack.add((Property) ownable);
+                propertyStack.add(ownable);
             }
         }
         return propertyStack;
+    }
+
+    public String getName() {
+        return loggingName;
     }
 }

@@ -51,7 +51,6 @@ public class Property extends Ownable {
 
 
     public void addHotel() {
-        houses=0;
         this.hotels = this.getHotels() + 1;
     }
 
@@ -120,11 +119,11 @@ public class Property extends Ownable {
 
 
     public void removeHouse() {
-        houses = getHouses() - 1;
+        houses--;
     }
 
     public void removeHotel() {
-        hotels = getHotels() - 1;
+        hotels--;
     }
 
     public int getHouses() {

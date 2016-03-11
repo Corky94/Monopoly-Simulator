@@ -28,7 +28,7 @@ public class BuildRulesTest extends TestCase {
         Property mockProperty2 = mock(Property.class);
         when(mockProperty2.getHouses()).thenReturn(2);
         when(mockProperty2.getGroup()).thenReturn(Group.Green);
-        Stack<Property> mockStack = new Stack<Property>();
+        Stack<Ownable> mockStack = new Stack<Ownable>();
         mockStack.add(mockProperty);
         mockStack.add(mockProperty2);
         when(player.getOwnedPropertiesOfGroup(any(Group.class))).thenReturn(mockStack);
@@ -45,8 +45,12 @@ public class BuildRulesTest extends TestCase {
         Property mockProperty = mock(Property.class);
         when(mockProperty.getHouses()).thenReturn(4);
         when(mockProperty.getGroup()).thenReturn(Group.Green);
-        Stack<Property> mockStack = new Stack<Property>();
+        Property mockProperty2 = mock(Property.class);
+        when(mockProperty2.getHouses()).thenReturn(4);
+        when(mockProperty2.getGroup()).thenReturn(Group.Green);
+        Stack<Ownable> mockStack = new Stack<Ownable>();
         mockStack.add(mockProperty);
+        mockStack.add(mockProperty2);
         when(player.getOwnedPropertiesOfGroup(any(Group.class))).thenReturn(mockStack);
         assertTrue(rules.canBuildHotel(mockProperty, player));
 
@@ -55,14 +59,19 @@ public class BuildRulesTest extends TestCase {
     public void testCannotBuildHotel() throws Exception {
         BuildRules rules = new BuildRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/BuildRules.lua");
         Player player = Mockito.mock(Player.class);
-        when(player.ownsSpacesOfGroup(any(Group.class))).thenReturn(1);
+        when(player.ownsSpacesOfGroup(any(Group.class))).thenReturn(3);
         Board boardTest = Board.getInstance();
         boardTest.populateBoard("Monopoly Map.csv");
         Property mockProperty = mock(Property.class);
-        when(mockProperty.getHouses()).thenReturn(4);
+        when(mockProperty.getHouses()).thenReturn(3);
         when(mockProperty.getGroup()).thenReturn(Group.Green);
-        Stack<Property> mockStack = new Stack<Property>();
+        Property mockProperty2 = mock(Property.class);
+        when(mockProperty2.getHouses()).thenReturn(1);
+        when(mockProperty2.getGroup()).thenReturn(Group.Green);
+
+        Stack<Ownable> mockStack = new Stack<Ownable>();
         mockStack.add(mockProperty);
+        mockStack.add(mockProperty2);
         when(player.getOwnedPropertiesOfGroup(any(Group.class))).thenReturn(mockStack);
         assertFalse(rules.canBuildHotel(mockProperty, player));
 
@@ -76,7 +85,7 @@ public class BuildRulesTest extends TestCase {
         boardTest.populateBoard("Monopoly Map.csv");
         Property mockProperty = mock(Property.class);
         when(mockProperty.getGroup()).thenReturn(Group.Green);
-        Stack<Property> mockStack = new Stack<Property>();
+        Stack<Ownable> mockStack = new Stack<Ownable>();
         mockStack.add(mockProperty);
         when(player.getOwnedPropertiesOfGroup(any(Group.class))).thenReturn(mockStack);
         assertFalse(rules.canBuildHouse(mockProperty, player));

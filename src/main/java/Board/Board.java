@@ -203,4 +203,11 @@ public  class Board {
     }
 
 
+    public Vector<Space> getAllSpacesOfGroup(Group g) {
+        Vector<Space> spacesInGroup = new Vector<Space>();
+        for (Space space : spaces) {
+            if (space.getGroup().equals(g)) spacesInGroup.add(space);
+        }
+        return spacesInGroup;
+    }
 }

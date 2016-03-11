@@ -24,13 +24,39 @@ public class BuildRules {
     }
 
     public boolean canBuildHouse(Property property, Player player) {
+        boolean canBuildHouse = false;
+        int propertiesInGroup = Board.getInstance().amountOfSpacesInGroup(property.getGroup());
+        int propertiesOfGroupOwnedByPlayer = player.ownsSpacesOfGroup(property.getGroup());
 
+        if (property.getHotels() == 1 || propertiesInGroup != propertiesOfGroupOwnedByPlayer) {
+            canBuildHouse = false;
+        } else if (allPropertiesInGroupHaveEqualHouses(player, property)) {
+            canBuildHouse = true;
+        }
+        return canBuildHouse;
+    }
+
+    private boolean allPropertiesInGroupHaveEqualHouses(Player player, Property property) {
+        Stack<Ownable> properties = player.getOwnedPropertiesOfGroup(property.getGroup());
+        int amountOfHouses = property.getHouses();
+        boolean equalHouses = true;
+        for (Ownable p : properties) {
+            Property prop = (Property) p;
+            if (amountOfHouses != prop.getHouses() && amountOfHouses != prop.getHouses() - 1) {
+                equalHouses = false;
+                break;
+            }
+        }
+        return equalHouses;
+    }
+
+    private boolean canBuildHouseLua(Property property, Player player) {
         Board board = Board.getInstance();
         LuaValue luaBoard = CoerceJavaToLua.coerce(board);
         LuaValue luaProperty = CoerceJavaToLua.coerce(property);
         LuaValue luaPlayer = CoerceJavaToLua.coerce(player);
 
-        Stack<Property> playerOwnedPropertiesOfGroup = player.getOwnedPropertiesOfGroup(property.getGroup());
+        Stack<Ownable> playerOwnedPropertiesOfGroup = player.getOwnedPropertiesOfGroup(property.getGroup());
 
         LuaTable luaPlayerOwnedProperties = LuaTable.tableOf();
 
@@ -47,12 +73,39 @@ public class BuildRules {
     }
 
     public boolean canBuildHotel(Property property, Player player) {
+        boolean canBuildHotel = true;
+        int propertiesInGroup = Board.getInstance().amountOfSpacesInGroup(property.getGroup());
+        int propertiesOfGroupOwnedByPlayer = player.ownsSpacesOfGroup(property.getGroup());
+
+        if (property.getHotels() == 1 || propertiesInGroup != propertiesOfGroupOwnedByPlayer) {
+            canBuildHotel = false;
+        } else if (!allPropertiesInGroupMatchTheHouseRequirement(property, player)) {
+            canBuildHotel = false;
+        }
+        return canBuildHotel;
+    }
+
+    private boolean allPropertiesInGroupMatchTheHouseRequirement(Property property, Player player) {
+        Stack<Ownable> properties = player.getOwnedPropertiesOfGroup(property.getGroup());
+        int amountOfHousesNeeded = 4;
+        boolean equalHouses = true;
+        for (Ownable p : properties) {
+            Property prop = (Property) p;
+            if (amountOfHousesNeeded != prop.getHouses() && prop.getHotels() != 1) {
+                equalHouses = false;
+                break;
+            }
+        }
+        return equalHouses;
+    }
+
+    private boolean canBuildHotelLuaFunction(Property property, Player player) {
         Board board = Board.getInstance();
         LuaValue luaBoard = CoerceJavaToLua.coerce(board);
         LuaValue luaProperty = CoerceJavaToLua.coerce(property);
         LuaValue luaPlayer = CoerceJavaToLua.coerce(player);
 
-        Stack<Property> playerOwnedPropertiesOfGroup = player.getOwnedPropertiesOfGroup(property.getGroup());
+        Stack<Ownable> playerOwnedPropertiesOfGroup = player.getOwnedPropertiesOfGroup(property.getGroup());
 
         LuaTable luaPlayerOwnedProperties = LuaTable.tableOf();
 
