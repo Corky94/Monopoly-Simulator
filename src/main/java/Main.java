@@ -30,7 +30,8 @@ public class Main {
             e.printStackTrace();
         }
         int endlessGames = 0;
-        int simulationsToRun = 10;
+        int simulationsToRun = 10000;
+        int[] winners = {0, 0, 0, 0};
         for (int i = 0; i < simulationsToRun; i++) {
             DataLogger dl = new DataLogger(Paths.get("").toAbsolutePath().toString() + "/logs/dataLog" + i + ".csv");
             //Init Rules
@@ -108,9 +109,27 @@ public class Main {
                     }
                 }
                 System.out.println("Winner is " + player.getName());
+                if (player.getName().equalsIgnoreCase("Player 1")) {
+                    winners[0]++;
+                } else if (player.getName().equalsIgnoreCase("Player 2")) {
+                    winners[1]++;
+                } else if (player.getName().equalsIgnoreCase("Player 3")) {
+                    winners[2]++;
+                } else if (player.getName().equalsIgnoreCase("Player 4")) {
+                    winners[3]++;
+                }
             } else {
                 Player player = AllPlayers.getInstance().getAllPlayers().firstElement();
                 System.out.println("Winner is " + player.getName());
+                if (player.getName().equalsIgnoreCase("Player 1")) {
+                    winners[0]++;
+                } else if (player.getName().equalsIgnoreCase("Player 2")) {
+                    winners[1]++;
+                } else if (player.getName().equalsIgnoreCase("Player 3")) {
+                    winners[2]++;
+                } else if (player.getName().equalsIgnoreCase("Player 4")) {
+                    winners[3]++;
+                }
             }
             System.out.println("Game Finished in " + (System.nanoTime() - StartingTime) / 1000000000.0 + "s");
             System.out.println("Turns taken = " + turn);
@@ -118,6 +137,10 @@ public class Main {
 
         }
         System.out.println("Endless games = " + endlessGames + " out of games played = " + simulationsToRun);
+        System.out.println("Player 1 won : " + winners[0] + " games");
+        System.out.println("Player 2 won : " + winners[1] + " games");
+        System.out.println("Player 3 won : " + winners[2] + " games");
+        System.out.println("Player 4 won : " + winners[3] + " games");
     }
 
     private static void endOfTurnLog(Vector<Player> players) {
