@@ -4,7 +4,8 @@ import Board.Board;
 import Board.Property;
 import junit.framework.TestCase;
 import Dice.Dice;
-
+import java.nio.file.Paths;
+import Logger.DataLogger;
 import static org.mockito.Mockito.*;
 
 /**
@@ -12,7 +13,10 @@ import static org.mockito.Mockito.*;
  */
 public class PlayerTest extends TestCase {
 
+
+
     public void testCalculateNetWorth() throws Exception {
+        // DataLogger dl = new DataLogger(Paths.get("").toAbsolutePath().toString() + "/logs/dataLog" + i + ".csv");
         Board.getInstance().populateBoard("Monopoly Map.csv");
         Dice dice1 = mock(Dice.class);
         Dice dice2 = mock(Dice.class);

@@ -8,7 +8,7 @@ import org.luaj.vm2.Lua;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.lib.jse.JsePlatform;
-
+import java.util.logging.*;
 import java.util.Vector;
 
 /**
@@ -141,23 +141,29 @@ public class Bank {
         int incrementOfAuction = (int)(baseCostOfProperty* auctionRules.getIncrementMultiplier());
         boolean auctionRunning = true;
         Player topBidder = null;
-        while(auctionRunning){
-            Player oldTopBidder = topBidder;
-            for(Player player : players){
-                if(player.wantsToBuyPropertyForPrice(property,askingPriceOfProperty) && !player.equals(topBidder)){
-                    topBidder = player;
-                    currentPriceOfProperty= askingPriceOfProperty;
-                    askingPriceOfProperty += incrementOfAuction;
+        try{
+            while(auctionRunning){
+                Player oldTopBidder = topBidder;
+                for(Player player : players){
+                    if(player.wantsToBuyPropertyForPrice(property,askingPriceOfProperty) && !player.equals(topBidder)){
+                        topBidder = player;
+                        currentPriceOfProperty= askingPriceOfProperty;
+                        askingPriceOfProperty += incrementOfAuction;
+                    }
+                }
+
+                if(topBidder.equals(oldTopBidder)){
+                    auctionRunning = false;
                 }
             }
-
-            if(topBidder.equals(oldTopBidder)){
-                auctionRunning = false;
-            }
+            topBidder.spendMoney(currentPriceOfProperty);
+            property.setOwner(topBidder);
+            topBidder.addProperty(property);
         }
-        topBidder.spendMoney(currentPriceOfProperty);
-        property.setOwner(topBidder);
-        topBidder.addProperty(property);
+        catch (NullPointerException e){
+            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("No one can afford property");
+            property.setOwner(null);
+        }
     }
 
 

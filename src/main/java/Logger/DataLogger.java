@@ -14,25 +14,34 @@ import java.io.IOException;
  */
 public class DataLogger {
     private static File csvFile;
+    private static BufferedWriter writer;
 
     public DataLogger(String filename) {
         csvFile = new File(filename);
+        try{
+            writer = new BufferedWriter(new FileWriter(csvFile, true));
+        }
+        catch (IOException e) {
+                e.printStackTrace();
+
+        }
 
     }
 
     public static void writeToLog(Player player, Space location) {
-        BufferedWriter writer;
-        try {
-            writer = new BufferedWriter(new FileWriter(csvFile, true));
-            writer.append(player.getName() + "," + player.getMoney() + "," + location.getName() + ",");
-            for (Ownable ownable : player.getOwnedSpaces()) {
-                writer.append(ownable.getName() + ",");
-            }
-            writer.append("\n");
-            if (writer != null) writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(csvFile != null){
+            
+            try {
+                
+                writer.append(player.getName() + "," + player.getMoney() + "," + location.getName() + ",");
+                for (Ownable ownable : player.getOwnedSpaces()) {
+                    writer.append(ownable.getName() + ",");
+                }
+                writer.append("\n");
+            } catch (IOException e) {
+                e.printStackTrace();
 
+            }
         }
     }
 }
