@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3641d87a-8fb7-4c18-b3d6-bd14c122dec5" name="Default" comment="Ok A lot have work has been done I seem to have cracked the infinite loop problems, I still have a lot of debugging to do but it looks promising">
+    <list default="true" id="3641d87a-8fb7-4c18-b3d6-bd14c122dec5" name="Default" comment="Minor changes I seems to have a little issue of unbalenced matches I need to find out why, but I need to check all the log first&#10;&#10;Endless games = 295 out of games played = 10000&#10;Player 1 won : 2079 games&#10;Player 2 won : 1838 games&#10;Player 3 won : 1894 games&#10;Player 4 won : 4189 games">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/dataLog0.csv" afterPath="$PROJECT_DIR$/logs/dataLog0.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/debugLog.log" afterPath="$PROJECT_DIR$/logs/debugLog.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Players/Player.java" afterPath="$PROJECT_DIR$/src/main/java/Players/Player.java" />
     </list>
     <ignored path="monopoly-simulator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,28 +38,18 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Players/Player.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#8225#8226#0" expanded="false" />
-                <element signature="e#8263#8264#0" expanded="false" />
-                <element signature="e#8304#8305#0" expanded="false" />
-                <element signature="e#8331#8332#0" expanded="false" />
-                <element signature="e#9107#9108#0" expanded="false" />
-                <element signature="e#9142#9143#0" expanded="false" />
-                <element signature="e#9181#9182#0" expanded="false" />
-                <element signature="e#9212#9213#0" expanded="false" />
-                <element signature="e#14024#14025#0" expanded="false" />
-                <element signature="e#14056#14057#0" expanded="false" />
-                <element signature="e#15470#15471#0" expanded="false" />
-                <element signature="e#15498#15499#0" expanded="false" />
-                <element signature="e#15543#15544#0" expanded="false" />
-                <element signature="e#15577#15578#0" expanded="false" />
-                <element signature="e#15618#15619#0" expanded="false" />
-                <element signature="e#15653#15654#0" expanded="false" />
-                <element signature="e#16015#16016#0" expanded="false" />
-                <element signature="e#16049#16050#0" expanded="false" />
-              </folding>
+              <caret line="54" column="16" selection-start-line="54" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DiceRoll.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Dice/DiceRoll.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -66,9 +59,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="25" column="51" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -78,23 +69,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1278#1279#0" expanded="false" />
-                <element signature="e#1328#1329#0" expanded="false" />
-                <element signature="e#1359#1360#0" expanded="false" />
-                <element signature="e#1409#1410#0" expanded="false" />
-                <element signature="e#3020#3021#0" expanded="false" />
-                <element signature="e#3052#3053#0" expanded="false" />
-                <element signature="e#3086#3087#0" expanded="false" />
-                <element signature="e#3110#3111#0" expanded="false" />
-                <element signature="e#3143#3144#0" expanded="false" />
-                <element signature="e#3167#3168#0" expanded="false" />
-                <element signature="e#3197#3198#0" expanded="false" />
-                <element signature="e#3226#3227#0" expanded="false" />
-                <element signature="e#3256#3257#0" expanded="false" />
-                <element signature="e#3285#3286#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -104,13 +79,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="44" column="92" selection-start-line="44" selection-start-column="92" selection-end-line="44" selection-end-column="92" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#4842#4843#0" expanded="false" />
-                <element signature="e#4921#4922#0" expanded="false" />
-                <element signature="e#5020#5021#0" expanded="false" />
-                <element signature="e#5047#5048#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,12 +97,21 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9366197">
-              <caret line="42" column="47" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.5136054">
+              <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3763#3771#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dice.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Dice/Dice.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -143,15 +121,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="93" column="36" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#2025#2026#0" expanded="false" />
-                <element signature="e#2081#2082#0" expanded="false" />
-                <element signature="e#5954#5955#0" expanded="false" />
-                <element signature="e#5989#5990#0" expanded="false" />
-                <element signature="e#6027#6028#0" expanded="false" />
-                <element signature="e#6062#6063#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -160,10 +130,8 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Logger/DataLogger.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -240,11 +208,11 @@
         <option value="$PROJECT_DIR$/src/main/java/Rules/DataLogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/DataLogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/Logger/DataLogger.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Players/Player.java" />
         <option value="$PROJECT_DIR$/src/test/java/Rules/BuildRulesTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Board/Property.java" />
         <option value="$PROJECT_DIR$/src/main/LuaFiles/BuildRules.lua" />
         <option value="$PROJECT_DIR$/src/main/java/Rules/BuildRules.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Players/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
       </list>
     </option>
@@ -258,8 +226,8 @@
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
     <option name="FILTER_INFO" value="false" />
-    <option name="FILTER_DEBUG" value="false" />
-    <option name="CUSTOM_FILTER" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" value="doubl" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -274,10 +242,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1364" />
-    <option name="height" value="726" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -320,10 +288,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Tests" />
-      </pane>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -586,13 +552,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Dice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monopoly-simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monopoly-simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Board" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="Tests" />
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1291,7 +1285,9 @@
       <workItem from="1457343333031" duration="12171000" />
       <workItem from="1457626277519" duration="12195000" />
       <workItem from="1457769578336" duration="617000" />
-      <workItem from="1457816656413" duration="1244000" />
+      <workItem from="1457816656413" duration="1493000" />
+      <workItem from="1457950805441" duration="1139000" />
+      <workItem from="1457971241393" duration="792000" />
     </task>
     <task id="LOCAL-00001" summary="Added changes and removed the money and transaction classes, running back on basics for now">
       <created>1453758024219</created>
@@ -1467,7 +1463,13 @@
       <option name="project" value="LOCAL" />
       <updated>1457701973497</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Minor changes I seems to have a little issue of unbalenced matches I need to find out why, but I need to check all the log first&#10;&#10;Endless games = 295 out of games played = 10000&#10;Player 1 won : 2079 games&#10;Player 2 won : 1838 games&#10;Player 3 won : 1894 games&#10;Player 4 won : 4189 games">
+      <created>1457886699986</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1457886699986</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1503,11 +1505,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144188000" />
+    <option name="totallyTimeSpent" value="146368000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1364" height="726" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1515,11 +1517,11 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3392" sideWeight="0.53817916" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4935065" sideWeight="0.46182084" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49211356" sideWeight="0.46182084" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1698813" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16910689" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32649842" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1552,7 +1554,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Made bank singleton also added an abstract class called ownable, which allows for a better inheritence of classes and allows for better written bank class, the bank is almost completed, but still need to work at it." />
     <MESSAGE value="Made minor changes to the bank class and tests, also written new tests and new class rules. Seems the transactions have been implemented now to move onto the implementing the basis of all the rules." />
     <MESSAGE value="Completed the utility rules, and tested the extensibility, need to test the full workings of the utility board class, but that will be soon" />
     <MESSAGE value="Minor mistake on the CSV file to do with income tax, nothing major." />
@@ -1577,7 +1578,8 @@
     <MESSAGE value="Implmented and refractored rules into Lua, Bank.lua is small as I need to work out what really needs to go into the lua file, for now it will stay in java" />
     <MESSAGE value="Ok I have started to implement the simulator still some bugs, looks like I need to implement a way of players to buy properties of each other" />
     <MESSAGE value="Ok A lot have work has been done I seem to have cracked the infinite loop problems, I still have a lot of debugging to do but it looks promising" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ok A lot have work has been done I seem to have cracked the infinite loop problems, I still have a lot of debugging to do but it looks promising" />
+    <MESSAGE value="Minor changes I seems to have a little issue of unbalenced matches I need to find out why, but I need to check all the log first&#10;&#10;Endless games = 295 out of games played = 10000&#10;Player 1 won : 2079 games&#10;Player 2 won : 1838 games&#10;Player 3 won : 1894 games&#10;Player 4 won : 4189 games" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor changes I seems to have a little issue of unbalenced matches I need to find out why, but I need to check all the log first&#10;&#10;Endless games = 295 out of games played = 10000&#10;Player 1 won : 2079 games&#10;Player 2 won : 1838 games&#10;Player 3 won : 1894 games&#10;Player 4 won : 4189 games" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1640,20 +1642,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/LuaFiles/TestingLuaFiles/TaxRulesTestNoFixedTax.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/LuaFiles/TestingLuaFiles/TaxRulesTestNoFixedTaxAndDifferentIncomeTaxPercentage.lua">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/LuaFiles/TaxRules.lua">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1944,91 +1932,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Logger/DataLogger.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Rules/BuildRules.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Rules/Bank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="93" column="36" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2025#2026#0" expanded="false" />
-            <element signature="e#2081#2082#0" expanded="false" />
-            <element signature="e#5954#5955#0" expanded="false" />
-            <element signature="e#5989#5990#0" expanded="false" />
-            <element signature="e#6027#6028#0" expanded="false" />
-            <element signature="e#6062#6063#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Players/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#8225#8226#0" expanded="false" />
-            <element signature="e#8263#8264#0" expanded="false" />
-            <element signature="e#8304#8305#0" expanded="false" />
-            <element signature="e#8331#8332#0" expanded="false" />
-            <element signature="e#9107#9108#0" expanded="false" />
-            <element signature="e#9142#9143#0" expanded="false" />
-            <element signature="e#9181#9182#0" expanded="false" />
-            <element signature="e#9212#9213#0" expanded="false" />
-            <element signature="e#14024#14025#0" expanded="false" />
-            <element signature="e#14056#14057#0" expanded="false" />
-            <element signature="e#15470#15471#0" expanded="false" />
-            <element signature="e#15498#15499#0" expanded="false" />
-            <element signature="e#15543#15544#0" expanded="false" />
-            <element signature="e#15577#15578#0" expanded="false" />
-            <element signature="e#15618#15619#0" expanded="false" />
-            <element signature="e#15653#15654#0" expanded="false" />
-            <element signature="e#16015#16016#0" expanded="false" />
-            <element signature="e#16049#16050#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Board/Property.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1278#1279#0" expanded="false" />
-            <element signature="e#1328#1329#0" expanded="false" />
-            <element signature="e#1359#1360#0" expanded="false" />
-            <element signature="e#1409#1410#0" expanded="false" />
-            <element signature="e#3020#3021#0" expanded="false" />
-            <element signature="e#3052#3053#0" expanded="false" />
-            <element signature="e#3086#3087#0" expanded="false" />
-            <element signature="e#3110#3111#0" expanded="false" />
-            <element signature="e#3143#3144#0" expanded="false" />
-            <element signature="e#3167#3168#0" expanded="false" />
-            <element signature="e#3197#3198#0" expanded="false" />
-            <element signature="e#3226#3227#0" expanded="false" />
-            <element signature="e#3256#3257#0" expanded="false" />
-            <element signature="e#3285#3286#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/Rules/BuildRulesTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="51" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <caret line="44" column="92" selection-start-line="44" selection-start-column="92" selection-end-line="44" selection-end-column="92" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2040,27 +1948,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Rules/BuildRules.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Rules/Bank.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="92" selection-start-line="44" selection-start-column="92" selection-end-line="44" selection-end-column="92" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#4842#4843#0" expanded="false" />
-            <element signature="e#4921#4922#0" expanded="false" />
-            <element signature="e#5020#5021#0" expanded="false" />
-            <element signature="e#5047#5048#0" expanded="false" />
-          </folding>
+          <caret line="93" column="36" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Logger/DataLogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Rules/BuildRulesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="51" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Dice/Dice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Board/Property.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Dice/DiceRoll.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Players/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="16" selection-start-line="54" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9366197">
-          <caret line="42" column="47" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.5136054">
+          <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3763#3771#0" expanded="true" />
           </folding>
         </state>
       </provider>

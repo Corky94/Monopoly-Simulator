@@ -32,7 +32,7 @@ public class Main {
             e.printStackTrace();
         }
         int endlessGames = 0;
-        int simulationsToRun = 1 ;
+        int simulationsToRun = 10000;
         int[] winners = {0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0; i < simulationsToRun; i++) {
             DataLogger dl = new DataLogger(Paths.get("").toAbsolutePath().toString() + "/logs/dataLog" + i + ".csv");
@@ -81,12 +81,12 @@ public class Main {
             Vector<Player> playersInGame = new Vector<Player>();
             playersInGame.add(player1);
             playersInGame.add(player2);
-            // playersInGame.add(player3);
-            // playersInGame.add(player4);
-            // playersInGame.add(player5);
-            // playersInGame.add(player6);
-            // playersInGame.add(player7);
-            // playersInGame.add(player8);
+            playersInGame.add(player3);
+            playersInGame.add(player4);
+            playersInGame.add(player5);
+            playersInGame.add(player6);
+            playersInGame.add(player7);
+            playersInGame.add(player8);
 
             AllPlayers.init(playersInGame);
             int turn = 1;

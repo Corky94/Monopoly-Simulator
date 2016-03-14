@@ -57,6 +57,7 @@ public class Player {
             LOGGER.info(loggingName + " rolled dice of " + roll.getSumOfDiceRolls());
             int rolls = 1;
             while (roll.isReRoll()) {
+                LOGGER.info(loggingName + " Got a double roll, has another roll of dice");
                 if (rolls >= jailRules.amountOfDoublesToBeSentToJail()) {
                     this.goToJail();
                     turnInJail = 0;
@@ -223,6 +224,7 @@ public class Player {
             }
         }        
         DiceRoll roll = new DiceRoll(sumOfDiceRolls,allTheSame);
+
         lastDiceRoll = roll;
         return roll;
 
