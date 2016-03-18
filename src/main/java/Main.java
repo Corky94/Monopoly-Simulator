@@ -2,6 +2,7 @@ import Board.*;
 import Cards.Deck.Deck;
 import Dice.Dice;
 import Players.AllPlayers;
+import Players.OrderStartingPlayers;
 import Players.Player;
 import Rules.*;
 import Logger.*;
@@ -32,7 +33,7 @@ public class Main {
             e.printStackTrace();
         }
         int endlessGames = 0;
-        int simulationsToRun = 10000;
+        int simulationsToRun = 1000;
         int[] winners = {0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0; i < simulationsToRun; i++) {
 //            DataLogger dl = new DataLogger(Paths.get("").toAbsolutePath().toString() + "/logs/dataLog" + i + ".csv");
@@ -87,7 +88,11 @@ public class Main {
             playersInGame.add(player6);
             playersInGame.add(player7);
             playersInGame.add(player8);
+            Collections.sort(playersInGame, new OrderStartingPlayers());
 
+            for (Player p : playersInGame) {
+                p.rollDice().getSumOfDiceRolls();
+            }
             AllPlayers.init(playersInGame);
             int turn = 1;
             Vector<Player> allPlayers;
