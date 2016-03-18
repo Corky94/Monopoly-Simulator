@@ -28,7 +28,7 @@ public class BankruptcyRules {
             bankruptPlayer.removeProperty(space);
             space.setOwner(owedPlayer);
         }
-        System.out.println("Player is out the game");
+        System.out.println(bankruptPlayer.getName() + " is out the game");
         AllPlayers.getInstance().removePlayer(bankruptPlayer);
     }
     public void bankruptByBank( Player bankruptPlayer){

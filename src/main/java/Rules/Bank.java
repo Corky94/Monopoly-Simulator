@@ -143,22 +143,22 @@ public class Bank {
         Player topBidder = null;
         try{
             while(auctionRunning){
-                Player oldTopBidder = topBidder;
+                	
+		auctionRunning=false;
                 for(Player player : players){
                     if(player.wantsToBuyPropertyForPrice(property,askingPriceOfProperty) && !player.equals(topBidder)){
                         topBidder = player;
                         currentPriceOfProperty= askingPriceOfProperty;
                         askingPriceOfProperty += incrementOfAuction;
+			auctionRunning=true;
                     }
                 }
 
-                if(topBidder.equals(oldTopBidder)){
-                    auctionRunning = false;
-                }
+                
             }
-            topBidder.spendMoney(currentPriceOfProperty);
-            property.setOwner(topBidder);
-            topBidder.addProperty(property);
+           topBidder.spendMoney(currentPriceOfProperty);
+           property.setOwner(topBidder);
+           topBidder.addProperty(property);
         }
         catch (NullPointerException e){
             Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("No one can afford property");

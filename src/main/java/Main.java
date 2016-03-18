@@ -35,7 +35,7 @@ public class Main {
         int simulationsToRun = 10000;
         int[] winners = {0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0; i < simulationsToRun; i++) {
-            DataLogger dl = new DataLogger(Paths.get("").toAbsolutePath().toString() + "/logs/dataLog" + i + ".csv");
+//            DataLogger dl = new DataLogger(Paths.get("").toAbsolutePath().toString() + "/logs/dataLog" + i + ".csv");
             //Init Rules
             AuctionRules auctionRules = new AuctionRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/AuctionRules.lua");
             AllRules.setAuctionRules(auctionRules);
@@ -95,10 +95,11 @@ public class Main {
             while (AllPlayers.getInstance().getAllPlayers().size() > 1 && turn < 500) {
                 allPlayers = AllPlayers.getInstance().getAllPlayers();
                 try {
-                    for (Player player : allPlayers) {
-                        allPlayers = AllPlayers.getInstance().getAllPlayers();
+                    for (Player player : AllPlayers.getInstance().getAllPlayers()) {
+                        Vector<Player> allPlayers2 = AllPlayers.getInstance().getAllPlayers();
                         player.onTurn();
-                        for (Player p : allPlayers) {
+			//System.out.println("Turn of " + player.getName());
+                        for (Player p : AllPlayers.getInstance().getAllPlayers()) {
                             p.betweenTurns();
                         }
 
