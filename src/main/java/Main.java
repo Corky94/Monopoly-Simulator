@@ -17,26 +17,27 @@ import java.util.Vector;
 /**
  * Created by marc on 23/11/2015.
  */
+
 public class Main {
 
     public static void main(String args[]) {
         try {
             LogManager.getLogManager().reset();
-            FileHandler fh = new FileHandler(Paths.get("").toAbsolutePath().toString() + "/logs/debugLog.log");
-            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).addHandler(fh);
-            SimpleFormatter formatter = new SimpleFormatter();
-            fh.setFormatter(formatter);
-            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).setUseParentHandlers(false);
-            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).setLevel(Level.WARNING);
+            //FileHandler fh = new FileHandler(Paths.get("").toAbsolutePath().toString() + "/logs/debugLog.log");
+            //Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).addHandler(fh);
+            //SimpleFormatter formatter = new SimpleFormatter();
+            //fh.setFormatter(formatter);
+            //Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).setUseParentHandlers(false);
+            //Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).setLevel(Level.WARNING);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         int endlessGames = 0;
-        int simulationsToRun = 1000;
+        int simulationsToRun = 100000;
         int[] winners = {0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0; i < simulationsToRun; i++) {
-//            DataLogger dl = new DataLogger(Paths.get("").toAbsolutePath().toString() + "/logs/dataLog" + i + ".csv");
+            DataLogger dl = new DataLogger("/media/c1217468/expansion/simulator_logs/dataLog" + i + ".csv");
             //Init Rules
             AuctionRules auctionRules = new AuctionRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/AuctionRules.lua");
             AllRules.setAuctionRules(auctionRules);
@@ -89,10 +90,6 @@ public class Main {
             playersInGame.add(player7);
             playersInGame.add(player8);
             Collections.sort(playersInGame, new OrderStartingPlayers());
-
-            for (Player p : playersInGame) {
-                p.rollDice().getSumOfDiceRolls();
-            }
             AllPlayers.init(playersInGame);
             int turn = 1;
             Vector<Player> allPlayers;
@@ -174,6 +171,7 @@ public class Main {
             }
             System.out.println("Game Finished in " + (System.nanoTime() - StartingTime) / 1000000000.0 + "s");
             System.out.println("Turns taken = " + turn);
+		DataLogger.closeFiles();
             //Run Simulation
 
         }

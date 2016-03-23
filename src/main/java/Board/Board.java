@@ -137,7 +137,7 @@ public  class Board {
                 return s;
             }
         }
-        System.out.println("Space with that name not found");
+        System.out.println("Space with that name not found "+ name);
         return null;
 
     }

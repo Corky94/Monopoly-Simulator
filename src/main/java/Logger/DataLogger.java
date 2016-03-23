@@ -44,4 +44,14 @@ public class DataLogger {
             }
         }
     }
+	public static void closeFiles(){
+try {
+
+		writer.close();
+} catch (IOException e) {
+                e.printStackTrace();
+
+            }
+
+	}
 }

@@ -62,7 +62,7 @@ public  class Deck {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        shuffleDecks();
+	shuffleDecks();
     }
 
     private ChanceCard generateChanceCard(String[] splittedString) {
@@ -85,7 +85,7 @@ public  class Deck {
                 card = new ChanceCard(name, action, Integer.parseInt(splittedString[3]));
                 break;
             case PayBankDependingOnHousesAndHotelsOwned:
-                card = new ChanceCard(name, action, Integer.parseInt(splittedString[3], Integer.parseInt(splittedString[4])));
+                card = new ChanceCard(name, action, Integer.parseInt(splittedString[3]), Integer.parseInt(splittedString[4]));
                 break;
             case GoBackSpaces:
                 card = new ChanceCard(name, action, Integer.parseInt(splittedString[3]));
