@@ -45,7 +45,7 @@ public class Player {
         jailRules = AllRules.getJailRules();
         bankRules = AllRules.getBankRules();
         loggingName = name;
-        DataLogger.writeToLog(this, currentLocation);
+        DataLogger.writeToLog(0, this, currentLocation);
 
     }
 
@@ -257,7 +257,7 @@ public class Player {
     }
 
     public void moveToLocation(Space location) {
-        DataLogger.writeToLog(this, location);
+        DataLogger.writeToLog(TurnCounter.getTurn(), this, location);
         LOGGER.info(loggingName + " moved to location " + location.getName());
         if(this.currentLocation.getLocation()> location.getLocation()){
             receiveMoney(goRules.getSalary());

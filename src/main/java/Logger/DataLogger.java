@@ -22,18 +22,18 @@ public class DataLogger {
             writer = new BufferedWriter(new FileWriter(csvFile, true));
         }
         catch (IOException e) {
-                e.printStackTrace();
+            e.printStackTrace();
 
         }
 
     }
 
-    public static void writeToLog(Player player, Space location) {
+    public static void writeToLog(int turn, Player player, Space location) {
         if(csvFile != null){
-            
+
             try {
-                
-                writer.append(player.getName() + "," + player.getMoney() + "," + location.getName() + ",");
+
+                writer.append(turn + player.getName() + "," + player.getMoney() + "," + location.getName() + ",");
                 for (Ownable ownable : player.getOwnedSpaces()) {
                     writer.append(ownable.getName() + ",");
                 }
@@ -44,14 +44,14 @@ public class DataLogger {
             }
         }
     }
-	public static void closeFiles(){
-try {
 
-		writer.close();
-} catch (IOException e) {
-                e.printStackTrace();
+    public static void closeFiles() {
+        try {
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
 
-            }
+        }
 
-	}
+    }
 }

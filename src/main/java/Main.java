@@ -7,7 +7,6 @@ import Players.Player;
 import Rules.*;
 import Logger.*;
 
-import java.io.IOException;
 import java.util.logging.*;
 import java.util.*;
 import java.nio.file.Paths;
@@ -91,10 +90,10 @@ public class Main {
             playersInGame.add(player8);
             Collections.sort(playersInGame, new OrderStartingPlayers());
             AllPlayers.init(playersInGame);
-            int turn = 1;
+            TurnCounter.resetCounter();
             Vector<Player> allPlayers;
             Long StartingTime = System.nanoTime();
-            while (AllPlayers.getInstance().getAllPlayers().size() > 1 && turn < 500) {
+            while (AllPlayers.getInstance().getAllPlayers().size() > 1 && TurnCounter.getTurn() < 500) {
                 allPlayers = AllPlayers.getInstance().getAllPlayers();
                 try {
                     for (Player player : AllPlayers.getInstance().getAllPlayers()) {
@@ -111,9 +110,9 @@ public class Main {
 
                 }
                 endOfTurnLog(allPlayers);
-                turn++;
+                TurnCounter.newTurn();
             }
-            if (turn > 499) {
+            if (TurnCounter.getTurn() > 499) {
                 endlessGames++;
                 System.out.println("Game ended at 3000 turns");
                 Player player = AllPlayers.getInstance().getAllPlayers().firstElement();
@@ -170,8 +169,9 @@ public class Main {
                 }
             }
             System.out.println("Game Finished in " + (System.nanoTime() - StartingTime) / 1000000000.0 + "s");
-            System.out.println("Turns taken = " + turn);
-		DataLogger.closeFiles();
+            System.out.println("Turns taken = " + TurnCounter.getTurn());
+            DataLogger.closeFiles();
+            TurnCounter.resetCounter();
             //Run Simulation
 
         }
