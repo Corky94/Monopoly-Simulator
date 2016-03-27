@@ -33,10 +33,10 @@ public class Main {
             e.printStackTrace();
         }
         int endlessGames = 0;
-        int simulationsToRun = 100000;
+        int simulationsToRun = 100;
         int[] winners = {0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0; i < simulationsToRun; i++) {
-            DataLogger dl = new DataLogger("/media/c1217468/expansion/simulator_logs/dataLog" + i + ".csv");
+            DataLogger dl = new DataLogger(Paths.get("").toAbsolutePath().toString() + "/logs/dataLog" + i + ".csv");
             //Init Rules
             AuctionRules auctionRules = new AuctionRules(Paths.get("").toAbsolutePath().toString() + "/src/main/LuaFiles/AuctionRules.lua");
             AllRules.setAuctionRules(auctionRules);

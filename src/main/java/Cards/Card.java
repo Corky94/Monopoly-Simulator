@@ -127,20 +127,18 @@ public class Card {
                 deck.addCard(this);
                 break;
             case GoBackSpaces:
-                newLocation = board.moveToSpace(currentLocation,-spacesToMove);
+                newLocation = board.moveToSpace(player, -spacesToMove);
                 player.moveToLocation(newLocation);
                 deck.addCard(this);
                 break;
             case AdvanceToNearestUtility:
                 newLocation = board.moveToNearestUtility(currentLocation);
                 player.moveToLocation(newLocation);
-                //Todo Also add the rent rule.
                 deck.addCard(this);
                 break;
             case AdvanceToNearestStation:
                 newLocation = board.moveToNearestStation(currentLocation);
                 player.moveToLocation(newLocation);
-                //Todo Also add the rent rule.
                 deck.addCard(this);
                 break;
             case PayPlayers:

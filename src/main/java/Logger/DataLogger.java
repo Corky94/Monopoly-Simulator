@@ -33,7 +33,7 @@ public class DataLogger {
 
             try {
 
-                writer.append(turn + player.getName() + "," + player.getMoney() + "," + location.getName() + ",");
+                writer.append(turn + "," + player.getName() + "," + player.calculateNetWorth() + "," + location.getName() + ",");
                 for (Ownable ownable : player.getOwnedSpaces()) {
                     writer.append(ownable.getName() + ",");
                 }

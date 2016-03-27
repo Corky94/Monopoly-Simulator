@@ -63,12 +63,12 @@ public class Player {
                     turnInJail = 0;
                     break;
                 }
-                this.moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
+                this.moveToLocation(Board.getInstance().moveToSpace(this, roll.getSumOfDiceRolls()));
 
                 roll = rollDice();
             }
             if (!inJail) {
-                this.moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
+                this.moveToLocation(Board.getInstance().moveToSpace(this, roll.getSumOfDiceRolls()));
                 moveTaken = MoveType.DiceRoll;
             }
         }
@@ -172,6 +172,7 @@ public class Player {
 
     private void playTurnInJail() {
         turnInJail++;
+        DataLogger.writeToLog(TurnCounter.getTurn(), this, currentLocation);
         if (cards.size() > 0) {
             for (Card card : cards) {
                 if (card.getAction().equals(CardAction.GetOutOfJail)) {
@@ -191,11 +192,12 @@ public class Player {
             turnInJail = 0;
         } else {
             DiceRoll roll = rollDice();
+
             if (roll.isReRoll()) {
-                moveToLocation(Board.getInstance().moveToSpace(currentLocation, roll.getSumOfDiceRolls()));
+                moveToLocation(Board.getInstance().moveToSpace(this, roll.getSumOfDiceRolls()));
                 inJail = false;
                 turnInJail = 0;
-                // }
+
             }
         }
     }
@@ -259,9 +261,6 @@ public class Player {
     public void moveToLocation(Space location) {
         DataLogger.writeToLog(TurnCounter.getTurn(), this, location);
         LOGGER.info(loggingName + " moved to location " + location.getName());
-        if(this.currentLocation.getLocation()> location.getLocation()){
-            receiveMoney(goRules.getSalary());
-        }
         currentLocation = location;
         location.onVisit(this);
     }

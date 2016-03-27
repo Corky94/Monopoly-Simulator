@@ -1,6 +1,8 @@
 package Board;
 
 import Players.Player;
+import Rules.AllRules;
+import Rules.GoRules;
 
 import java.io.*;
 import java.util.Vector;
@@ -144,12 +146,14 @@ public  class Board {
     public int getLocationOfSpace(Space space){
         return spaces.indexOf(space);
     }
-    public Space moveToSpace(Space currentLocation,int spacesToMove){
+
+    public Space moveToSpace(Player playerToMove, int spacesToMove) {
         //Needs to check if movesPast go
-        int newLocation = this.getLocationOfSpace(currentLocation) + spacesToMove;
+        int newLocation = this.getLocationOfSpace(playerToMove.getCurrentLocation()) + spacesToMove;
         if(newLocation<0){
             newLocation = spaces.size() + newLocation;
         } else if (newLocation >= spaces.size()) {
+            playerToMove.gainMoney(AllRules.getGoRules().getSalary());
             newLocation = newLocation%(spaces.size()-1);
         }
         try {
