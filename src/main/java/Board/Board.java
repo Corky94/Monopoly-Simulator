@@ -154,7 +154,7 @@ public  class Board {
             newLocation = spaces.size() + newLocation;
         } else if (newLocation >= spaces.size()) {
             playerToMove.gainMoney(AllRules.getGoRules().getSalary());
-            newLocation = newLocation%(spaces.size()-1);
+            newLocation = newLocation % (spaces.size());
         }
         try {
             spaces.elementAt(newLocation);

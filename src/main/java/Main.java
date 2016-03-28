@@ -22,18 +22,18 @@ public class Main {
     public static void main(String args[]) {
         try {
             LogManager.getLogManager().reset();
-            //FileHandler fh = new FileHandler(Paths.get("").toAbsolutePath().toString() + "/logs/debugLog.log");
-            //Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).addHandler(fh);
-            //SimpleFormatter formatter = new SimpleFormatter();
-            //fh.setFormatter(formatter);
-            //Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).setUseParentHandlers(false);
+//            FileHandler fh = new FileHandler(Paths.get("").toAbsolutePath().toString() + "/logs/debugLog.log");
+//            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).addHandler(fh);
+//            SimpleFormatter formatter = new SimpleFormatter();
+//            fh.setFormatter(formatter);
+//            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).setUseParentHandlers(false);
             //Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).setLevel(Level.WARNING);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         int endlessGames = 0;
-        int simulationsToRun = 100;
+        int simulationsToRun = 1000;
         int[] winners = {0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0; i < simulationsToRun; i++) {
             DataLogger dl = new DataLogger(Paths.get("").toAbsolutePath().toString() + "/logs/dataLog" + i + ".csv");
@@ -82,12 +82,12 @@ public class Main {
             Vector<Player> playersInGame = new Vector<Player>();
             playersInGame.add(player1);
             playersInGame.add(player2);
-            playersInGame.add(player3);
-            playersInGame.add(player4);
-            playersInGame.add(player5);
-            playersInGame.add(player6);
-            playersInGame.add(player7);
-            playersInGame.add(player8);
+//            playersInGame.add(player3);
+//            playersInGame.add(player4);
+//            playersInGame.add(player5);
+//            playersInGame.add(player6);
+//            playersInGame.add(player7);
+//            playersInGame.add(player8);
             Collections.sort(playersInGame, new OrderStartingPlayers());
             AllPlayers.init(playersInGame);
             TurnCounter.resetCounter();
@@ -97,9 +97,7 @@ public class Main {
                 allPlayers = AllPlayers.getInstance().getAllPlayers();
                 try {
                     for (Player player : AllPlayers.getInstance().getAllPlayers()) {
-                        Vector<Player> allPlayers2 = AllPlayers.getInstance().getAllPlayers();
                         player.onTurn();
-			//System.out.println("Turn of " + player.getName());
                         for (Player p : AllPlayers.getInstance().getAllPlayers()) {
                             p.betweenTurns();
                         }
@@ -109,7 +107,7 @@ public class Main {
                 } catch (ConcurrentModificationException e) {
 
                 }
-                endOfTurnLog(allPlayers);
+                //endOfTurnLog(allPlayers);
                 TurnCounter.newTurn();
             }
             if (TurnCounter.getTurn() > 499) {

@@ -64,8 +64,9 @@ public class Player {
                     break;
                 }
                 this.moveToLocation(Board.getInstance().moveToSpace(this, roll.getSumOfDiceRolls()));
-
                 roll = rollDice();
+                rolls++;
+                LOGGER.info(loggingName + " rolled dice of " + roll.getSumOfDiceRolls());
             }
             if (!inJail) {
                 this.moveToLocation(Board.getInstance().moveToSpace(this, roll.getSumOfDiceRolls()));
@@ -260,7 +261,7 @@ public class Player {
 
     public void moveToLocation(Space location) {
         DataLogger.writeToLog(TurnCounter.getTurn(), this, location);
-        LOGGER.info(loggingName + " moved to location " + location.getName());
+        LOGGER.info(loggingName + " moved from location " + currentLocation.getName() + " to location " + location.getName());
         currentLocation = location;
         location.onVisit(this);
     }

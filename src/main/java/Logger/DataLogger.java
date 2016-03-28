@@ -33,9 +33,9 @@ public class DataLogger {
 
             try {
 
-                writer.append(turn + "," + player.getName() + "," + player.calculateNetWorth() + "," + location.getName() + ",");
+                writer.append(turn + "," + player.getName() + "," + player.calculateNetWorth() + "," + location.getName() + "," + player.getOwnedSpaces().size() + "," + player.getMoney() + ",");
                 for (Ownable ownable : player.getOwnedSpaces()) {
-                    writer.append(ownable.getName() + ",");
+                    //writer.append(ownable.getName() + ",");
                 }
                 writer.append("\n");
             } catch (IOException e) {

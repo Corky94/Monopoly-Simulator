@@ -5,6 +5,8 @@ import Board.Space;
 import Cards.Deck.Deck;
 import Players.Player;
 
+import java.util.logging.Logger;
+
 /**
  *
  * Created by userhp on 26/01/2016.
@@ -90,6 +92,7 @@ public class Card {
         this.spacesToMove = spacesToMove;
     }
     public void onDraw(Player player){
+        Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info(player.getName() + " Picked up card " + name + " " + action);
         Deck deck = Deck.getInstance();
         Board board = Board.getInstance();
         Space currentLocation = player.getCurrentLocation();
