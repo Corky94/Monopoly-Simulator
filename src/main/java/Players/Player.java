@@ -8,17 +8,17 @@ import Cards.Deck.Deck;
 import Dice.*;
 import Rules.*;
 import Logger.*;
+
+import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Logger;
 
 /**
  * Created by marc on 20/11/2015.
  */
-public class Player {
+public class Player implements Serializable {
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private String loggingName;
-    private JailRules jailRules;
-    private GoRules goRules;
     private Space currentLocation;
     private int money = 0;
     private MoveType moveTaken;   
@@ -30,8 +30,10 @@ public class Player {
     private Board board =Board.getInstance();
     private DiceRoll lastDiceRoll;
 
-    private BankruptcyRules bankruptcyRules;
-    private Bank bankRules;
+    private BankruptcyRules bankruptcyRules = AllRules.getBankruptcyRules();
+    private GoRules goRules = AllRules.getGoRules();
+    private JailRules jailRules = AllRules.getJailRules();
+    private Bank bankRules = AllRules.getBankRules();
 
     public Player(String name, int initialMoney, Dice[] dices) {
         cards = new Vector<Card>();
@@ -40,12 +42,9 @@ public class Player {
         ownedSpaces = new Vector<Ownable>();
         this.dices = dices;
         currentLocation = board.getSpaceOnBoard("Go");
-        bankruptcyRules = AllRules.getBankruptcyRules();
-        goRules = AllRules.getGoRules();
-        jailRules = AllRules.getJailRules();
-        bankRules = AllRules.getBankRules();
+
         loggingName = name;
-        DataLogger.writeToLog(0, this, currentLocation);
+        //DataLogger.writeToLog(0, this, currentLocation);
 
     }
 
@@ -205,7 +204,7 @@ public class Player {
 
     private boolean wantsToPayJailFine() {
         boolean payFine = false;
-        if (money * 0.1 > AllRules.getJailRules().feeToPayToGetOutOfJail()) {
+        if (money > AllRules.getJailRules().feeToPayToGetOutOfJail()) {
             payFine = true;
         }
         return payFine;
@@ -278,6 +277,7 @@ public class Player {
         moveTaken = MoveType.GoToJail;
         this.inJail = true;
         currentLocation=board.getSpaceOnBoard("Jail");
+        DataLogger.writeToLog(TurnCounter.getTurn(), this, currentLocation);
     }
 
     public void giveMoneyToBank(int feeToPlayer) {
@@ -475,5 +475,17 @@ public class Player {
 
     public String getName() {
         return loggingName;
+    }
+
+    public Dice[] getAllDice() {
+        return dices;
+    }
+
+    public String getLuaFileLocation() {
+        return "";
+    }
+
+    public void setCurrentLocation(Space location) {
+        currentLocation = location;
     }
 }

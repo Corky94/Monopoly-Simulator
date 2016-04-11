@@ -2,9 +2,6 @@ package Board;
 
 import Players.Player;
 import Rules.AllRules;
-import Rules.Bank;
-
-import java.util.Comparator;
 
 /**
  * Created by marc on 20/11/2015.
@@ -21,7 +18,6 @@ public class Property extends Ownable {
     private int houses;
     private int hotels;
     private int houseCost;
-    private Bank bankRules;
 
 
     public Property(String name, Group group, int location, int baseRent, int cost, int mortgagePrice,int houseCost, int oneHouseRent, int twoHouseRent, int threeHouseRent, int fourHouseRent, int hotelRent){
@@ -39,12 +35,16 @@ public class Property extends Ownable {
         this.hotelRent = hotelRent;
         super.setMortgaged(false);
 
-        bankRules = AllRules.getBankRules();
     }
 
 
+    public void setHouses(int house) {
+        houses = house;
+    }
 
-
+    public void setHotels(int hotels) {
+        this.hotels = hotels;
+    }
     public void addHouse() {
         this.houses = this.getHouses() + 1;
     }
@@ -66,7 +66,7 @@ public class Property extends Ownable {
                 super.setOwner(player);
             }
             else{
-                bankRules.auctionProperty(this);
+                AllRules.getBankRules().auctionProperty(this);
             }
 
         }
@@ -75,7 +75,7 @@ public class Property extends Ownable {
         }
         else{
             calculateRent();
-            bankRules.payPlayer(player, super.getOwner(), rent);
+            AllRules.getBankRules().payPlayer(player, super.getOwner(), rent);
         }
 
     }
@@ -135,4 +135,27 @@ public class Property extends Ownable {
     }
 
 
+    public int getBaseRent() {
+        return baseRent;
+    }
+
+    public int getOneHouseRent() {
+        return oneHouseRent;
+    }
+
+    public int getTwoHouseRent() {
+        return twoHouseRent;
+    }
+
+    public int getThreeHouseRent() {
+        return threeHouseRent;
+    }
+
+    public int getFourHouseRent() {
+        return fourHouseRent;
+    }
+
+    public int getHotelRent() {
+        return hotelRent;
+    }
 }

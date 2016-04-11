@@ -15,10 +15,10 @@ import java.util.Vector;
  * Created by userhp on 28/01/2016.
  */
 public class Bank {
-    private static GoRules goRules;
-    private static BuildRules buildRules;
-    private static AuctionRules auctionRules;
-    private static SellingRules sellingRules;
+    private GoRules goRules;
+    private BuildRules buildRules;
+    private AuctionRules auctionRules;
+    private SellingRules sellingRules;
     private static int hotelsInBank;
     private static int housesInBank;
 

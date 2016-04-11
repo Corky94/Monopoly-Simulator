@@ -12,31 +12,27 @@ import java.io.IOException;
 /**
  * Created by userhp on 07/03/2016.
  */
-public class DataLogger {
+public class TurnLogger {
     private static File csvFile;
     private static BufferedWriter writer;
 
-    public DataLogger(String filename) {
+    public TurnLogger(String filename) {
         csvFile = new File(filename);
-        try{
+        try {
             writer = new BufferedWriter(new FileWriter(csvFile, true));
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
 
         }
 
     }
 
-    public static void writeToLog(int turn, Player player, Space location) {
+    public static void writeToLog(int turn) {
         if (csvFile != null) {
 
             try {
 
-                writer.append(turn + "," + player.getName() + "," + player.calculateNetWorth() + "," + location.getName() + "," + player.getOwnedSpaces().size() + "," + player.getMoney() + ",");
-                for (Ownable ownable : player.getOwnedSpaces()) {
-                    //writer.append(ownable.getName() + ",");
-                }
+                writer.append(Integer.toString(turn));
                 writer.append("\n");
             } catch (IOException e) {
                 e.printStackTrace();

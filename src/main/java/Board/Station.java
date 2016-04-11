@@ -2,14 +2,11 @@ package Board;
 
 import Players.Player;
 import Rules.AllRules;
-import Rules.Bank;
-import Rules.StationRules;
 
 /**
  * Created by userhp on 26/01/2016.
  */
 public class Station extends Ownable {
-    private StationRules stationRules = AllRules.getStationRules();
 
     public Station(String name, int loc, Group group, int cost, int mtg ){
         super.setGroup(group);
@@ -30,13 +27,13 @@ public class Station extends Ownable {
                setOwner(visitor);
             }
             else{
-                bankRules.auctionProperty(this);
+                AllRules.getBankRules().auctionProperty(this);
             }
         }
         else{
             if(!owner.equals(visitor)){
-                int rentOwed = stationRules.calculateRent(owner,visitor);
-                bankRules.payPlayer(visitor, super.getOwner(), rentOwed);
+                int rentOwed = AllRules.getStationRules().calculateRent(owner, visitor);
+                AllRules.getBankRules().payPlayer(visitor, super.getOwner(), rentOwed);
             }
         }
 

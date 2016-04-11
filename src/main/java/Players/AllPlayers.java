@@ -25,4 +25,5 @@ public class AllPlayers {
     public Vector<Player> getAllPlayers(){
         return allPlayers;
     }
+
 }

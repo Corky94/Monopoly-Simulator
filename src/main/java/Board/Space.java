@@ -11,8 +11,6 @@ public abstract class Space {
     private Group group;
     private int location;
     private String name;
-    protected Bank bankRules = AllRules.getBankRules();
-
 
 
     public Group getGroup(){

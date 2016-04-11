@@ -34,6 +34,7 @@ public class Main {
         }
         int endlessGames = 0;
         int simulationsToRun = 1000;
+        TurnLogger tl = new TurnLogger(Paths.get("").toAbsolutePath().toString() + "/logs/turnLogPlayers8.csv");
         int[] winners = {0, 0, 0, 0, 0, 0, 0, 0};
         for (int i = 0; i < simulationsToRun; i++) {
             DataLogger dl = new DataLogger(Paths.get("").toAbsolutePath().toString() + "/logs/dataLog" + i + ".csv");
@@ -60,12 +61,11 @@ public class Main {
             AllRules.setBankRules(bank);
 
 
-            //init Board
+            //init BoardGui
             Board.getInstance().populateBoard("Monopoly Map.csv");
 
             //Init Deck
             Deck.getInstance().initializeDeck("ExampleOfCards.csv");
-            System.out.println(Deck.getInstance().drawChanceCard().getAction().toString());
 
             //Init Players
             Dice dice1 = new Dice();
@@ -82,12 +82,12 @@ public class Main {
             Vector<Player> playersInGame = new Vector<Player>();
             playersInGame.add(player1);
             playersInGame.add(player2);
-//            playersInGame.add(player3);
-//            playersInGame.add(player4);
-//            playersInGame.add(player5);
-//            playersInGame.add(player6);
-//            playersInGame.add(player7);
-//            playersInGame.add(player8);
+            playersInGame.add(player3);
+            playersInGame.add(player4);
+            playersInGame.add(player5);
+            playersInGame.add(player6);
+            playersInGame.add(player7);
+            playersInGame.add(player8);
             Collections.sort(playersInGame, new OrderStartingPlayers());
             AllPlayers.init(playersInGame);
             TurnCounter.resetCounter();
@@ -169,10 +169,12 @@ public class Main {
             System.out.println("Game Finished in " + (System.nanoTime() - StartingTime) / 1000000000.0 + "s");
             System.out.println("Turns taken = " + TurnCounter.getTurn());
             DataLogger.closeFiles();
+            TurnLogger.writeToLog(TurnCounter.getTurn());
             TurnCounter.resetCounter();
             //Run Simulation
 
         }
+        TurnLogger.closeFiles();
         System.out.println("Endless games = " + endlessGames + " out of games played = " + simulationsToRun);
         System.out.println("Player 1 won : " + winners[0] + " games");
         System.out.println("Player 2 won : " + winners[1] + " games");

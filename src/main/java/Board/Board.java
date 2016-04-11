@@ -214,4 +214,11 @@ public  class Board {
         }
         return spacesInGroup;
     }
+
+    public void replaceSpaceOnBoard(Space lastSpaceLoaded, Space newSpace) {
+        int index = spaces.indexOf(lastSpaceLoaded);
+        spaces.set(index, newSpace);
+
+
+    }
 }

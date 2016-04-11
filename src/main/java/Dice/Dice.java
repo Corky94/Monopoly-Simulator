@@ -19,4 +19,8 @@ public class Dice {
         return (int)(Math.random()*((MAX-MIN)+1) +MIN);
 
     }
+
+    public int getMaxRoll() {
+        return MAX;
+    }
 }

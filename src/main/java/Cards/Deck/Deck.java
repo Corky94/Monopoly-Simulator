@@ -152,7 +152,8 @@ public  class Deck {
         }
         return card;
     }
-    public  void addCard(Card card){
+
+    public void addCard(Card card) {
         if (card instanceof ChanceCard){
             ChanceDeck.addLast((ChanceCard) card);
         }
@@ -172,4 +173,29 @@ public  class Deck {
     }
 
 
+    public LinkedList<CommunityChestCard> getCommunityChestDeck() {
+        return CommunityChestDeck;
+    }
+
+    public LinkedList<ChanceCard> getChanceDeck() {
+        return ChanceDeck;
+    }
+
+    public void replaceCard(Card previousCard, Card card) {
+        if (previousCard instanceof ChanceCard) {
+            int indexOfPreviousCard = ChanceDeck.indexOf(previousCard);
+            ChanceDeck.set(indexOfPreviousCard, (ChanceCard) card);
+        } else {
+            int indexOfPreviousCard = CommunityChestDeck.indexOf(previousCard);
+            CommunityChestDeck.set(indexOfPreviousCard, (CommunityChestCard) card);
+        }
+    }
+
+    public void removeCard(Card card) {
+        if (card instanceof ChanceCard) {
+            ChanceDeck.remove(card);
+        } else {
+            CommunityChestDeck.remove(card);
+        }
+    }
 }

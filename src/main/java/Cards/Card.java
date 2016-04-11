@@ -67,8 +67,7 @@ public class Card {
     }
 
 
-
-    protected String getName() {
+    public String getName() {
         return name;
     }
 
@@ -152,4 +151,23 @@ public class Card {
     }
 
 
+    public int getFeeToPlayer() {
+        return feeToPlayer;
+    }
+
+    public int getSpacesToMove() {
+        return spacesToMove;
+    }
+
+    public int getFeePerHouse() {
+        return feePerHouse;
+    }
+
+    public int getFeePerHotel() {
+        return feePerHotel;
+    }
+
+    public Space getLocation() {
+        return location;
+    }
 }
